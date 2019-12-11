@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="application/xml" href="count.xsl"?>
+<!-- count.xml -->
+<top>
+  <count path="//aaa/bbb"/>
+  <!-- Outputs '(3)' -->
+  
+  <aaa>
+    <bbb>ABC1</bbb>
+    <bbb>ABC2</bbb>
+  </aaa>
+  <aaa>
+    <bbb>ABC3</bbb>
+  </aaa>
+</top>

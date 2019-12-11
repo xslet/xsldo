@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="application/xml" href="all.xsl"?>
+<!-- all_f.xml -->
+<top>
+  <all path="//aaa/bbb" file="external.xml"/>
+  <!-- Outputs '(DEF1)(DEF2)(DEF3)(DEF4)' -->
+</top>

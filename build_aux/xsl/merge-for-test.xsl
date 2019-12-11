@@ -216,6 +216,17 @@
    </code></div>
    <hr/>
   </xsx:template>
+
+  <xsx:template match="get_data_value_for_test">
+   <xsx:param name="data_url"/>
+   <xsx:param name="data_gid"/>
+   <xsx:call-template name="do:get_objects_by_expath">
+    <xsx:with-param name="what">content</xsx:with-param>
+    <xsx:with-param name="data_url" select="$data_url"/>
+    <xsx:with-param name="data_gid" select="$data_gid"/>
+   </xsx:call-template>
+  </xsx:template>
+
  </xsl:template>
 
 </xsl:stylesheet>

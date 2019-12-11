@@ -170,6 +170,10 @@
    <fileset dir="${dir.build.xsl}/xslutil"/>
    <fileset dir="${dir.dist}"/>
   </copy>
+  <copy todir="${dir.docs}/examples">
+   <fileset dir="${dir.build.xsl}/xslutil"/>
+   <fileset dir="${dir.dist}"/>
+  </copy>
   <copy todir="${dir.docs}/test">
    <fileset dir="${dir.test}"/>
   </copy>

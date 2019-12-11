@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xml" href="unit.test.xsl"?>
+
+<unit-test title="do:count_nodes_by_path"
+ xmlns:ns1="http://aaa/bbb/ccc"
+ xmlns:ns2="http://rrr/sss/ttt">
+
+ <assert-equal name="do:count_nodes_by_path">
+  <path>aaa</path>
+  <prefix></prefix>
+  <suffix></suffix>
+  <expect>1</expect>
+  <aaa>ABC</aaa>
+ </assert-equal>
+
+ <assert-equal name="do:count_nodes_by_path">
+  <what>content</what>
+  <path>aaa</path>
+  <prefix>(</prefix>
+  <suffix>)</suffix>
+  <expect>(1)</expect>
+  <aaa>ABC</aaa>
+ </assert-equal>
+
+ <assert-equal name="do:count_nodes_by_path">
+  <what>content</what>
+  <path>aaa/bbb</path>
+  <prefix>(</prefix>
+  <suffix>)</suffix>
+  <expect>(1)</expect>
+  <aaa>ABC<bbb>DEF</bbb>GHI</aaa>
+ </assert-equal>
+
+ <assert-equal name="do:count_nodes_by_path">
+  <what>content</what>
+  <path>aaa</path>
+  <prefix>(</prefix>
+  <suffix>)</suffix>
+  <expect>(1)</expect>
+  <aaa>ABC<bbb>DEF</bbb>GHI</aaa>
+ </assert-equal>
+
+ <assert-equal name="do:count_nodes_by_path">
+  <what>content</what>
+  <path>aaa/@ccc</path>
+  <prefix>!</prefix>
+  <suffix>?</suffix>
+  <expect>!1?</expect>
+  <aaa ccc="CCC">
+    <bbb ddd="DDD">DEF</bbb>
+  </aaa>
+ </assert-equal>
+
+ <assert-equal name="do:count_nodes_by_path">
+  <what>content</what>
+  <path>aaa/bbb/@ddd</path>
+  <prefix></prefix>
+  <suffix></suffix>
+  <expect>1</expect>
+  <aaa ccc="CCC">
+    <bbb ddd="DDD">DEF</bbb>
+  </aaa>
+ </assert-equal>
+
+ <assert-equal name="do:count_nodes_by_path">
+  <what>content</what>
+  <path>*/bbb</path>
+  <prefix>(</prefix>
+  <suffix>)</suffix>
+  <expect>(3)</expect>
+  <aaa>
+    <bbb>ABC</bbb>
+    <bbb>DEF</bbb>
+  </aaa>
+  <ccc>
+    <bbb>GHI</bbb>
+    <ddd>JKL</ddd>
+  </ccc>
+ </assert-equal>
+
+ <assert-equal name="do:count_nodes_by_path">
+  <what>content</what>
+  <path>ccc/*</path>
+  <prefix>(</prefix>
+  <suffix>)</suffix>
+  <expect>(2)</expect>
+  <aaa>
+    <bbb>ABC</bbb>
+    <bbb>DEF</bbb>
+  </aaa>
+  <ccc>
+    <bbb>GHI</bbb>
+    <ddd>JKL</ddd>
+  </ccc>
+ </assert-equal>
+
+ <assert-equal name="do:count_nodes_by_path">
+  <what>content</what>
+  <path>aaa/*/fff</path>
+  <prefix>(</prefix>
+  <suffix>)</suffix>
+  <expect>(2)</expect>
+  <aaa>
+    <bbb>
+     <eee>ABC</eee>
+     <fff>abc</fff>
+    </bbb>
+    <ddd>
+     <eee>DEF</eee>
+     <fff>def</fff>
+    </ddd>
+  </aaa>
+  <ccc>
+    <bbb>
+     <eee>JKL</eee>
+     <fff>jkl</fff>
+    </bbb>
+    <ddd>
+     <eee>GHI</eee>
+     <fff>ghi</fff>
+    </ddd>
+  </ccc>
+ </assert-equal>
+
+ <assert-equal name="do:count_nodes_by_path">
+  <what>content</what>
+  <path>aaa[2]/*[1]/fff[1]</path>
+  <prefix></prefix>
+  <suffix></suffix>
+  <expect>1</expect>
+  <aaa>
+    <bbb>
+     <eee>ABC</eee>
+     <fff>abc</fff>
+    </bbb>
+    <ddd>
+     <eee>DEF</eee>
+     <fff>def</fff>
+    </ddd>
+  </aaa>
+  <aaa>
+    <bbb>
+     <eee>JKL</eee>
+     <fff>jkl</fff>
+    </bbb>
+    <ddd>
+     <eee>GHI</eee>
+     <fff>ghi</fff>
+    </ddd>
+  </aaa>
+ </assert-equal>
+
+ <assert-equal name="do:count_nodes_by_path">
+  <what>content</what>
+  <path>zzz/**/bbb/fff</path>
+  <prefix>(</prefix>
+  <suffix>)</suffix>
+  <expect>(2)</expect>
+  <zzz>
+   <yyy>
+    <aaa>
+      <bbb>
+       <eee>ABC</eee>
+       <fff>abc</fff>
+      </bbb>
+      <ddd>
+       <eee>DEF</eee>
+       <fff>def</fff>
+      </ddd>
+    </aaa>
+    <ccc>
+      <bbb>
+       <eee>JKL</eee>
+       <fff>jkl</fff>
+      </bbb>
+      <ddd>
+       <eee>GHI</eee>
+       <fff>ghi</fff>
+      </ddd>
+    </ccc>
+   </yyy>
+  </zzz>
+ </assert-equal>
+
+ <assert-equal name="do:count_nodes_by_path">
+  <what>content</what>
+  <path>zzz//bbb/fff</path>
+  <prefix>(</prefix>
+  <suffix>)</suffix>
+  <expect>(2)</expect>
+  <zzz>
+   <yyy>
+    <aaa>
+      <bbb>
+       <eee>ABC</eee>
+       <fff>abc</fff>
+      </bbb>
+      <ddd>
+       <eee>DEF</eee>
+       <fff>def</fff>
+      </ddd>
+    </aaa>
+    <ccc>
+      <bbb>
+       <eee>JKL</eee>
+       <fff>jkl</fff>
+      </bbb>
+      <ddd>
+       <eee>GHI</eee>
+       <fff>ghi</fff>
+      </ddd>
+    </ccc>
+   </yyy>
+  </zzz>
+ </assert-equal>
+
+ <assert-equal name="do:count_nodes_by_path">
+  <what>content</what>
+  <path>/**/bbb[@key=B1]/fff</path>
+  <prefix>(</prefix>
+  <suffix>)</suffix>
+  <expect>(2)</expect>
+  <zzz>
+   <yyy>
+    <aaa>
+      <bbb key="B1">
+       <eee>ABC</eee>
+       <fff>abc</fff>
+      </bbb>
+      <ddd>
+       <eee>DEF</eee>
+       <fff>def</fff>
+      </ddd>
+    </aaa>
+    <ccc>
+      <bbb key="B1">
+       <eee>JKL</eee>
+       <fff>jkl</fff>
+      </bbb>
+      <ddd>
+       <eee>GHI</eee>
+       <fff>ghi</fff>
+      </ddd>
+    </ccc>
+   </yyy>
+  </zzz>
+ </assert-equal>
+
+ <assert-equal name="do:count_nodes_by_path">
+  <what>content</what>
+  <path>//bbb[@key=B2]/fff</path>
+  <prefix>(</prefix>
+  <suffix>)</suffix>
+  <expect>(2)</expect>
+  <zzz>
+   <yyy>
+    <aaa>
+      <bbb key="B2">
+       <eee>ABC</eee>
+       <fff>abc</fff>
+      </bbb>
+      <ddd>
+       <eee>DEF</eee>
+       <fff>def</fff>
+      </ddd>
+    </aaa>
+    <ccc>
+      <bbb key="B2">
+       <eee>JKL</eee>
+       <fff>jkl</fff>
+      </bbb>
+      <ddd>
+       <eee>GHI</eee>
+       <fff>ghi</fff>
+      </ddd>
+    </ccc>
+   </yyy>
+  </zzz>
+ </assert-equal>
+
+ <assert-equal name="do:count_nodes_by_path">
+  <what>content</what>
+  <path>ns1:aaa[@c0=1]</path>
+  <prefix></prefix>
+  <suffix></suffix>
+  <expect>1</expect>
+  <ns1:aaa c0="0">ABC0</ns1:aaa>
+  <ns1:aaa c0="1">ABC1</ns1:aaa>
+  <ns1:aaa c0="2">ABC2</ns1:aaa>
+ </assert-equal>
+
+ <assert-equal name="do:count_nodes_by_path">
+  <what>content</what>
+  <path>ns1:aaa[@c0=1 | @c0=2]</path>
+  <prefix>(</prefix>
+  <suffix>)</suffix>
+  <expect>(2)</expect>
+  <ns1:aaa c0="0">ABC0</ns1:aaa>
+  <ns1:aaa c0="1">ABC1</ns1:aaa>
+  <ns1:aaa c0="2">ABC2</ns1:aaa>
+ </assert-equal>
+
+ <assert-equal name="do:count_nodes_by_path">
+  <what>content</what>
+  <path>ns1:aaa[@c0=1 , @c1=B]</path>
+  <prefix></prefix>
+  <suffix></suffix>
+  <expect>1</expect>
+  <ns1:aaa c0="1" c1="A">ABC0</ns1:aaa>
+  <ns1:aaa c0="1" c1="B">ABC1</ns1:aaa>
+  <ns1:aaa c0="2" c1="B">ABC2</ns1:aaa>
+ </assert-equal>
+
+ <assert-equal name="do:count_nodes_by_path">
+  <what>content</what>
+  <path>ns1:aaa[@c0=1,@c1=B|@c0=2,@c1=C]</path>
+  <prefix></prefix>
+  <suffix></suffix>
+  <expect>2</expect>
+  <ns1:aaa c0="1" c1="A">ABC0</ns1:aaa>
+  <ns1:aaa c0="1" c1="B">ABC1</ns1:aaa>
+  <ns1:aaa c0="2" c1="B">ABC2</ns1:aaa>
+  <ns1:aaa c0="2" c1="C">ABC3</ns1:aaa>
+ </assert-equal>
+
+ <assert-equal name="do:count_nodes_by_path">
+  <what>content</what>
+  <path>aaa/bbb/eee/../eee</path>
+  <prefix>(</prefix>
+  <suffix>)</suffix>
+  <expect>(4)</expect>
+  <aaa>
+    <bbb>
+     <eee>ABC</eee>
+     <fff>abc</fff>
+    </bbb>
+    <bbb>
+     <eee>DEF</eee>
+     <fff>def</fff>
+    </bbb>
+  </aaa>
+  <aaa>
+    <bbb>
+     <eee>JKL</eee>
+     <fff>jkl</fff>
+    </bbb>
+    <bbb>
+     <eee>GHI</eee>
+     <fff>ghi</fff>
+    </bbb>
+  </aaa>
+ </assert-equal>
+
+ <assert-equal name="do:count_nodes_by_path">
+  <what>content</what>
+  <path>aaa/bbb/eee/../eee[../fff=def]</path>
+  <prefix>(</prefix>
+  <suffix>)</suffix>
+  <expect>(1)</expect>
+  <aaa>
+    <bbb>
+     <eee>ABC</eee>
+     <fff>abc</fff>
+    </bbb>
+    <bbb>
+     <eee>DEF</eee>
+     <fff>def</fff>
+    </bbb>
+  </aaa>
+  <aaa>
+    <bbb>
+     <eee>JKL</eee>
+     <fff>jkl</fff>
+    </bbb>
+    <bbb>
+     <eee>GHI</eee>
+     <fff>ghi</fff>
+    </bbb>
+  </aaa>
+ </assert-equal>
+
+ <assert-equal name="do:count_nodes_by_path">
+  <what>content</what>
+  <path>/*/ABC/DEF[2]</path>
+  <prefix>(</prefix>
+  <suffix>)</suffix>
+  <expect>(1)</expect>
+ </assert-equal>
+
+ <ABC>
+  <DEF>GHI</DEF>
+  <DEF>JKL</DEF>
+  <DEF>MNO</DEF>
+ </ABC>
+
+</unit-test>

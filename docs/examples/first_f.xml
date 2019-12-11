@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="application/xml" href="first.xsl"?>
+<!-- first_f.xml -->
+<top>
+  <first path="//aaa/bbb" file="external.xml"/>
+  <!-- Outputs '(DEF1)' -->
+</top>

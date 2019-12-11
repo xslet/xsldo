@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="application/xml" href="for.xsl"?>
+<!-- for_f.xml -->
+<top>
+  <for path="//aaa" file="external.xml">[<all path="bbb"/>]</for>
+  <!-- Outputs '[(DEF1)(DEF2)][(DEF3)(DEF4)]' -->
+</top>

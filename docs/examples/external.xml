@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- external.xml -->
+<top>
+  <aaa>
+    <bbb>DEF1</bbb>
+    <bbb>DEF2</bbb>
+  </aaa>
+  <aaa>
+    <bbb>DEF3</bbb>
+    <bbb>DEF4</bbb>
+  </aaa>
+</top>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xml" href="unit.test.xsl"?>
+
+<unit-test title="do:operate_expression">
+
+  <assert-equal name="do:operate_expression">
+   <left>ABC</left>
+   <op>eq</op>
+   <right>ABC</right>
+   <expect>true</expect>
+  </assert-equal>
+
+  <assert-equal name="do:operate_expression">
+   <left>ABC</left>
+   <op>eq</op>
+   <right>ABD</right>
+   <expect></expect>
+  </assert-equal>
+
+  <assert-equal name="do:operate_expression">
+   <left>ABC</left>
+   <op>ne</op>
+   <right>ABC</right>
+   <expect></expect>
+  </assert-equal>
+
+  <assert-equal name="do:operate_expression">
+   <left>ABC</left>
+   <op>ne</op>
+   <right>ABD</right>
+   <expect>true</expect>
+  </assert-equal>
+
+  <assert-equal name="do:operate_expression">
+   <left>123</left>
+   <op>lt</op>
+   <right>124</right>
+   <expect>true</expect>
+  </assert-equal>
+
+  <assert-equal name="do:operate_expression">
+   <left>123</left>
+   <op>lt</op>
+   <right>123</right>
+   <expect></expect>
+  </assert-equal>
+
+  <assert-equal name="do:operate_expression">
+   <left>123</left>
+   <op>lt</op>
+   <right>122</right>
+   <expect></expect>
+  </assert-equal>
+
+  <assert-equal name="do:operate_expression">
+   <left>123</left>
+   <op>le</op>
+   <right>124</right>
+   <expect>true</expect>
+  </assert-equal>
+
+  <assert-equal name="do:operate_expression">
+   <left>123</left>
+   <op>le</op>
+   <right>123</right>
+   <expect>true</expect>
+  </assert-equal>
+
+  <assert-equal name="do:operate_expression">
+   <left>123</left>
+   <op>le</op>
+   <right>122</right>
+   <expect></expect>
+  </assert-equal>
+
+  <assert-equal name="do:operate_expression">
+   <left>123</left>
+   <op>gt</op>
+   <right>124</right>
+   <expect></expect>
+  </assert-equal>
+
+  <assert-equal name="do:operate_expression">
+   <left>123</left>
+   <op>gt</op>
+   <right>123</right>
+   <expect></expect>
+  </assert-equal>
+
+  <assert-equal name="do:operate_expression">
+   <left>123</left>
+   <op>gt</op>
+   <right>122</right>
+   <expect>true</expect>
+  </assert-equal>
+
+  <assert-equal name="do:operate_expression">
+   <left>123</left>
+   <op>ge</op>
+   <right>124</right>
+   <expect></expect>
+  </assert-equal>
+
+  <assert-equal name="do:operate_expression">
+   <left>123</left>
+   <op>ge</op>
+   <right>123</right>
+   <expect>true</expect>
+  </assert-equal>
+
+  <assert-equal name="do:operate_expression">
+   <left>123</left>
+   <op>ge</op>
+   <right>122</right>
+   <expect>true</expect>
+  </assert-equal>
+
+</unit-test>

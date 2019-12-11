@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<nn:data xmlns:nn="my-namespace">
+ <nn:Aaa>
+  <nn:Bbb key0="B1">
+   <nn:Ccc key1="C1">ABC1</nn:Ccc>
+   <nn:Ccc key1="C2">ABC2</nn:Ccc>
+  </nn:Bbb>
+
+  <nn:Bbb key0="B2">
+   <nn:Ccc key1="C1">ABC3</nn:Ccc>
+  </nn:Bbb>
+
+  <nn:Bbb key0="B1">
+   <nn:Ccc key1="C2">ABC4</nn:Ccc>
+   <nn:Ccc key1="C3">ABC5</nn:Ccc>
+  </nn:Bbb>
+ </nn:Aaa>
+
+ <nn:Aaa>
+  <nn:Bbb key0="B2">
+   <nn:Ccc key1="C3">ABC6</nn:Ccc>
+  </nn:Bbb>
+ </nn:Aaa>
+
+ <nn:Aaa>
+  <nn:Bbb key0="B1">
+   <nn:Ccc key1="C1">ABC7</nn:Ccc>
+   <nn:Ccc key1="C2">ABC8</nn:Ccc>
+  </nn:Bbb>
+
+  <nn:Bbb key0="B2">
+   <nn:Ccc key1="C1">ABC9</nn:Ccc>
+   <nn:Ccc key1="C2">ABC10</nn:Ccc>
+   <nn:Ccc key1="C3">ABC11</nn:Ccc>
+  </nn:Bbb>
+ </nn:Aaa>
+</nn:data>
