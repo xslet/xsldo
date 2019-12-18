@@ -167,8 +167,6 @@
   </copy>
   <copy todir="${dir.docs}/api/xsldoc">
    <fileset dir="${dir.build.xsl}/xsldoc"/>
-   <fileset dir="${dir.build.xsl}/xslutil"/>
-   <fileset dir="${dir.dist}"/>
   </copy>
   <copy todir="${dir.docs}/examples">
    <fileset dir="${dir.build.xsl}/xslutil"/>
