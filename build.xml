@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <project name="xsldo" basedir="." default="build">
+ <!-- These properties are used by merge processes -->
+ <property name="product" value="xsldo.xsl"/>
+ <property name="version" value="0.1"/>
+ <property name="copyright" value="Copyright (C) xslet@github"/>
+ <property name="license" value="MIT License"/>
+
  <property name="app.name" value="${ant.project.name}"/>
  <property name="dep.saxon.version" value="9-9-1-5J"/>
  <property name="dep.tomcat.version" value="9.0.27"/>
@@ -45,9 +51,15 @@
  </target>
 
  <target name="merge">
+  <delete>
+   <fileset dir="${dir.src.xsl}/ext" includes="**/*"/>
+  </delete>
+  <antcall target="merge-doc-xsl"/>
+  <copy todir="${dir.src.xsl}/ext">
+   <fileset dir="${dir.build.xsl}/xslutil"/>
+  </copy>
   <antcall target="merge-src-xsl"/>
   <antcall target="merge-test-xsl"/>
-  <antcall target="merge-doc-xsl"/>
  </target>
 
  <target name="merge-src-xsl">
@@ -117,6 +129,8 @@
 
  <target name="setup">
   <mkdir dir="${dir.src.xsl}"/>
+  <mkdir dir="${dir.src.xsl}/lib"/>
+  <mkdir dir="${dir.src.xsl}/ext"/>
   <mkdir dir="${dir.dist}"/>
   <mkdir dir="${dir.docs}"/>
   <mkdir dir="${dir.docs}/test"/>
@@ -165,12 +179,12 @@
   <copy todir="${dir.test}">
    <fileset dir="${dir.build.xsl}/xslutil"/>
   </copy>
-  <copy todir="${dir.docs}/api/xsldoc">
-   <fileset dir="${dir.build.xsl}/xsldoc"/>
-  </copy>
   <copy todir="${dir.docs}/examples">
    <fileset dir="${dir.build.xsl}/xslutil"/>
    <fileset dir="${dir.dist}"/>
+  </copy>
+  <copy todir="${dir.docs}/api/xsldoc">
+   <fileset dir="${dir.build.xsl}/xsldoc"/>
   </copy>
   <copy todir="${dir.docs}/test">
    <fileset dir="${dir.test}"/>

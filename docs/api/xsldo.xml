@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="application/xml" href="xsldoc/xsldoc.xsl"?><!--**
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="application/xml" href="xsldoc/xsldoc.xsl"?><!-- xsldo.xsl v0.1. Copyright (C) xslet@github. MIT License --><!--** xsldo.xsl ver0.1 - API Document
+**
  xsldo is a XSLT liblet to operate XML data on Web browsers.
 
  This liblet provides functions (named-templates) to get values or to loop of nodes at the specified XML path. A XML path is a concatenation of node names with slash(/). Further more, this liblet can operate XML data in external files.
@@ -20,6 +21,9 @@
   - following-comment : Immediate following comment of each element.
 
  This program is written in XSLT 1.0.
+
+** Copyright (C) xslet@github
+** MIT License
 --><xsl:stylesheet xmlns:ut="https://github.com/xslet/2020/xslutil" xmlns:do="https://github.com/xslet/2020/xsldo" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0"><!--** A utility set for XSLT programs on Web browsers. --><xsl:import href="xslutil.xsl"/><!--** The constant parameter for an expanded path separator. --><xsl:param name="do:_path_sep">&#x86;/&#x87;</xsl:param><!--** The constant parameter for a name separator in an expanded path. --><xsl:param name="do:_ns_sep">&#x86;:&#x87;</xsl:param><!--** The constant parameter for a name-condition separator in an expanded path. --><xsl:param name="do:_cond_sep">&#x86;?&#x87;</xsl:param><!--** The constant parameter for a OR condition separator in an expanded path. --><xsl:param name="do:_cond_or_sep">&#x96;|&#x97;</xsl:param><!--** The constant parameter for a AND condition separator in an expanded path. --><xsl:param name="do:_cond_and_sep">&#x96;,&#x97;</xsl:param><!--** The constant parameter for a path separator in an expanded path condition. --><xsl:param name="do:_cond_path_sep">&#x96;/&#x97;</xsl:param><!--** The constant parameter for a oprator separator in an expanded path. --><xsl:param name="do:_cond_op_sep">&#x96;=&#x97;</xsl:param><!--** The constant parameter for an object separator. --><xsl:param name="do:_object_sep">&#x86;;&#x87;</xsl:param><!--**
    Counts nodes at a specified path
  --><xsl:template name="do:count_nodes_by_path"><!--** A path. --><xsl:param name="path"/><!--** A prefix for each object. --><xsl:param name="prefix"/><!--** A suffix for each object. --><xsl:param name="suffix"/><!--** An URL of external data file. --><xsl:param name="data_url"/><!--** A generate-id of a base node. --><xsl:param name="data_gid"/><xsl:variable name="_expath"><xsl:call-template name="do:expand_path"><xsl:with-param name="path" select="$path"/></xsl:call-template></xsl:variable><xsl:call-template name="do:count_nodes_by_expath"><xsl:with-param name="expath" select="$_expath"/><xsl:with-param name="prefix" select="$prefix"/><xsl:with-param name="suffix" select="$suffix"/><xsl:with-param name="data_url" select="$data_url"/><xsl:with-param name="data_gid" select="$data_gid"/></xsl:call-template></xsl:template><!--**
