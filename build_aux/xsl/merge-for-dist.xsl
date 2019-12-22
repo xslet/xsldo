@@ -32,7 +32,7 @@
 
  <xsl:template match="/">
   <xsl:call-template name="merge">
-   <xsl:with-param name="destfile" select="'xsldo.xsl'"/>
+   <xsl:with-param name="destfile" select="$product"/>
    <xsl:with-param name="srcdir" select="'../../src/xsl'"/>
    <xsl:with-param name="libdir" select="'../../src/xsl/lib'"/>
    <xsl:with-param name="extdir" select="'../../src/xsl/ext'"/>

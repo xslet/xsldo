@@ -32,7 +32,7 @@
 
  <xsl:template match="/">
   <xsl:call-template name="merge">
-   <xsl:with-param name="destfile" select="'api/xsldo.xml'"/>
+   <xsl:with-param name="destfile" select="concat('api/', substring-before($product, '.xsl'), '.xml')"/>
    <xsl:with-param name="srcdir" select="'../../src/xsl'"/>
    <xsl:with-param name="libdir" select="'../../src/xsl/lib'"/>
    <xsl:with-param name="extdir" select="'../../src/xsl/ext'"/>
