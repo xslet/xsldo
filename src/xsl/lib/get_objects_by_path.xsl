@@ -452,7 +452,7 @@
   <xsl:param name="prefix"/>
   <xsl:param name="suffix"/>
   <xsl:variable name="_matched">
-   <xsl:call-template name="do:match_condition">
+   <xsl:call-template name="do:match_condition_by_expath">
     <xsl:with-param name="condition" select="$condition"/>
    </xsl:call-template>
   </xsl:variable>
@@ -473,7 +473,7 @@
   <xsl:param name="suffix"/>
   <xsl:param name="path_sep"/>
   <xsl:variable name="_matched">
-   <xsl:call-template name="do:match_condition">
+   <xsl:call-template name="do:match_condition_by_expath">
     <xsl:with-param name="condition" select="$condition"/>
    </xsl:call-template>
   </xsl:variable>
@@ -491,8 +491,8 @@
  <!--**
    Tests a singile/combined condition using expanded paths.
  -->
- <xsl:template name="do:match_condition">
-  <!--** a single/combined condition. -->
+ <xsl:template name="do:match_condition_by_expath">
+  <!--** a single/combined condition with extended path. -->
   <xsl:param name="condition"/>
   <xsl:variable name="_cond0">
    <xsl:call-template name="ut:trim">
