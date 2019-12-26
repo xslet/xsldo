@@ -584,11 +584,16 @@
      <xsl:with-param name="string" select="$_e0"/>
     </xsl:call-template>
    </xsl:variable>
-   <xsl:call-template name="do:_get_objects_by_expath_from_current_node">
-    <xsl:with-param name="expath" select="$_e1"/>
-    <xsl:with-param name="what">content</xsl:with-param>
-    <xsl:with-param name="suffix" select="$do:_object_sep"/>
-    <xsl:with-param name="path_sep" select="$do:_cond_path_sep"/>
+   <xsl:variable name="_e2">
+    <xsl:call-template name="do:_get_objects_by_expath_from_current_node">
+     <xsl:with-param name="expath" select="$_e1"/>
+     <xsl:with-param name="what">content</xsl:with-param>
+     <xsl:with-param name="suffix" select="$do:_object_sep"/>
+     <xsl:with-param name="path_sep" select="$do:_cond_path_sep"/>
+    </xsl:call-template>
+   </xsl:variable>
+   <xsl:call-template name="ut:trim">
+    <xsl:with-param name="string" select="$_e2"/>
    </xsl:call-template>
   </xsl:variable>
   <xsl:variable name="_s0" select="substring-after($cond, $do:_cond_op_sep)"/>

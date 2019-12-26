@@ -12,6 +12,168 @@
  </assert-equal>
 
  <assert-equal name="do:match_condition_by_path">
+  <condition>aaa = AAA</condition>
+  <expect></expect>
+  <aaa>ABC</aaa>
+ </assert-equal>
+
+ <assert-equal name="do:match_condition_by_path">
+  <condition>aaa = ABC</condition>
+  <expect>true</expect>
+  <aaa>ABC</aaa>
+ </assert-equal>
+
+ <assert-equal name="do:match_condition_by_path">
+  <condition>aaa = AAA</condition>
+  <expect></expect>
+  <aaa>ABC</aaa>
+ </assert-equal>
+
+ <assert-equal name="do:match_condition_by_path">
+  <condition>aaa ne BBB</condition>
+  <expect>true</expect>
+  <aaa>ABC</aaa>
+ </assert-equal>
+
+ <assert-equal name="do:match_condition_by_path">
+  <condition>aaa ne ABC</condition>
+  <expect></expect>
+  <aaa>ABC</aaa>
+ </assert-equal>
+
+ <assert-equal name="do:match_condition_by_path">
+  <condition>aaa != BBB</condition>
+  <expect>true</expect>
+  <aaa>ABC</aaa>
+ </assert-equal>
+
+ <assert-equal name="do:match_condition_by_path">
+  <condition>aaa != ABC</condition>
+  <expect></expect>
+  <aaa>ABC</aaa>
+ </assert-equal>
+
+ <assert-equal name="do:match_condition_by_path">
+  <condition>aaa = 123</condition>
+  <expect>true</expect>
+  <aaa>123</aaa>
+ </assert-equal>
+
+ <assert-equal name="do:match_condition_by_path">
+  <condition>aaa eq 123</condition>
+  <expect>true</expect>
+  <aaa>123</aaa>
+ </assert-equal>
+
+ <assert-equal name="do:match_condition_by_path">
+  <condition>aaa = 456</condition>
+  <expect></expect>
+  <aaa>123</aaa>
+ </assert-equal>
+
+ <assert-equal name="do:match_condition_by_path">
+  <condition>aaa eq 456</condition>
+  <expect></expect>
+  <aaa>123</aaa>
+ </assert-equal>
+
+ <assert-equal name="do:match_condition_by_path">
+  <condition>aaa != 456</condition>
+  <expect>true</expect>
+  <aaa>123</aaa>
+ </assert-equal>
+
+ <assert-equal name="do:match_condition_by_path">
+  <condition>aaa ne 456</condition>
+  <expect>true</expect>
+  <aaa>123</aaa>
+ </assert-equal>
+
+ <assert-equal name="do:match_condition_by_path">
+  <condition>aaa != 123</condition>
+  <expect></expect>
+  <aaa>123</aaa>
+ </assert-equal>
+
+ <assert-equal name="do:match_condition_by_path">
+  <condition>aaa ne 123</condition>
+  <expect></expect>
+  <aaa>123</aaa>
+ </assert-equal>
+
+ <assert-equal name="do:match_condition_by_path">
+  <condition>aaa le 123</condition>
+  <expect>true</expect>
+  <aaa>123</aaa>
+ </assert-equal>
+
+ <assert-equal name="do:match_condition_by_path">
+  <condition>aaa le 124</condition>
+  <expect>true</expect>
+  <aaa>123</aaa>
+ </assert-equal>
+
+ <assert-equal name="do:match_condition_by_path">
+  <condition>aaa le 122</condition>
+  <expect></expect>
+  <aaa>123</aaa>
+ </assert-equal>
+
+ <assert-equal name="do:match_condition_by_path">
+  <condition>aaa lt 123</condition>
+  <expect></expect>
+  <aaa>123</aaa>
+ </assert-equal>
+
+ <assert-equal name="do:match_condition_by_path">
+  <condition>aaa lt 124</condition>
+  <expect>true</expect>
+  <aaa>123</aaa>
+ </assert-equal>
+
+ <assert-equal name="do:match_condition_by_path">
+  <condition>aaa lt 122</condition>
+  <expect></expect>
+  <aaa>123</aaa>
+ </assert-equal>
+
+ <assert-equal name="do:match_condition_by_path">
+  <condition>aaa ge 123</condition>
+  <expect>true</expect>
+  <aaa>123</aaa>
+ </assert-equal>
+
+ <assert-equal name="do:match_condition_by_path">
+  <condition>aaa ge 122</condition>
+  <expect>true</expect>
+  <aaa>123</aaa>
+ </assert-equal>
+
+ <assert-equal name="do:match_condition_by_path">
+  <condition>aaa ge 124</condition>
+  <expect></expect>
+  <aaa>123</aaa>
+ </assert-equal>
+
+ <assert-equal name="do:match_condition_by_path">
+  <condition>aaa gt 123</condition>
+  <expect></expect>
+  <aaa>123</aaa>
+ </assert-equal>
+
+ <assert-equal name="do:match_condition_by_path">
+  <condition>aaa gt 122</condition>
+  <expect>true</expect>
+  <aaa>123</aaa>
+ </assert-equal>
+
+ <assert-equal name="do:match_condition_by_path">
+  <condition>aaa gt 124</condition>
+  <expect></expect>
+  <aaa>123</aaa>
+ </assert-equal>
+
+ <assert-equal name="do:match_condition_by_path">
   <condition>aaa/bbb eq ABC1</condition>
   <expect>true</expect>
   <aaa>
@@ -33,6 +195,18 @@
   <aaa>
    <bbb>ABC3</bbb>
   </aaa>
+ </assert-equal>
+
+ <assert-equal name="do:match_condition_by_path">
+  <condition>AAA eq ab cd ef</condition>
+  <expect>true</expect>
+  <AAA>ab  cd   ef</AAA>
+ </assert-equal>
+
+ <assert-equal name="do:match_condition_by_path">
+  <condition>AAA= ab cd ef </condition>
+  <expect>true</expect>
+  <AAA>   ab  cd   ef </AAA>
  </assert-equal>
 
  <assert-equal name="do:match_condition_by_path">

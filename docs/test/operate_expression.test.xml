@@ -115,4 +115,25 @@
    <expect>true</expect>
   </assert-equal>
 
+  <assert-equal name="do:operate_expression">
+   <left> 123 </left>
+   <op>eq</op>
+   <right> 123 </right>
+   <expect>true</expect>
+  </assert-equal>
+
+  <assert-equal name="do:operate_expression">
+   <left> 123 </left>
+   <op>eq</op>
+   <right>123</right>
+   <expect></expect>
+  </assert-equal>
+
+  <assert-equal name="do:operate_expression">
+   <left>   1  2  3  </left>
+   <op>eq</op>
+   <right> 1 2 3 </right>
+   <expect></expect>
+  </assert-equal>
+
 </unit-test>
