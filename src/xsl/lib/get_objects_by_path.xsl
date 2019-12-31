@@ -577,6 +577,19 @@
 
  <xsl:template name="do:_match_single_condition">
   <xsl:param name="cond"/>
+  <xsl:variable name="_after" select="substring-after($cond, $do:_cond_op_sep)"/>
+  <xsl:variable name="_op" select="substring-before($_after, $do:_cond_op_sep)"/>
+  <xsl:variable name="_right">
+   <xsl:variable name="_r0" select="substring-after($_after, $do:_cond_op_sep)"/>
+   <xsl:call-template name="ut:trim_start">
+    <xsl:with-param name="string" select="$_r0"/>
+   </xsl:call-template>
+  </xsl:variable>
+  <xsl:variable name="_quote">
+   <xsl:if test="string(number($_right)) = 'NaN'">
+    <xsl:value-of select="$ut:apos"/>
+   </xsl:if>
+  </xsl:variable>
   <xsl:variable name="_lefts">
    <xsl:variable name="_e0" select="substring-before($cond, $do:_cond_op_sep)"/>
    <xsl:variable name="_e1">
@@ -588,20 +601,13 @@
     <xsl:call-template name="do:_get_objects_by_expath_from_current_node">
      <xsl:with-param name="expath" select="$_e1"/>
      <xsl:with-param name="what">content</xsl:with-param>
-     <xsl:with-param name="suffix" select="$do:_object_sep"/>
+     <xsl:with-param name="prefix" select="$_quote"/>
+     <xsl:with-param name="suffix" select="concat($_quote, $do:_object_sep)"/>
      <xsl:with-param name="path_sep" select="$do:_cond_path_sep"/>
     </xsl:call-template>
    </xsl:variable>
    <xsl:call-template name="ut:trim">
     <xsl:with-param name="string" select="$_e2"/>
-   </xsl:call-template>
-  </xsl:variable>
-  <xsl:variable name="_s0" select="substring-after($cond, $do:_cond_op_sep)"/>
-  <xsl:variable name="_op" select="substring-before($_s0, $do:_cond_op_sep)"/>
-  <xsl:variable name="_right">
-   <xsl:variable name="_r0" select="substring-after($_s0, $do:_cond_op_sep)"/>
-   <xsl:call-template name="ut:trim_start">
-    <xsl:with-param name="string" select="$_r0"/>
    </xsl:call-template>
   </xsl:variable>
   <xsl:call-template name="do:_operate_expression_rcr">

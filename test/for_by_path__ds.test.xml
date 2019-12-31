@@ -40,7 +40,7 @@
 
  <assert-equal name="do:for_by_path">
   <data_url>data/test-data.xml</data_url>
-  <path>/n:data/n:Aaa/n:Bbb[@key0=B1]</path>
+  <path>/n:data/n:Aaa/n:Bbb[@key0='B1']</path>
   <allow>|get_data_value_for_test|</allow>
   <get_data_value_for_test/>
   <expect>ABC1 ABC2ABC4 ABC5ABC7 ABC8</expect>
@@ -48,7 +48,7 @@
 
  <assert-equal name="do:for_by_path">
   <data_url>data/test-data.xml</data_url>
-  <path>/n:data/n:Aaa/n:Bbb/n:Ccc[@key1=C2]</path>
+  <path>/n:data/n:Aaa/n:Bbb/n:Ccc[@key1='C2']</path>
   <allow>|get_data_value_for_test|</allow>
   <get_data_value_for_test/>
   <expect>ABC2ABC4ABC8ABC10</expect>
@@ -56,7 +56,7 @@
 
  <assert-equal name="do:for_by_path">
   <data_url>data/test-data.xml</data_url>
-  <path>/n:data/n:Aaa/n:Bbb/n:Ccc/@key1[.=C2]</path>
+  <path>/n:data/n:Aaa/n:Bbb/n:Ccc/@key1[.='C2']</path>
   <allow>|get_data_value_for_test|</allow>
   <get_data_value_for_test/>
   <expect>C2C2C2C2</expect>
@@ -64,7 +64,7 @@
 
  <assert-equal name="do:for_by_path">
   <data_url>data/test-data.xml</data_url>
-  <path>/n:data/n:Aaa/n:Bbb[n:Ccc/@key1=C2]</path>
+  <path>/n:data/n:Aaa/n:Bbb[n:Ccc/@key1='C2']</path>
   <allow>|get_data_value_for_test|</allow>
   <get_data_value_for_test/>
   <expect>ABC1 ABC2ABC4 ABC5ABC7 ABC8ABC9 ABC10 ABC11</expect>

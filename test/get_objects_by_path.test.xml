@@ -217,7 +217,7 @@
 
  <assert-equal name="do:get_objects_by_path">
   <what>content</what>
-  <path>/**/bbb[@key=B1]/fff</path>
+  <path>/**/bbb[@key='B1']/fff</path>
   <prefix>(</prefix>
   <suffix>)</suffix>
   <expect>(abc)(jkl)</expect>
@@ -249,7 +249,7 @@
 
  <assert-equal name="do:get_objects_by_path">
   <what>content</what>
-  <path>//bbb[@key=B2]/fff</path>
+  <path>//bbb[@key='B2']/fff</path>
   <prefix>(</prefix>
   <suffix>)</suffix>
   <expect>(abc)(jkl)</expect>
@@ -303,7 +303,7 @@
 
  <assert-equal name="do:get_objects_by_path">
   <what>content</what>
-  <path>ns1:aaa[@c0=1 , @c1=B]</path>
+  <path>ns1:aaa[@c0=1 , @c1='B']</path>
   <prefix></prefix>
   <suffix></suffix>
   <expect>ABC1</expect>
@@ -314,7 +314,7 @@
 
  <assert-equal name="do:get_objects_by_path">
   <what>content</what>
-  <path>ns1:aaa[@c0=1,@c1=B|@c0=2,@c1=C]</path>
+  <path>ns1:aaa[@c0=1,@c1='B'|@c0=2,@c1='C']</path>
   <prefix></prefix>
   <suffix></suffix>
   <expect>ABC1ABC3</expect>
@@ -354,7 +354,7 @@
 
  <assert-equal name="do:get_objects_by_path">
   <what>content</what>
-  <path>aaa/bbb/eee/../eee[../fff=def]</path>
+  <path>aaa/bbb/eee/../eee[../fff='def']</path>
   <prefix>(</prefix>
   <suffix>)</suffix>
   <expect>(DEF)</expect>

@@ -204,7 +204,7 @@
  </assert-equal>
 
  <assert-equal name="do:for_by_path">
-  <path>/**/bbb[@key=B1]/fff</path>
+  <path>/**/bbb[@key='B1']/fff</path>
   <allow>|get_data_value_for_test|</allow>
   <get_data_value_for_test/>
   <expect>abcjkl</expect>
@@ -235,7 +235,7 @@
  </assert-equal>
 
  <assert-equal name="do:for_by_path">
-  <path>//bbb[@key=B2]/fff</path>
+  <path>//bbb[@key='B2']/fff</path>
   <allow>|get_data_value_for_test|</allow>
   <get_data_value_for_test/>
   <expect>abcjkl</expect>
@@ -286,7 +286,7 @@
  </assert-equal>
 
  <assert-equal name="do:for_by_path">
-  <path>ns1:aaa[@c0=1 , @c1=B]</path>
+  <path>ns1:aaa[@c0=1 , @c1='B']</path>
   <allow>|get_data_value_for_test|</allow>
   <get_data_value_for_test/>
   <expect>ABC1</expect>
@@ -296,7 +296,7 @@
  </assert-equal>
 
  <assert-equal name="do:for_by_path">
-  <path>ns1:aaa[@c0=1,@c1=B|@c0=2,@c1=C]</path>
+  <path>ns1:aaa[@c0=1,@c1='B'|@c0=2,@c1='C']</path>
   <allow>|get_data_value_for_test|</allow>
   <get_data_value_for_test/>
   <expect>ABC1ABC3</expect>
@@ -334,7 +334,7 @@
  </assert-equal>
 
  <assert-equal name="do:for_by_path">
-  <path>aaa/bbb/eee/../eee[../fff=def]</path>
+  <path>aaa/bbb/eee/../eee[../fff='def']</path>
   <allow>|get_data_value_for_test|</allow>
   <get_data_value_for_test/>
   <expect>DEF</expect>
