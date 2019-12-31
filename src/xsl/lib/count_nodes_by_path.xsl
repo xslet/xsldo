@@ -58,14 +58,7 @@
       </xsl:call-template>
      </xsl:when>
      <xsl:otherwise>
-      <xsl:for-each select="//attribute::node()[generate-id() = $data_gid]">
-       <xsl:call-template name="do:_count_nodes_by_expath_from_current_node">
-        <xsl:with-param name="expath" select="$expath"/>
-        <xsl:with-param name="prefix" select="$prefix"/>
-        <xsl:with-param name="suffix" select="$suffix"/>
-       </xsl:call-template>
-      </xsl:for-each>
-      <xsl:for-each select="//*[generate-id() = $data_gid]">
+      <xsl:for-each select="//attribute::node()[generate-id() = $data_gid]|//*[generate-id() = $data_gid]">
        <xsl:call-template name="do:_count_nodes_by_expath_from_current_node">
         <xsl:with-param name="expath" select="$expath"/>
         <xsl:with-param name="prefix" select="$prefix"/>
@@ -86,14 +79,7 @@
        </xsl:call-template>
       </xsl:when>
       <xsl:otherwise>
-       <xsl:for-each select="//attribute::node()[generate-id() = $data_gid]">
-        <xsl:call-template name="do:_count_nodes_by_expath_from_current_node">
-         <xsl:with-param name="expath" select="$expath"/>
-         <xsl:with-param name="prefix" select="$prefix"/>
-         <xsl:with-param name="suffix" select="$suffix"/>
-        </xsl:call-template>
-       </xsl:for-each>
-       <xsl:for-each select="//*[generate-id() = $data_gid]">
+       <xsl:for-each select="//attribute::node()[generate-id() = $data_gid]|//*[generate-id() = $data_gid]">
         <xsl:call-template name="do:_count_nodes_by_expath_from_current_node">
          <xsl:with-param name="expath" select="$expath"/>
          <xsl:with-param name="prefix" select="$prefix"/>

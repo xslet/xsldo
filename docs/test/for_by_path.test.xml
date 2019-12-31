@@ -13,6 +13,29 @@
   <aaa>ABC</aaa>
  </assert-equal>
 
+ <assert-not-empty name="do:for_by_path">
+  <path>aaa</path>
+  <allow></allow>
+  (<get_data_value_for_test/>)
+  <aaa>ABC</aaa>
+ </assert-not-empty>
+
+ <assert-not-empty name="do:for_by_path">
+  <path>aaa</path>
+  <allow></allow>
+  <allow_text_node>true</allow_text_node>
+  (<get_data_value_for_test/>)
+  <aaa>ABC</aaa>
+ </assert-not-empty>
+
+ <assert-equal name="do:for_by_path">
+  <path>aaa</path>
+  <allow>xxx</allow>
+  <get_data_value_for_test/>
+  <expect></expect>
+  <aaa>ABC</aaa>
+ </assert-equal>
+
  <assert-equal name="do:for_by_path">
   <path>aaa</path>
   <allow>|xxx|</allow>

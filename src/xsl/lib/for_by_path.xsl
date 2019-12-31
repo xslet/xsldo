@@ -44,7 +44,7 @@
  </xsl:template>
 
  <!--**
-   Loops for each nodes from specified paths.
+   Loops for each nodes at specified expanded paths.
  -->
  <xsl:template name="do:for_by_expath">
   <!--** An expanded path. -->
@@ -147,32 +147,16 @@
   <xsl:variable name="_gid" select="substring-before($gids, $do:_object_sep)"/>
   <xsl:variable name="_next" select="substring-after($gids, $do:_object_sep)"/>
   <xsl:if test="string-length($_gid) &gt; 0">
-   <xsl:choose>
-    <xsl:when test="$allow_text_node = $ut:true">
-     <xsl:apply-templates select="text()|*[contains($allow, concat('|', name(), '|'))]">
-      <xsl:with-param name="data_url" select="$data_url"/>
-      <xsl:with-param name="data_gid" select="$_gid"/>
-      <xsl:with-param name="data_index" select="$index"/>
-      <xsl:with-param name="allow" select="$allow"/>
-      <xsl:with-param name="allow_text_node" select="$allow_text_node"/>
-      <xsl:with-param name="arg0" select="$arg0"/>
-      <xsl:with-param name="arg1" select="$arg1"/>
-      <xsl:with-param name="arg2" select="$arg2"/>
-     </xsl:apply-templates>
-    </xsl:when>
-    <xsl:otherwise>
-     <xsl:apply-templates select="*[contains($allow, concat('|', name(), '|'))]">
-      <xsl:with-param name="data_url" select="$data_url"/>
-      <xsl:with-param name="data_gid" select="$_gid"/>
-      <xsl:with-param name="data_index" select="$index"/>
-      <xsl:with-param name="allow" select="$allow"/>
-      <xsl:with-param name="allow_text_node" select="$allow_text_node"/>
-      <xsl:with-param name="arg0" select="$arg0"/>
-      <xsl:with-param name="arg1" select="$arg1"/>
-      <xsl:with-param name="arg2" select="$arg2"/>
-     </xsl:apply-templates>
-    </xsl:otherwise>
-   </xsl:choose>
+   <xsl:call-template name="do:_apply_each_node">
+    <xsl:with-param name="data_url" select="$data_url"/>
+    <xsl:with-param name="data_gid" select="$_gid"/>
+    <xsl:with-param name="data_index" select="$index"/>
+    <xsl:with-param name="allow" select="$allow"/>
+    <xsl:with-param name="allow_text_node" select="$allow_text_node"/>
+    <xsl:with-param name="arg0" select="$arg0"/>
+    <xsl:with-param name="arg1" select="$arg1"/>
+    <xsl:with-param name="arg2" select="$arg2"/>
+   </xsl:call-template>
   </xsl:if>
   <xsl:if test="string-length($_next) &gt; 0">
    <xsl:call-template name="do:_for_by_gids_rcr">
@@ -186,6 +170,75 @@
     <xsl:with-param name="data_url" select="$data_url"/>
    </xsl:call-template>
   </xsl:if>
+ </xsl:template>
+
+ <xsl:template name="do:_apply_each_node">
+  <xsl:param name="data_url"/>
+  <xsl:param name="data_gid"/>
+  <xsl:param name="data_index"/>
+  <xsl:param name="allow"/>
+  <xsl:param name="allow_text_node"/>
+  <xsl:param name="arg0"/>
+  <xsl:param name="arg1"/>
+  <xsl:param name="arg2"/>
+  <xsl:choose>
+   <xsl:when test="string-length($allow) = 0">
+    <xsl:choose>
+     <xsl:when test="$allow_text_node = $ut:true">
+      <xsl:apply-templates select="text()|*">
+       <xsl:with-param name="data_url" select="$data_url"/>
+       <xsl:with-param name="data_gid" select="$data_gid"/>
+       <xsl:with-param name="data_index" select="$data_index"/>
+       <xsl:with-param name="allow" select="$allow"/>
+       <xsl:with-param name="allow_text_node" select="$allow_text_node"/>
+       <xsl:with-param name="arg0" select="$arg0"/>
+       <xsl:with-param name="arg1" select="$arg1"/>
+       <xsl:with-param name="arg2" select="$arg2"/>
+      </xsl:apply-templates>
+     </xsl:when>
+     <xsl:otherwise>
+      <xsl:apply-templates select="*">
+       <xsl:with-param name="data_url" select="$data_url"/>
+       <xsl:with-param name="data_gid" select="$data_gid"/>
+       <xsl:with-param name="data_index" select="$data_index"/>
+       <xsl:with-param name="allow" select="$allow"/>
+       <xsl:with-param name="allow_text_node" select="$allow_text_node"/>
+       <xsl:with-param name="arg0" select="$arg0"/>
+       <xsl:with-param name="arg1" select="$arg1"/>
+       <xsl:with-param name="arg2" select="$arg2"/>
+      </xsl:apply-templates>
+     </xsl:otherwise>
+    </xsl:choose>
+   </xsl:when>
+   <xsl:otherwise>
+    <xsl:choose>
+     <xsl:when test="$allow_text_node = $ut:true">
+      <xsl:apply-templates select="text()|*[contains($allow, concat('|', name(), '|'))]">
+       <xsl:with-param name="data_url" select="$data_url"/>
+       <xsl:with-param name="data_gid" select="$data_gid"/>
+       <xsl:with-param name="data_index" select="$data_index"/>
+       <xsl:with-param name="allow" select="$allow"/>
+       <xsl:with-param name="allow_text_node" select="$allow_text_node"/>
+       <xsl:with-param name="arg0" select="$arg0"/>
+       <xsl:with-param name="arg1" select="$arg1"/>
+       <xsl:with-param name="arg2" select="$arg2"/>
+      </xsl:apply-templates>
+     </xsl:when>
+     <xsl:otherwise>
+      <xsl:apply-templates select="*[contains($allow, concat('|', name(), '|'))]">
+       <xsl:with-param name="data_url" select="$data_url"/>
+       <xsl:with-param name="data_gid" select="$data_gid"/>
+       <xsl:with-param name="data_index" select="$data_index"/>
+       <xsl:with-param name="allow" select="$allow"/>
+       <xsl:with-param name="allow_text_node" select="$allow_text_node"/>
+       <xsl:with-param name="arg0" select="$arg0"/>
+       <xsl:with-param name="arg1" select="$arg1"/>
+       <xsl:with-param name="arg2" select="$arg2"/>
+      </xsl:apply-templates>
+     </xsl:otherwise>
+    </xsl:choose>
+   </xsl:otherwise>
+  </xsl:choose>
  </xsl:template>
 
 </xsl:stylesheet>

@@ -12,6 +12,12 @@
   <expect>ABCABCABC</expect>
  </assert-equal>
 
+ <assert-not-empty name="do:for_times">
+  <times>3</times>
+  <allow></allow>
+  <get_data_value_for_test>ABC</get_data_value_for_test>
+ </assert-not-empty>
+
  <assert-equal name="do:for_times">
   <times>0</times>
   <allow>|get_data_value_for_test|</allow>

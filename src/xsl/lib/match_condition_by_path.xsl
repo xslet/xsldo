@@ -15,16 +15,6 @@
   <xsl:param name="data_url"/>
   <!--** A generate-id of a base node. -->
   <xsl:param name="data_gid"/>
-  <!--** Elements which are allowed to be applied. -->
-  <xsl:param name="allow"/>
-  <!--** A flag if text node is allowed. -->
-  <xsl:param name="allow_text_node"/>
-  <!--** Any argument 0.-->
-  <xsl:param name="arg0"/>
-  <!--** Any argument 1.-->
-  <xsl:param name="arg1"/>
-  <!--** Any argument 2.-->
-  <xsl:param name="arg2"/>
   <xsl:variable name="_cond_by_expath">
    <xsl:call-template name="do:expand_path_in_condition">
     <xsl:with-param name="condition" select="$condition"/>

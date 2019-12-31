@@ -49,32 +49,16 @@
   <xsl:param name="data_url"/>
   <xsl:param name="data_gid"/>
   <xsl:if test="$index &lt;= $times">
-   <xsl:choose>
-    <xsl:when test="$allow_text_node = $ut:true">
-     <xsl:apply-templates select="text()|*[contains($allow, concat('|', name(), '|'))]">
-      <xsl:with-param name="data_url" select="$data_url"/>
-      <xsl:with-param name="data_gid" select="$data_gid"/>
-      <xsl:with-param name="data_index" select="$index"/>
-      <xsl:with-param name="allow" select="$allow"/>
-      <xsl:with-param name="allow_text_node" select="$allow_text_node"/>
-      <xsl:with-param name="arg0" select="$arg0"/>
-      <xsl:with-param name="arg1" select="$arg1"/>
-      <xsl:with-param name="arg2" select="$arg2"/>
-     </xsl:apply-templates>
-    </xsl:when>
-    <xsl:otherwise>
-     <xsl:apply-templates select="*[contains($allow, concat('|', name(), '|'))]">
-      <xsl:with-param name="data_url" select="$data_url"/>
-      <xsl:with-param name="data_gid" select="$data_gid"/>
-      <xsl:with-param name="data_index" select="$index"/>
-      <xsl:with-param name="allow" select="$allow"/>
-      <xsl:with-param name="allow_text_node" select="$allow_text_node"/>
-      <xsl:with-param name="arg0" select="$arg0"/>
-      <xsl:with-param name="arg1" select="$arg1"/>
-      <xsl:with-param name="arg2" select="$arg2"/>
-     </xsl:apply-templates>
-    </xsl:otherwise>
-   </xsl:choose>
+   <xsl:call-template name="do:_apply_each_node">
+    <xsl:with-param name="data_url" select="$data_url"/>
+    <xsl:with-param name="data_gid" select="$data_gid"/>
+    <xsl:with-param name="data_index" select="$index"/>
+    <xsl:with-param name="allow" select="$allow"/>
+    <xsl:with-param name="allow_text_node" select="$allow_text_node"/>
+    <xsl:with-param name="arg0" select="$arg0"/>
+    <xsl:with-param name="arg1" select="$arg1"/>
+    <xsl:with-param name="arg2" select="$arg2"/>
+   </xsl:call-template>
    <xsl:call-template name="do:_for_times_rcr">
     <xsl:with-param name="times" select="$times"/>
     <xsl:with-param name="index" select="$index + 1"/>
