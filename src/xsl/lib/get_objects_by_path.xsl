@@ -257,7 +257,7 @@
    <xsl:when test="$localname = '**'">
     <xsl:choose>
      <xsl:when test="string-length($namespace) = 0">
-      <xsl:for-each select="descendant::*">
+      <xsl:for-each select="descendant-or-self::node()">
        <xsl:call-template name="do:_get_conditional_object">
         <xsl:with-param name="condition" select="$condition"/>
         <xsl:with-param name="next_expath" select="$next_expath"/>
@@ -269,7 +269,7 @@
       </xsl:for-each>
      </xsl:when>
      <xsl:otherwise>
-      <xsl:for-each select="descendant::*[namespace-uri() = $namespace]">
+      <xsl:for-each select="descendant-or-self::node()[namespace-uri() = $namespace]">
        <xsl:call-template name="do:_get_conditional_object">
         <xsl:with-param name="condition" select="$condition"/>
         <xsl:with-param name="next_expath" select="$next_expath"/>

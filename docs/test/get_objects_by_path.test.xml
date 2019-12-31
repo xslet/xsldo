@@ -280,6 +280,59 @@
  </assert-equal>
 
  <assert-equal name="do:get_objects_by_path">
+  <what>name</what>
+  <path>//unit-test</path>
+  <prefix>(</prefix>
+  <suffix>)</suffix>
+  <expect>(unit-test)</expect>
+ </assert-equal>
+
+ <assert-equal name="do:get_objects_by_path">
+  <what>name</what>
+  <path>//uuuu</path>
+  <prefix>(</prefix>
+  <suffix>)</suffix>
+  <expect></expect>
+ </assert-equal>
+
+ <assert-equal name="do:get_objects_by_path">
+  <what>name</what>
+  <path>//ABC</path>
+  <prefix>(</prefix>
+  <suffix>)</suffix>
+  <expect>(ABC)</expect>
+ </assert-equal>
+
+ <assert-equal name="do:get_objects_by_path">
+  <what>name</what>
+  <path>.//aaa</path>
+  <prefix>(</prefix>
+  <suffix>)</suffix>
+  <expect>(aaa)(aaa)</expect>
+  <aaa></aaa>
+  <bbb></bbb>
+  <aaa></aaa>
+ </assert-equal>
+
+ <assert-equal name="do:get_objects_by_path">
+  <what>name</what>
+  <path>.//bbb</path>
+  <prefix>(</prefix>
+  <suffix>)</suffix>
+  <expect>(bbb)</expect>
+  <aaa><bbb/></aaa>
+  <ccc><ddd/></ccc>
+ </assert-equal>
+
+ <assert-equal name="do:get_objects_by_path">
+  <what>name</what>
+  <path>.//assert-equal</path>
+  <prefix>(</prefix>
+  <suffix>)</suffix>
+  <expect></expect>
+ </assert-equal>
+
+ <assert-equal name="do:get_objects_by_path">
   <what>content</what>
   <path>ns1:aaa[@c0=1]</path>
   <prefix></prefix>
