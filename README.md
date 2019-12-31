@@ -1,4 +1,12 @@
-# [@xslet/xsldo](https://github.com/xslet/xsldo)
+# [@xslet/xsldo][repo-url] ![Version][ver-image] [![Github.io][io-image]][io-url] [![MIT License][mit-image]][mit-url]
+
+[repo-url]: https://github.com/xslet/xsldo
+[io-image]: https://img.shields.io/badge/HP-github.io-ff8888.svg
+[io-url]: https://xslet.github.io/xsldo/
+[ver-image]: https://img.shields.io/badge/version-0.2.0-blue.svg
+[mit-image]: http://img.shields.io/badge/license-MIT-green.svg
+[mit-url]: https://opensource.org/licenses/MIT
+
 
 XML data operation libraries for XSLT programs on Web browsers.
 
