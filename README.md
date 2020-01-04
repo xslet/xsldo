@@ -3,7 +3,7 @@
 [repo-url]: https://github.com/xslet/xsldo
 [io-image]: https://img.shields.io/badge/HP-github.io-ff8888.svg
 [io-url]: https://xslet.github.io/xsldo/
-[ver-image]: https://img.shields.io/badge/version-0.2.0-blue.svg
+[ver-image]: https://img.shields.io/badge/version-0.2.1-blue.svg
 [mit-image]: http://img.shields.io/badge/license-MIT-green.svg
 [mit-url]: https://opensource.org/licenses/MIT
 
