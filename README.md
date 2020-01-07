@@ -466,7 +466,7 @@ Also, the following XML file prints `[(DEF1)][(DEF1)]` by using an external XML 
 
 ## License
 
-Copyright &copy; 2019 Takayuki Sato
+Copyright &copy; 2019-2020 Takayuki Sato
 
 This program is free software under [MIT][mit-url] License.
 See the file LICENSE in this distribution for more details.
@@ -475,7 +475,7 @@ See the file LICENSE in this distribution for more details.
 [repo-url]: https://github.com/xslet/xsldo
 [io-image]: https://img.shields.io/badge/HP-github.io-ff8888.svg
 [io-url]: https://xslet.github.io/xsldo/
-[ver-image]: https://img.shields.io/badge/version-0.2.1-blue.svg
+[ver-image]: https://img.shields.io/badge/version-0.2.2-blue.svg
 [mit-image]: http://img.shields.io/badge/license-MIT-green.svg
 [mit-url]: https://opensource.org/licenses/MIT
 [api-url]: https://xslet.github.io/xsldo/api/xsldo.xml
