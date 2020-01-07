@@ -10,6 +10,8 @@
  <property name="app.name" value="${ant.project.name}"/>
  <property name="dep.saxon.version" value="9-9-1-5J"/>
  <property name="dep.tomcat.version" value="9.0.27"/>
+ <property name="dep.xslutil.version" value="0.1.1"/>
+ <property name="dep.xsldoc.version" value="0.1.1"/>
 
  <property name="dir.src"   location="${basedir}/src"/>
  <property name="dir.dist"  location="${basedir}/dist"/>
@@ -24,6 +26,10 @@
  <property name="dir.build.bin" location="${dir.build}/bin"/>
  <property name="dir.build.xsl" location="${dir.build}/xsl"/>
 
+ <property name="pkg.xslutil" value="xslutil-${dep.xslutil.version}"/>
+ <property name="dir.xslutil" location="${dir.build.lib}/${pkg.xslutil}"/>
+ <property name="pkg.xsldoc" value="xsldoc-${dep.xsldoc.version}"/>
+ <property name="dir.xsldoc" location="${dir.build.lib}/${pkg.xsldoc}"/>
  <property name="pkg.saxon" value="SaxonHE${dep.saxon.version}"/>
  <property name="dir.saxon" location="${dir.build.lib}/${pkg.saxon}"/>
  <property name="pkg.tomcat" value="apache-tomcat-${dep.tomcat.version}"/>
@@ -55,9 +61,6 @@
    <fileset dir="${dir.src.xsl}/ext" includes="**/*"/>
   </delete>
   <antcall target="merge-doc-xsl"/>
-  <copy todir="${dir.src.xsl}/ext">
-   <fileset dir="${dir.build.xsl}/xslutil"/>
-  </copy>
   <antcall target="merge-src-xsl"/>
   <antcall target="merge-test-xsl"/>
  </target>
@@ -139,9 +142,27 @@
   <mkdir dir="${dir.build.dl}"/>
   <mkdir dir="${dir.build.lib}"/>
   <mkdir dir="${dir.build.bin}"/>
+  <antcall target="get-xslutil"/>
+  <antcall target="get-xsldoc"/>
   <antcall target="get-saxon"/>
   <antcall target="get-tomcat"/>
   <mkdir dir="${dir.deploy}"/>
+ </target>
+
+ <target name="get-xslutil">
+  <property name="url" value="https://github.com/xslet/xslutil/archive/${dep.xslutil.version}.zip"/>
+  <property name="zip" location="${dir.build.dl}/${pkg.xslutil}.zip"/>
+  <property name="dir.unzip" location="${dir.xslutil}/.."/>
+  <get src="${url}" dest="${zip}"/>
+  <unzip src="${zip}" dest="${dir.unzip}"/>
+ </target>
+
+ <target name="get-xsldoc">
+  <property name="url" value="https://github.com/xslet/xsldoc/archive/${dep.xsldoc.version}.zip"/>
+  <property name="zip" location="${dir.build.dl}/${pkg.xsldoc}.zip"/>
+  <property name="dir.unzip" location="${dir.xsldoc}/.."/>
+  <get src="${url}" dest="${zip}"/>
+  <unzip src="${zip}" dest="${dir.unzip}"/>
  </target>
 
  <target name="get-saxon">
@@ -177,14 +198,15 @@
 
  <target name="deploy">
   <copy todir="${dir.test}">
-   <fileset dir="${dir.build.xsl}/xslutil"/>
+   <fileset dir="${dir.xslutil}/dist"/>
   </copy>
   <copy todir="${dir.docs}/examples">
-   <fileset dir="${dir.build.xsl}/xslutil"/>
+   <fileset dir="${dir.xslutil}/dist"/>
    <fileset dir="${dir.dist}"/>
   </copy>
   <copy todir="${dir.docs}/api/xsldoc">
-   <fileset dir="${dir.build.xsl}/xsldoc"/>
+   <fileset dir="${dir.xsldoc}/dist"/>
+   <fileset dir="${dir.xslutil}/dist"/>
   </copy>
   <copy todir="${dir.docs}/test">
    <fileset dir="${dir.test}"/>
