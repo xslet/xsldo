@@ -390,6 +390,20 @@
   <expect>JKL</expect>
  </assert-equal>
 
+ <assert-equal name="do:for_by_path">
+  <path>/*/ABC/DEF[2]</path>
+  <deny>|expect|</deny>
+  <get_data_value_for_test/>
+  <expect>/*/ABC/DEF[2]|expect|JKL</expect>
+ </assert-equal>
+
+ <assert-equal name="do:for_by_path">
+  <path>/*/ABC/DEF[2]</path>
+  <deny>|path|expect|deny|</deny>
+  <get_data_value_for_test/>
+  <expect>JKL</expect>
+ </assert-equal>
+
  <ABC>
   <DEF>GHI</DEF>
   <DEF>JKL</DEF>

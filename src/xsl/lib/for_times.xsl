@@ -19,6 +19,8 @@
   <xsl:param name="allow"/>
   <!--** A flag if text node is allowed. -->
   <xsl:param name="allow_text_node" select="$ut:true"/>
+  <!--** Elements which are denied to be applied. -->
+  <xsl:param name="deny"/>
   <!--** Any argument 0. -->
   <xsl:param name="arg0"/>
   <!--** Any argument 1. -->
@@ -30,6 +32,7 @@
    <xsl:with-param name="index">1</xsl:with-param>
    <xsl:with-param name="allow" select="$allow"/>
    <xsl:with-param name="allow_text_node" select="$allow_text_node"/>
+   <xsl:with-param name="deny" select="$deny"/>
    <xsl:with-param name="arg0" select="$arg0"/>
    <xsl:with-param name="arg1" select="$arg1"/>
    <xsl:with-param name="arg2" select="$arg2"/>
@@ -43,6 +46,7 @@
   <xsl:param name="index"/>
   <xsl:param name="allow"/>
   <xsl:param name="allow_text_node"/>
+  <xsl:param name="deny"/>
   <xsl:param name="arg0"/>
   <xsl:param name="arg1"/>
   <xsl:param name="arg2"/>
@@ -55,6 +59,7 @@
     <xsl:with-param name="data_index" select="$index"/>
     <xsl:with-param name="allow" select="$allow"/>
     <xsl:with-param name="allow_text_node" select="$allow_text_node"/>
+    <xsl:with-param name="deny" select="$deny"/>
     <xsl:with-param name="arg0" select="$arg0"/>
     <xsl:with-param name="arg1" select="$arg1"/>
     <xsl:with-param name="arg2" select="$arg2"/>
@@ -64,6 +69,7 @@
     <xsl:with-param name="index" select="$index + 1"/>
     <xsl:with-param name="allow" select="$allow"/>
     <xsl:with-param name="allow_text_node" select="$allow_text_node"/>
+    <xsl:with-param name="deny" select="$deny"/>
     <xsl:with-param name="arg0" select="$arg0"/>
     <xsl:with-param name="arg1" select="$arg1"/>
     <xsl:with-param name="arg2" select="$arg2"/>
