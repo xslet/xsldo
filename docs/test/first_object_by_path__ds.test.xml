@@ -75,7 +75,7 @@
   <what>content</what>
   <prefix>(</prefix>
   <suffix>)</suffix>
-  <expect>(ABC1 ABC2)</expect>
+  <expect>(ABC4 ABC5)</expect>
  </assert-equal>
 
 </unit-test>

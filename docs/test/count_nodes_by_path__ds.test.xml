@@ -51,6 +51,12 @@
  <assert-equal name="do:count_nodes_by_path">
   <data_url>data/test-data.xml</data_url>
   <path>/n:data/n:Aaa/n:Bbb[n:Ccc/@key1='C2']</path>
+  <expect>1</expect>
+ </assert-equal>
+
+ <assert-equal name="do:count_nodes_by_path">
+  <data_url>data/test-data.xml</data_url>
+  <path>/n:data/n:Aaa/n:Bbb[n:Ccc/@key1='C1']</path>
   <expect>4</expect>
  </assert-equal>
 

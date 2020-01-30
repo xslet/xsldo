@@ -590,7 +590,7 @@
     <xsl:value-of select="$ut:apos"/>
    </xsl:if>
   </xsl:variable>
-  <xsl:variable name="_lefts">
+  <xsl:variable name="_left">
    <xsl:variable name="_e0" select="substring-before($cond, $do:_cond_op_sep)"/>
    <xsl:variable name="_e1">
     <xsl:call-template name="ut:trim_end">
@@ -606,47 +606,16 @@
      <xsl:with-param name="path_sep" select="$do:_cond_path_sep"/>
     </xsl:call-template>
    </xsl:variable>
+   <xsl:variable name="_e3" select="substring-before($_e2, $do:_object_sep)"/>
    <xsl:call-template name="ut:trim">
-    <xsl:with-param name="string" select="$_e2"/>
+    <xsl:with-param name="string" select="$_e3"/>
    </xsl:call-template>
   </xsl:variable>
-  <xsl:call-template name="do:_operate_expression_rcr">
-   <xsl:with-param name="lefts" select="$_lefts"/>
+  <xsl:call-template name="do:operate_expression">
+   <xsl:with-param name="left" select="$_left"/>
    <xsl:with-param name="op" select="$_op"/>
    <xsl:with-param name="right" select="$_right"/>
   </xsl:call-template>
- </xsl:template>
-
- <xsl:template name="do:_operate_expression_rcr">
-  <xsl:param name="lefts"/>
-  <xsl:param name="op"/>
-  <xsl:param name="right"/>
-  <xsl:choose>
-   <xsl:when test="string-length($lefts) = 0"/>
-   <xsl:otherwise>
-    <xsl:variable name="_left" select="substring-before($lefts, $do:_object_sep)"/>
-    <xsl:variable name="_result">
-     <xsl:call-template name="do:operate_expression">
-      <xsl:with-param name="left" select="$_left"/>
-      <xsl:with-param name="op" select="$op"/>
-      <xsl:with-param name="right" select="$right"/>
-     </xsl:call-template>
-    </xsl:variable>
-    <xsl:choose>
-     <xsl:when test="$_result = $ut:true">
-      <xsl:value-of select="$ut:true"/>
-     </xsl:when>
-     <xsl:otherwise>
-      <xsl:variable name="_nx" select="substring-after($lefts, $do:_object_sep)"/>
-      <xsl:call-template name="do:_operate_expression_rcr">
-       <xsl:with-param name="lefts" select="$_nx"/>
-       <xsl:with-param name="op" select="$op"/>
-       <xsl:with-param name="right" select="$right"/>
-      </xsl:call-template>
-     </xsl:otherwise>
-    </xsl:choose>
-   </xsl:otherwise>
-  </xsl:choose>
  </xsl:template>
 
 </xsl:stylesheet>

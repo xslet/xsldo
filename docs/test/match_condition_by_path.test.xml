@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xml" href="unit.test.xsl"?>
 
-<unit-test title="do:if_with_expr"
+<unit-test title="do:match_condition_by_path"
  xmlns:ns1="http://aaa/bbb/ccc"
  xmlns:ns2="http://rrr/sss/ttt">
 
+<!--
  <assert-equal name="do:match_condition_by_path">
   <condition>aaa = 'ABC'</condition>
   <expect>true</expect>
@@ -385,6 +386,24 @@
  <assert-equal name="do:match_condition_by_path">
   <condition>//ns1:AAA[2]/ns1:BBB[1] ne 5670</condition>
   <expect>true</expect>
+ </assert-equal>
+-->
+
+ <assert-equal name="do:match_condition_by_path">
+  <condition>//ns1:AAA/ns1:BBB = 1234</condition>
+  <expect>true</expect>
+ </assert-equal>
+ <assert-equal name="do:match_condition_by_path">
+  <condition>//ns1:AAA/ns1:BBB eq 1234</condition>
+  <expect>true</expect>
+ </assert-equal>
+ <assert-equal name="do:match_condition_by_path">
+  <condition>//ns1:AAA/ns1:BBB != 1234</condition>
+  <expect></expect>
+ </assert-equal>
+ <assert-equal name="do:match_condition_by_path">
+  <condition>//ns1:AAA/ns1:BBB ne 1234</condition>
+  <expect></expect>
  </assert-equal>
 
 
