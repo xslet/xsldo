@@ -75,7 +75,7 @@
   <path>/n:data/n:Aaa/n:Bbb[n:Ccc/@key1='C1']/@key0</path>
   <allow>|get_data_value_for_test|</allow>
   <get_data_value_for_test/>
-  <expect>ABC1 ABC2ABC3ABC7 ABC8ABC9 ABC10 ABC11</expect>
+  <expect>B1B2B1B2</expect>
  </assert-equal>
 
 </unit-test>
