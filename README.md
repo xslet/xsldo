@@ -301,8 +301,6 @@ Loops for each element/attribute at a specified path.
    <xsl:with-param name="path" select="@path"/>
    <xsl:with-param name="data_url" select="@file"/>
    <xsl:with-param name="allow">|all|</xsl:with-param>
-   <xsl:with-param name="prefix">(</xsl:with-param>
-   <xsl:with-param name="suffix">)</xsl:with-param>
   </xsl:call-template>
  </xsl:template>
 
@@ -377,7 +375,7 @@ Loops specified times.
 
 ```
 <?xml version="1.0" encoding="utf-8"?>
-<!-- for.xsl --> 
+<!-- times.xsl --> 
 <xsl:stylesheet version="1.0"
  xmlns:do="https://github.com/xslet/2020/xsldo"
  xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
@@ -397,8 +395,6 @@ Loops specified times.
    <xsl:with-param name="times" select="@times"/>
    <xsl:with-param name="data_url" select="@file"/>
    <xsl:with-param name="allow">|first|</xsl:with-param>
-   <xsl:with-param name="prefix">(</xsl:with-param>
-   <xsl:with-param name="suffix">)</xsl:with-param>
   </xsl:call-template>
  </xsl:template>
  
