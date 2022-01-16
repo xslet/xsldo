@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="application/xml" href="xsldoc/xsldoc.xsl"?><!-- xsldo.xsl v0.2. Copyright (C) xslet@github. MIT License --><!--** xsldo.xsl ver0.2 - API Document
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="application/xml" href="xsldoc/xsldoc.xsl"?><!-- xsldo.xsl v0.3. Copyright (C) xslet@github. MIT License --><!--** xsldo.xsl ver0.3 - API Document
 **
  xsldo is a XSLT liblet to operate XML data on Web browsers.
 
