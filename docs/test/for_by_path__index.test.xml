@@ -26,11 +26,11 @@
  <assert-equal name="do:for_by_path">
   <path>aaa</path>
   <index_id>J</index_id>
-  <index_set>I&#x96;=&#x97;12&#x86;;&#x87;</index_set>
+  <index_set></index_set>
   <allow>|get_data_value_for_test|get_data_indexes_for_test|</allow>
   <get_data_indexes_for_test/>
   <get_data_value_for_test/>
-  <expect>J&#x96;=&#x97;1&#x86;;&#x87;I&#x96;=&#x97;12&#x86;;&#x87;AJ&#x96;=&#x97;2&#x86;;&#x87;I&#x96;=&#x97;12&#x86;;&#x87;B</expect>
+  <expect>&#x86;;&#x87;J&#x96;=&#x97;1&#x86;;&#x87;A&#x86;;&#x87;J&#x96;=&#x97;2&#x86;;&#x87;B</expect>
   <aaa>A</aaa>
   <aaa>B</aaa>
  </assert-equal>
@@ -38,11 +38,24 @@
 
  <assert-equal name="do:for_by_path">
   <path>aaa</path>
-  <index_set>I&#x96;=&#x97;12&#x86;;&#x87;</index_set>
+  <index_id>J</index_id>
+  <index_set>&#x86;;&#x87;I&#x96;=&#x97;12&#x86;;&#x87;</index_set>
   <allow>|get_data_value_for_test|get_data_indexes_for_test|</allow>
   <get_data_indexes_for_test/>
   <get_data_value_for_test/>
-  <expect>I&#x96;=&#x97;12&#x86;;&#x87;AI&#x96;=&#x97;12&#x86;;&#x87;B</expect>
+  <expect>&#x86;;&#x87;J&#x96;=&#x97;1&#x86;;&#x87;I&#x96;=&#x97;12&#x86;;&#x87;A&#x86;;&#x87;J&#x96;=&#x97;2&#x86;;&#x87;I&#x96;=&#x97;12&#x86;;&#x87;B</expect>
+  <aaa>A</aaa>
+  <aaa>B</aaa>
+ </assert-equal>
+
+
+ <assert-equal name="do:for_by_path">
+  <path>aaa</path>
+  <index_set>&#x86;;&#x87;I&#x96;=&#x97;12&#x86;;&#x87;</index_set>
+  <allow>|get_data_value_for_test|get_data_indexes_for_test|</allow>
+  <get_data_indexes_for_test/>
+  <get_data_value_for_test/>
+  <expect>&#x86;;&#x87;I&#x96;=&#x97;12&#x86;;&#x87;A&#x86;;&#x87;I&#x96;=&#x97;12&#x86;;&#x87;B</expect>
   <aaa>A</aaa>
   <aaa>B</aaa>
  </assert-equal>

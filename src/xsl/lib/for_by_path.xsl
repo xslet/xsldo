@@ -167,12 +167,19 @@
   <xsl:param name="data_url"/>
   <xsl:variable name="_index_set">
    <xsl:if test="string-length($index_id) &gt; 0">
+    <xsl:value-of select="$do:_object_sep"/>
     <xsl:value-of select="$index_id"/>
     <xsl:value-of select="$do:_cond_op_sep"/>
     <xsl:value-of select="$index"/>
-    <xsl:value-of select="$do:_object_sep"/>
    </xsl:if>
-   <xsl:value-of select="$index_set"/>
+   <xsl:choose>
+    <xsl:when test="string-length($index_set) = 0">
+     <xsl:value-of select="$do:_object_sep"/>
+    </xsl:when>
+    <xsl:otherwise>
+     <xsl:value-of select="$index_set"/>
+    </xsl:otherwise>
+   </xsl:choose>
   </xsl:variable>
   <xsl:variable name="_gid" select="substring-before($gids, $do:_object_sep)"/>
   <xsl:variable name="_next" select="substring-after($gids, $do:_object_sep)"/>

@@ -24,21 +24,32 @@
  <assert-equal name="do:for_times">
   <times>2</times>
   <index_id>J</index_id>
-  <index_set>I&#x96;=&#x97;12&#x86;;&#x87;</index_set>
+  <index_set></index_set>
   <allow>|get_data_indexes_for_test|text|</allow>
   <get_data_indexes_for_test/>
   <text>A</text>
-  <expect>J&#x96;=&#x97;1&#x86;;&#x87;I&#x96;=&#x97;12&#x86;;&#x87;AJ&#x96;=&#x97;2&#x86;;&#x87;I&#x96;=&#x97;12&#x86;;&#x87;A</expect>
+  <expect>&#x86;;&#x87;J&#x96;=&#x97;1&#x86;;&#x87;A&#x86;;&#x87;J&#x96;=&#x97;2&#x86;;&#x87;A</expect>
  </assert-equal>
 
 
  <assert-equal name="do:for_times">
   <times>2</times>
-  <index_set>I&#x96;=&#x97;12&#x86;;&#x87;</index_set>
+  <index_id>J</index_id>
+  <index_set>&#x86;;&#x87;I&#x96;=&#x97;12&#x86;;&#x87;</index_set>
   <allow>|get_data_indexes_for_test|text|</allow>
   <get_data_indexes_for_test/>
   <text>A</text>
-  <expect>I&#x96;=&#x97;12&#x86;;&#x87;AI&#x96;=&#x97;12&#x86;;&#x87;A</expect>
+  <expect>&#x86;;&#x87;J&#x96;=&#x97;1&#x86;;&#x87;I&#x96;=&#x97;12&#x86;;&#x87;A&#x86;;&#x87;J&#x96;=&#x97;2&#x86;;&#x87;I&#x96;=&#x97;12&#x86;;&#x87;A</expect>
+ </assert-equal>
+
+
+ <assert-equal name="do:for_times">
+  <times>2</times>
+  <index_set>&#x86;;&#x87;I&#x96;=&#x97;12&#x86;;&#x87;</index_set>
+  <allow>|get_data_indexes_for_test|text|</allow>
+  <get_data_indexes_for_test/>
+  <text>A</text>
+  <expect>&#x86;;&#x87;I&#x96;=&#x97;12&#x86;;&#x87;A&#x86;;&#x87;I&#x96;=&#x97;12&#x86;;&#x87;A</expect>
  </assert-equal>
 
 </unit-test>
