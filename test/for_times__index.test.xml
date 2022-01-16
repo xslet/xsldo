@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xml" href="unit.test.xsl"?>
+
+<unit-test title="do:for_times">
+
+ <assert-equal name="do:for_times">
+  <times>3</times>
+  <allow>|get_data_index_for_test|text|</allow>
+  <get_data_index_for_test/>
+  <text>A</text>
+  <expect>1A2A3A</expect>
+ </assert-equal>
+
+
+ <assert-equal name="do:for_times">
+  <times>0</times>
+  <allow>|get_data_index_for_test|text|</allow>
+  <get_data_index_for_test/>
+  <text>A</text>
+  <expect></expect>
+ </assert-equal>
+
+
+ <assert-equal name="do:for_times">
+  <times>2</times>
+  <index_id>J</index_id>
+  <index_set>I&#x96;=&#x97;12&#x86;;&#x87;</index_set>
+  <allow>|get_data_indexes_for_test|text|</allow>
+  <get_data_indexes_for_test/>
+  <text>A</text>
+  <expect>J&#x96;=&#x97;1&#x86;;&#x87;I&#x96;=&#x97;12&#x86;;&#x87;AJ&#x96;=&#x97;2&#x86;;&#x87;I&#x96;=&#x97;12&#x86;;&#x87;A</expect>
+ </assert-equal>
+
+
+ <assert-equal name="do:for_times">
+  <times>2</times>
+  <index_set>I&#x96;=&#x97;12&#x86;;&#x87;</index_set>
+  <allow>|get_data_indexes_for_test|text|</allow>
+  <get_data_indexes_for_test/>
+  <text>A</text>
+  <expect>I&#x96;=&#x97;12&#x86;;&#x87;AI&#x96;=&#x97;12&#x86;;&#x87;A</expect>
+ </assert-equal>
+
+</unit-test>

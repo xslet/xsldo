@@ -15,6 +15,10 @@
   <xsl:param name="data_gid"/>
   <!--** A loop count. -->
   <xsl:param name="times"/>
+  <!--** Indexes of ancestor's for element. -->
+  <xsl:param name="index_set"/>
+  <!--** Current index ID -->
+  <xsl:param name="index_id"/>
   <!--** Elements which are allowed to be applied. -->
   <xsl:param name="allow"/>
   <!--** A flag if text node is allowed. -->
@@ -30,6 +34,8 @@
   <xsl:call-template name="do:_for_times_rcr">
    <xsl:with-param name="times" select="$times"/>
    <xsl:with-param name="index">1</xsl:with-param>
+   <xsl:with-param name="index_set" select="$index_set"/>
+   <xsl:with-param name="index_id" select="$index_id"/>
    <xsl:with-param name="allow" select="$allow"/>
    <xsl:with-param name="allow_text_node" select="$allow_text_node"/>
    <xsl:with-param name="deny" select="$deny"/>
@@ -44,6 +50,8 @@
  <xsl:template name="do:_for_times_rcr">
   <xsl:param name="times"/>
   <xsl:param name="index"/>
+  <xsl:param name="index_set"/>
+  <xsl:param name="index_id"/>
   <xsl:param name="allow"/>
   <xsl:param name="allow_text_node"/>
   <xsl:param name="deny"/>
@@ -52,11 +60,21 @@
   <xsl:param name="arg2"/>
   <xsl:param name="data_url"/>
   <xsl:param name="data_gid"/>
+  <xsl:variable name="_index_set">
+   <xsl:if test="string-length($index_id) &gt; 0">
+    <xsl:value-of select="$index_id"/>
+    <xsl:value-of select="$do:_cond_op_sep"/>
+    <xsl:value-of select="$index"/>
+    <xsl:value-of select="$do:_object_sep"/>
+   </xsl:if>
+   <xsl:value-of select="$index_set"/>
+  </xsl:variable>
   <xsl:if test="$index &lt;= $times">
    <xsl:call-template name="do:_apply_each_node">
     <xsl:with-param name="data_url" select="$data_url"/>
     <xsl:with-param name="data_gid" select="$data_gid"/>
     <xsl:with-param name="data_index" select="$index"/>
+    <xsl:with-param name="data_indexes" select="$_index_set"/>
     <xsl:with-param name="allow" select="$allow"/>
     <xsl:with-param name="allow_text_node" select="$allow_text_node"/>
     <xsl:with-param name="deny" select="$deny"/>
@@ -67,6 +85,8 @@
    <xsl:call-template name="do:_for_times_rcr">
     <xsl:with-param name="times" select="$times"/>
     <xsl:with-param name="index" select="$index + 1"/>
+    <xsl:with-param name="index_set" select="$index_set"/>
+    <xsl:with-param name="index_id" select="$index_id"/>
     <xsl:with-param name="allow" select="$allow"/>
     <xsl:with-param name="allow_text_node" select="$allow_text_node"/>
     <xsl:with-param name="deny" select="$deny"/>

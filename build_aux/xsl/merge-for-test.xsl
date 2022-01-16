@@ -265,6 +265,16 @@
    </xsx:call-template>
   </xsx:template>
 
+  <xsx:template match="get_data_index_for_test">
+   <xsx:param name="data_index"/>
+   <xsx:value-of select="$data_index"/>
+  </xsx:template>
+
+  <xsx:template match="get_data_indexes_for_test">
+   <xsx:param name="data_indexes"/>
+   <xsx:value-of select="$data_indexes"/>
+  </xsx:template>
+
  </xsl:template>
 
  <xsl:template match="*|text()|@*">
