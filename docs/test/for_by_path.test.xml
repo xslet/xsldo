@@ -404,6 +404,45 @@
   <expect>JKL</expect>
  </assert-equal>
 
+
+ <assert-equal name="do:for_by_path">
+  <path>aaa</path>
+  <reverse>true</reverse>
+  <allow>|get_data_value_for_test|</allow>
+  <get_data_value_for_test/>
+  <expect>ABC</expect>
+  <aaa>ABC</aaa>
+ </assert-equal>
+
+ <assert-equal name="do:for_by_path">
+  <path>*/bbb</path>
+  <reverse>true</reverse>
+  <allow>|get_data_value_for_test|</allow>
+  <get_data_value_for_test/>
+  <expect>GHIDEFABC</expect>
+  <aaa>
+    <bbb>ABC</bbb>
+    <bbb>DEF</bbb>
+  </aaa>
+  <ccc>
+    <bbb>GHI</bbb>
+    <ddd>JKL</ddd>
+  </ccc>
+ </assert-equal>
+
+ <assert-equal name="do:for_by_path">
+  <path>ns1:aaa[@c0=1 | @c0=2]</path>
+  <reverse>true</reverse>
+  <allow>|get_data_value_for_test|</allow>
+  <get_data_value_for_test/>
+  <expect>ABC2ABC1</expect>
+  <ns1:aaa c0="0">ABC0</ns1:aaa>
+  <ns1:aaa c0="1">ABC1</ns1:aaa>
+  <ns1:aaa c0="2">ABC2</ns1:aaa>
+ </assert-equal>
+
+
+
  <ABC>
   <DEF>GHI</DEF>
   <DEF>JKL</DEF>
