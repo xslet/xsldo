@@ -471,7 +471,7 @@ See the file LICENSE in this distribution for more details.
 [repo-url]: https://github.com/xslet/xsldo
 [io-image]: https://img.shields.io/badge/HP-github.io-ff8888.svg
 [io-url]: https://xslet.github.io/xsldo/
-[ver-image]: https://img.shields.io/badge/version-0.3.0-blue.svg
+[ver-image]: https://img.shields.io/badge/version-0.4.0-blue.svg
 [mit-image]: http://img.shields.io/badge/license-MIT-green.svg
 [mit-url]: https://opensource.org/licenses/MIT
 [api-url]: https://xslet.github.io/xsldo/api/xsldo.xml
