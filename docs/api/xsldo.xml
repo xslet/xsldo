@@ -10,6 +10,16 @@
  - Double asterisks (**) or empty (//) means any descendant nodes.
  - Single dot (.) means current node.
  - Double dots (..) means parent node.
+ - Expressions in brackets ([]) means path condition.
+
+ The path condition supports the following operators:
+
+ - '=' and 'eq' means that left side is equal to right side.
+ - '!=' and 'ne' means that left side is not equal to right side.
+ - 'gt' means that left side is greater than right side.
+ - 'ge' means that left side is greater than or equal to right side.
+ - 'lt' means that left side is less than right side.
+ - 'le' means that left side is less than or equal to right side.
 
  do:get_current_value, do:get_current_attribute and some functions which use these two functions inside have a parameter `what` which means kind of object. This parameter can have one of following values:
   - content : Result applying a template to each element.
