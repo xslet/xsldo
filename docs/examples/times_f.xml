@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="application/xml" href="times.xsl"?>
-<!-- times_f.xml -->
-<top>
-  <for times="2" file="external.xml">[<first path="//aaa/bbb"/>]</for>
-  <!-- Outputs '[(DEF1)][(DEF1)]' -->
-</top>

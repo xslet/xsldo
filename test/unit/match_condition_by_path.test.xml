@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="application/xml" href="unit-test.xsl"?>
+
+<describe title="do:match_condition_by_path (do:expand_path&#160;+&#160;do:match_condition_by_expath">
+
+ <it title="should return true if the specified condition is satified">
+  <compute name="do:match_condition_by_path">
+   <param name="condition">aaa = 'ABC'</param>
+   <aaa>ABC</aaa>
+  </compute>
+  <expect>true</expect>
+ </it>
+
+
+ <it title="should return empty if the specified condition is not satified">
+  <compute name="do:match_condition_by_path">
+   <param name="condition">aaa = 'AAA'</param>
+   <aaa>ABC</aaa>
+  </compute>
+  <expect></expect>
+ </it>
+
+
+ <it title="should return empty if the condition value string is not rounded by quotes">
+  <compute name="do:match_condition_by_path">
+   <param name="condition">aaa = ABC</param>
+   <aaa>ABC</aaa>
+  </compute>
+  <expect></expect>
+ </it>
+
+
+ <it title="should return true if the operator is '=' and the condition is satisfied">
+  <compute name="do:match_condition_by_path">
+   <param name="condition">aaa = 'ABC'</param>
+   <aaa>ABC</aaa>
+  </compute>
+  <expect>true</expect>
+ </it>
+
+
+ <it title="should return empty if the operator is '=' and the condition is not satisfied">
+  <compute name="do:match_condition_by_path">
+   <param name="condition">aaa = 'ABD'</param>
+   <aaa>ABC</aaa>
+  </compute>
+  <expect></expect>
+ </it>
+
+
+ <it title="should return true if the operator is '!=' and the condition is satisfied">
+  <compute name="do:match_condition_by_path">
+   <param name="condition">aaa != 'ABD'</param>
+   <aaa>ABC</aaa>
+  </compute>
+  <expect>true</expect>
+ </it>
+
+
+ <it title="should return empty if the operator is '!=' and the condition is not satisfied">
+  <compute name="do:match_condition_by_path">
+   <param name="condition">aaa != 'ABC'</param>
+   <aaa>ABC</aaa>
+  </compute>
+  <expect></expect>
+ </it>
+
+
+ <it title="should return true if the operator is 'eq' and the condition is satisfied">
+  <compute name="do:match_condition_by_path">
+   <param name="condition">aaa eq 'ABC'</param>
+   <aaa>ABC</aaa>
+  </compute>
+  <expect>true</expect>
+ </it>
+
+
+ <it title="should return empty if the operator is 'eq' and the condition is not satisfied">
+  <compute name="do:match_condition_by_path">
+   <param name="condition">aaa eq 'ABD'</param>
+   <aaa>ABC</aaa>
+  </compute>
+  <expect></expect>
+ </it>
+
+
+ <it title="should return true if the operator is 'ne' and the condition is satisfied">
+  <compute name="do:match_condition_by_path">
+   <param name="condition">aaa ne 'ABD'</param>
+   <aaa>ABC</aaa>
+  </compute>
+  <expect>true</expect>
+ </it>
+
+
+ <it title="should return empty if the operator is 'ne' and the condition is not satisfied">
+  <compute name="do:match_condition_by_path">
+   <param name="condition">aaa ne 'ABC'</param>
+   <aaa>ABC</aaa>
+  </compute>
+  <expect></expect>
+ </it>
+
+
+ <it title="should return true if the operator is 'le' and the condition is satisfied (less)">
+  <compute name="do:match_condition_by_path">
+   <param name="condition">aaa le 112</param>
+   <aaa>111</aaa>
+  </compute>
+  <expect>true</expect>
+ </it>
+
+
+ <it title="should return true if the operator is 'le' and the condition is satisfied (equal)">
+  <compute name="do:match_condition_by_path">
+   <param name="condition">aaa le 111</param>
+   <aaa>111</aaa>
+  </compute>
+  <expect>true</expect>
+ </it>
+
+
+ <it title="should return empty if the operator is 'le' and the condition is not satisfied">
+  <compute name="do:match_condition_by_path">
+   <param name="condition">aaa le 110</param>
+   <aaa>111</aaa>
+  </compute>
+  <expect></expect>
+ </it>
+
+
+ <it title="should return true if the operator is 'lt' and the condition is satisfied">
+  <compute name="do:match_condition_by_path">
+   <param name="condition">aaa lt 112</param>
+   <aaa>111</aaa>
+  </compute>
+  <expect>true</expect>
+ </it>
+
+
+ <it title="should return empty if the operator is 'lt' and the condition is satisfied (equal)">
+  <compute name="do:match_condition_by_path">
+   <param name="condition">aaa lt 111</param>
+   <aaa>111</aaa>
+  </compute>
+  <expect></expect>
+ </it>
+
+
+ <it title="should return empty if the operator is 'lt' and the condition is not satisfied (greater)">
+  <compute name="do:match_condition_by_path">
+   <param name="condition">aaa lt 110</param>
+   <aaa>111</aaa>
+  </compute>
+  <expect></expect>
+ </it>
+
+
+ <it title="should return true if the operator is 'ge' and the condition is satisfied (greater)">
+  <compute name="do:match_condition_by_path">
+   <param name="condition">aaa ge 110</param>
+   <aaa>111</aaa>
+  </compute>
+  <expect>true</expect>
+ </it>
+
+
+ <it title="should return true if the operator is 'ge' and the condition is satisfied (equal)">
+  <compute name="do:match_condition_by_path">
+   <param name="condition">aaa ge 111</param>
+   <aaa>111</aaa>
+  </compute>
+  <expect>true</expect>
+ </it>
+
+
+ <it title="should return empty if the operator is 'ge' and the condition is not satisfied">
+  <compute name="do:match_condition_by_path">
+   <param name="condition">aaa ge 112</param>
+   <aaa>111</aaa>
+  </compute>
+  <expect></expect>
+ </it>
+
+
+ <it title="should return true if the operator is 'gt' and the condition is satisfied">
+  <compute name="do:match_condition_by_path">
+   <param name="condition">aaa gt 110</param>
+   <aaa>111</aaa>
+  </compute>
+  <expect>true</expect>
+ </it>
+
+
+ <it title="should return empty if the operator is 'gt' and the condition is satisfied (equal)">
+  <compute name="do:match_condition_by_path">
+   <param name="condition">aaa gt 111</param>
+   <aaa>111</aaa>
+  </compute>
+  <expect></expect>
+ </it>
+
+
+ <it title="should return empty if the operator is 'gt' and the condition is not satisfied (less)">
+  <compute name="do:match_condition_by_path">
+   <param name="condition">aaa gt 112</param>
+   <aaa>111</aaa>
+  </compute>
+  <expect></expect>
+ </it>
+
+
+ <it title="should match condition with an attribute from root">
+  <compute name="do:match_condition_by_path">
+   <param name="condition">aaa/@b eq 'ABC'</param>
+   <aaa b="ABC">111</aaa>
+  </compute>
+  <expect>true</expect>
+ </it>
+
+
+ <it title="should match condition with a node from root">
+  <compute name="do:match_condition_by_path">
+   <param name="condition">//AAA/BBB eq 'AB'</param>
+  </compute>
+  <expect>true</expect>
+ </it>
+
+
+ <it title="should match condition with a node in the external file">
+  <compute name="do:match_condition_by_path" xmlns:nn="my-namespace">
+   <nn:use-namespace/><!-- for Firefox -->
+   <param name="condition">//nn:Aaa/nn:Bbb/nn:Ccc eq 'ABC1'</param>
+   <param name="data_url">data/test-data.xml</param>
+  </compute>
+  <expect>true</expect>
+ </it>
+
+ <AAA>
+  <BBB>AB</BBB>
+ </AAA>
+</describe>

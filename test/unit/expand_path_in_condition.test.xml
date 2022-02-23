@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="application/xml" href="unit-test.xsl"?>
+
+<describe title="do:expand_path_in_condition"
+ xmlns:ns1="http://aaa/bbb/ccc"
+ xmlns:ns2="http://rrr/sss/ttt">
+
+ <!-- for Firefox -->
+ <ns1:use-namespace/>
+ <ns2:use-namespace/>
+
+ <it title="should expand path for path condition: ''">
+  <compute name="do:expand_path_in_condition">
+   <param name="condition"></param>
+  </compute>
+  <expect></expect>
+ </it>
+
+
+ <it title="should expand path for path condition: '2'">
+  <compute name="do:expand_path_in_condition">
+   <param name="condition">2</param>
+  </compute>
+  <expect>2</expect>
+ </it>
+
+
+ <it title="should expand path for path condition: 'key=123'">
+  <compute name="do:expand_path_in_condition">
+   <param name="condition">key=123</param>
+  </compute>
+  <expect>&#x86;:&#x87;key&#x86;?&#x87;&#x96;/&#x97;&#x96;=&#x97;eq&#x96;=&#x97;123&#x96;,&#x97;&#x96;|&#x97;</expect>
+ </it>
+
+
+ <it title="should expand path for path condition: 'ns1:key=123'">
+  <compute name="do:expand_path_in_condition">
+   <param name="condition">ns1:key=123</param>
+  </compute>
+  <expect>http://aaa/bbb/ccc&#x86;:&#x87;key&#x86;?&#x87;&#x96;/&#x97;&#x96;=&#x97;eq&#x96;=&#x97;123&#x96;,&#x97;&#x96;|&#x97;</expect>
+ </it>
+
+
+ <it title="should expand path for path condition: 'key=123 | key=456,id=ID112233'">
+  <compute name="do:expand_path_in_condition">
+   <param name="condition">key=123 | key=456,id=ID112233</param>
+  </compute>
+  <expect>&#x86;:&#x87;key&#x86;?&#x87;&#x96;/&#x97;&#x96;=&#x97;eq&#x96;=&#x97;123&#x96;,&#x97;&#x96;|&#x97;&#x86;:&#x87;key&#x86;?&#x87;&#x96;/&#x97;&#x96;=&#x97;eq&#x96;=&#x97;456&#x96;,&#x97;&#x86;:&#x87;id&#x86;?&#x87;&#x96;/&#x97;&#x96;=&#x97;eq&#x96;=&#x97;ID112233&#x96;,&#x97;&#x96;|&#x97;</expect>
+ </it>
+
+
+ <it title="should expand path for path condition: 'ns1:key=123 | ns1:key=456,ns2:id=ID112233'">
+  <compute name="do:expand_path_in_condition">
+   <param name="condition">ns1:key=123 | ns1:key=456,ns2:id=ID112233</param>
+  </compute>
+  <expect>http://aaa/bbb/ccc&#x86;:&#x87;key&#x86;?&#x87;&#x96;/&#x97;&#x96;=&#x97;eq&#x96;=&#x97;123&#x96;,&#x97;&#x96;|&#x97;http://aaa/bbb/ccc&#x86;:&#x87;key&#x86;?&#x87;&#x96;/&#x97;&#x96;=&#x97;eq&#x96;=&#x97;456&#x96;,&#x97;http://rrr/sss/ttt&#x86;:&#x87;id&#x86;?&#x87;&#x96;/&#x97;&#x96;=&#x97;eq&#x96;=&#x97;ID112233&#x96;,&#x97;&#x96;|&#x97;</expect>
+ </it>
+
+
+ <it title="should expand path for path condition: 'ns1:key=123'">
+  <compute name="do:expand_path_in_condition">
+   <param name="condition">ns1:key=123</param>
+  </compute>
+  <expect>http://aaa/bbb/ccc&#x86;:&#x87;key&#x86;?&#x87;&#x96;/&#x97;&#x96;=&#x97;eq&#x96;=&#x97;123&#x96;,&#x97;&#x96;|&#x97;</expect>
+ </it>
+
+</describe>

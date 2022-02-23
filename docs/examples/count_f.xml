@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="application/xml" href="count.xsl"?>
-<!-- count_f.xml -->
-<top>
-  <count path="//aaa/bbb" file="external.xml"/>
-  <!-- Outputs '(4)' -->
-</top>

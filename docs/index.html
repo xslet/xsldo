@@ -1,68 +1,221 @@
 <!DOCTYPE html>
 <html>
- <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width,initial-scale=1" name="viewport"/>
-  <title>@xslet/xsldo</title>
-  <style>
-  p { margin-left: 1rem; }
-  </style>
- </head>
- <body>
-  <article>
-   <h1>@xslet/xsldo</h1>
-   <p>This is a library for XML data operate on Web browsers.</p>
-   <p>This program is written in XSLT 1.0.</p>
+<head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width,initial-scale=1">
+ <title>xsldo ver1.0</title>
+ <link rel="stylesheet" type="text/css" href="index.css">
+ <link rel="icon" type="image/png" href="./images/xslet-logo.png">
+</head>
+<body>
+ <nav>
+  <ul>
+   <li><a href="#about">About</a></li>
+   <li><a href="#usage">Usage</a></li>
+   <li><a href="./api/xsldo.xml">APIs</a></li>
+   <li><a href="#tests">Tests</a></li>
+   <li><a href="#links">Links</a></li>
+  </ul>
+  <a href="#"><img id="logo" src="./images/xslet-logo.png"></a>
+ </nav>
 
-   <section>
-    <h2>Namespace</h2>
-    <p><code>xmlns:do="https://github.com/xslet/2020/xsldo"</code></p>
-   </section>
+ <main>
+  <header>
+   <h1>xsldo <span class="version">Ver 1.0</span></h1>
+   <p>
+A XSL library to operate XML data on Web browsers.
+   </p>
+   <p>
+Copyright (C) xslet project.<br>
+MIT License.
+   </p>
+  </header>
 
-   <section>
-    <h2>API</h2>
-    <p>The API document of xsldo is <a href="api/xsldo.xml">here</a>.</p>
-   </section>
+  <a name="about"></a>
+  <section>
+   <h2>About xsldo</h2>
+   <p>
+xsldo is a XSL library which provides a set of named-templates for XML data operation.
+This library enables a XSL application to operate XML data like XSLT/XPath while hiding the XSLT/XPath specification.
+   </p>
+   <p>
+This library support XPath like paths to indicate XML nodes.
+That is, the path format concatenates node names with slashes, prefixes <code>'@'</code> to an attribute name and puts <code>'[]'</code> around a path condition.
+Moreover, it supports <code>'*'</code> for all child elements, <code>'..'</code> for a parent element and <code>'//'</code> for all descendant elements.
+Though this library does not conform to the XPath specifications.
+   </p>
+   <p>
+This library also supports XML namespace.
+In addition, this library provides '<i>xxx</i>:use-namespace' element ('<i>xxx</i>' represents a used namespace prefix) for Firefox, because the XSLT processor of Firefox does not support namespace axis.
+   </p>
+  </section>
 
-   <section>
-    <h2>Test</h2>
-    <ol>
-     <li><a href="test/expand_path.test.xml">expand_path</a></li>
-     <li><a href="test/expand_path_in_condition.test.xml">expand_path_in_condition</a></li>
-     <li><a href="test/get_objects_by_path.test.xml">get_objects_by_path</a></li>
-     <li><a href="test/get_objects_by_path__what.test.xml">get_objects_by_path about what</a></li>
-     <li><a href="test/get_objects_by_path__ds.test.xml">get_objects_by_path with data_url</a></li>
-     <li><a href="test/first_object_by_path.test.xml">first_object_by_path</a></li>
-     <li><a href="test/first_object_by_path__ds.test.xml">first_object_by_path with data_url</a></li>
-     <li><a href="test/count_nodes_by_path.test.xml">count_nodes_by_path</a></li>
-     <li><a href="test/count_nodes_by_path__ds.test.xml">count_nodes_by_path with data_url</a></li>
-     <li><a href="test/for_by_path.test.xml">for_by_path</a></li>
-     <li><a href="test/for_by_path__ds.test.xml">for_by_path with data_url</a></li>
-     <li><a href="test/for_by_path__index.test.xml">for_by_path and index</a></li>
-     <li><a href="test/for_by_path__sort.test.xml">for_by_path with sort</a></li>
-     <li><a href="test/for_times.test.xml">for_times</a></li>
-     <li><a href="test/for_times__index.test.xml">for_times and index</a></li>
-     <li><a href="test/operate_expression.test.xml">operate_expression</a></li>
-     <li><a href="test/match_condition_by_path.test.xml">match_condition_by_path</a></li>
-    </ol>
-   </section>
+  <a name="usage"></a>
+  <section>
+   <h2>Usage</h2>
+   <p>
+To import xsldo.xsl into your XSL application or library, the following handworks are needed.
+   </p>
+   <ol>
+    <li>
+     <p>
+Add the namespace declaration of xsldo in a XSL file.
+The namespace of xsldo is "https://github.com/xslet/2020/xsldo".
+     </p>
+     <div class="code">
+<div>&lt;xsl:stylesheet version="1.0"</div>
+<div> &nbsp; xmlns:xsl="http://www.w3.org/1999/XSL/Transform"</div>
+<div> &nbsp; xmlns:ut="https://github.com/xslet/2020/xslutil"</div>
+<div> &nbsp; xmlns:do="https://github.com/xslet/2020/xsldo"&gt; &lt;!-- This! --&gt;</div>
+<div> &nbsp; ...</div>
+     </div>
+    </li>
+    <li>
+     <p>
+Add a import element of xsldo in the XSL file.
+     </p>
+     <div class="code">
+<div> &nbsp; ...</div>
+<div> &nbsp; &lt;xsl:import href="./xsldo.xsl"/&gt;
+<div> &nbsp; ...</div>
+     </div>
+    </li>
+    <li>
+     <p>
+Then, you can use named-templates of xsldo in the XSL file with xsl:call-template.
+     </p>
+     <div class="code">
+<div> &nbsp; ...</div>
+<div> &nbsp; &lt;xsl:call-template name="do:get_objects_by_path"&gt;
+<div> &nbsp; &nbsp; &lt;xsl:with-param name="path" select="..."/&gt;
+<div> &nbsp; &nbsp; &lt;xsl:with-param name="what" select="..."/&gt;
+<div> &nbsp; &lt;/xsl:call-template&gt;
+<div> &nbsp; ...</div>
+     </div>
+    </li>
+   </ol>
+  </section>
 
-   <section>
-    <h2>Examples in README</h2>
-    <ol>
-     <li><a href="examples/count.xml">do:count_nodes_by_path</a></li>
-     <li><a href="examples/count_f.xml">do:count_nodes_by_path with an external file</a></li>
-     <li><a href="examples/first.xml">do:first_object_by_path</a></li>
-     <li><a href="examples/first_f.xml">do:first_object_by_path with an external file</a></li>
-     <li><a href="examples/all.xml">do:get_objects_by_path</a></li>
-     <li><a href="examples/all_f.xml">do:get_objects_by_path with an external file</a></li>
-     <li><a href="examples/for.xml">do:for_by_path</a></li>
-     <li><a href="examples/for_f.xml">do:for_by_path with an external file</a></li>
-     <li><a href="examples/times.xml">do:for_times</a></li>
-     <li><a href="examples/times_f.xml">do:for_times with an external file</a></li>
-    </ol>
-   </section>
+  <a name="apis"></a>
+  <section>
+   <h2>APIs</h2>
+   <p>
+Since xsldo is a XSL application, its own API document can be generated, too.<br>
+The generated API document is <a href="./api/xsldo.xml">here</a>.
+   </p>
+  </section>
 
-  </article>
- </body>
+  <a name="tests"></a>
+  <section>
+   <h2>Tests</h2>
+   <p>
+This section provides the results of unit tests of named-templates written in the API document.
+   </p>
+   <ul>
+    <li>
+<a href="test/unit/expand_path.test.xml">do:expand_path</a>
+    </li>
+    <li>
+<a href="test/unit/expand_path_in_condition.test.xml">do:expand_path_in_condition</a>
+    </li>
+    <li>
+<a href="test/unit/get_current_value.test.xml">do:get_current_value</a>
+    </li>
+    <li>
+<a href="test/unit/get_current_attribute.test.xml">do:get_current_attribute</a>
+    </li>
+    <li>
+<a href="test/unit/operate_expression.test.xml">do:operate_expression</a>
+    </li>
+    <li>
+<a href="test/unit/match_condition_by_path.test.xml">do:match_condition_by_path / do:match_condition_by_expath</a>
+    </li>
+    <li>
+<a href="test/unit/first_object_by_path.test.xml">do:first_object_by_path / do:first_object_by_expath</a>
+    </li>
+    <li>
+<a href="test/unit/get_objects_by_path.test.xml">do:get_objects_by_path / do:get_objects_by_expath</a>
+    </li>
+    <li>
+<a href="test/unit/count_nodes_by_path.test.xml">do:count_nodes_by_path / do:count_nodes_by_expath</a>
+    </li>
+    <li>
+<a href="test/unit/for_by_path.test.xml">do:for_by_path / do:for_by_expath</a>
+    </li>
+    <li>
+<a href="test/unit/for_times.test.xml">do:for_times</a>
+    </li>
+   </ul>
+  </section>
+
+  <a name="links"></a>
+  <section>
+   <h2>Links</h2>
+   <p>
+xsldo is one of libraries in xslet project.
+xslet is a project to develop Web applications/libraries with XSL (XSLT and XPath).
+   </p>
+   <ul>
+    <li>
+<a id="xsldo" href="https://github.com/xslet/xsldo">xsldo repository on GitHub</a>
+    </li>
+    <li>
+<a id="xslet" href="https://github.com/xslet">xslet project on GitHub</a>
+    </li>
+   </ul>
+   <p>
+xsldo depends on following xslet library.
+   </p>
+   <ul>
+    <li>
+<a id="xslutil" href="https://github.com/xslet/xslutil">xslutil repository on GitHub</a>
+    </li>
+   </ul>
+   <p>
+XSLT and XPath is the specifications specified by W3C.
+xsldo uses XSLT version 1.0 and XPath version 1.0 in it because Web browsers support them.
+   </p>
+   <ul>
+    <li>
+<a id="xslt1" href="https://www.w3.org/TR/1999/REC-xslt-19991116">XSLT 1.0 - W3C Recommendation</a>
+    </li>
+    <li>
+<a id="xpath1" href="https://www.w3.org/TR/1999/REC-xpath-19991116/">XPath 1.0 - W3C Recommendation</a>
+    </li>
+   </ul>
+   <p>
+In addition, xsldo uses XSLT version 3.0 and XPath version 3.0 in the build environment.
+   </p>
+   <ul>
+    <li>
+<a id="xslt3" href="https://www.w3.org/TR/xslt-30/">XSLT 3.0 - W3C Recommendation</a>
+    </li>
+    <li>
+<a id="xpath3" href="https://www.w3.org/TR/xpath-30/">XPath 3.0 - W3C Recommendation</a>
+    </li>
+   </ul>
+   <p>
+The xsldo also uses following application as tools in the build environment.
+   </p>
+   <ul>
+    <li>
+<a id="saxon" href="http://saxon.sourceforge.net/">Saxon for Java - Saxonica</a>
+    </li>
+    <li>
+<a id="ant" href="https://ant.apache.org/">Apache Ant - The Apache Software Foundation</a>
+    </li>
+    <li>
+<a id="tomcat" href="https://tomcat.apache.org/">Apache Tomcat - The Apache Software Foundation</a>
+    </li>
+    <li>
+<a id="sass" href="https://sass-lang.com/">SCSS - the Sass team</a>
+    </li>
+    <li>
+<a id="xsldoc" href="https://github.com/xslet/xsldoc">xsldoc repository on GitHub</a>
+    </li>
+   </ul>
+  </section>
+
+ </main>
+</body>
 </html>
