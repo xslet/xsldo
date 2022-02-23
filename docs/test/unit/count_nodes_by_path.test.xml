@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="application/xml" href="unit-test.xsl"?>
+
+<describe title="do:count_nodes_by_path (do:expand_path&#160;+&#160;do:count_nodes_by_expath)"
+ xmlns:ns1="http://aaa/bbb/ccc"
+ xmlns:ns2="http://rrr/sss/ttt"
+ xmlns:n="my-namespace">>
+
+
+ <it title="should count child elements at the specified path">
+  <compute name="do:count_nodes_by_path">
+   <param name="path">aaa</param>
+   <aaa>ABC</aaa>
+  </compute>
+  <expect>1</expect>
+ </it>
+
+
+ <it title="should output a prefix and a suffix">
+  <compute name="do:count_nodes_by_path">
+   <param name="path">aaa</param>
+   <param name="prefix">(</param>
+   <param name="suffix">)</param>
+   <aaa>ABC</aaa>
+  </compute>
+  <expect>(1)</expect>
+ </it>
+
+
+ <it title="should count descendant elements at the specified path">
+  <compute name="do:count_nodes_by_path">
+   <param name="path">aaa/bbb</param>
+   <aaa>ABC<bbb>DEF</bbb><bbb>GHI</bbb>JKL</aaa>
+   <param name="prefix">(</param>
+   <param name="suffix">)</param>
+  </compute>
+  <expect>(2)</expect>
+ </it>
+
+
+ <it title="should count child attributes at the specified path">
+  <compute name="do:count_nodes_by_path">
+   <param name="path">aaa/@ccc</param>
+   <aaa ccc="C1">ABC</aaa>
+   <aaa ccc="C2">DEF</aaa>
+   <aaa>GHI</aaa>
+   <aaa ccc="C3">JKL</aaa>
+  </compute>
+  <expect>3</expect>
+ </it>
+
+
+ <it title="should count descendant attributes at the specified path">
+  <compute name="do:count_nodes_by_path">
+   <param name="path">aaa/bbb/@ccc</param>
+   <aaa>
+    <bbb ccc="C1">ABC</bbb>
+    <bbb ccc="C2">DEF</bbb>
+   </aaa>
+   <aaa>
+    <bbb>GHI</bbb>
+    <bbb ccc="C3">JKL</bbb>
+   </aaa>
+  </compute>
+  <expect>3</expect>
+ </it>
+
+
+ <it title="should count elements at the specified path with '*/'">
+  <compute name="do:count_nodes_by_path">
+   <param name="path">*/bbb</param>
+   <aaa>
+    <bbb>ABC</bbb>
+    <bbb>DEF</bbb>
+   </aaa>
+   <ccc>
+    <bbb>GHI</bbb>
+    <ddd>JKL</ddd>
+   </ccc>
+  </compute>
+  <expect>3</expect>
+ </it>
+
+
+ <it title="should count elements at the specified path with '/*'">
+  <compute name="do:count_nodes_by_path">
+   <param name="path">ccc/*</param>
+   <aaa>
+    <bbb>ABC</bbb>
+    <bbb>DEF</bbb>
+   </aaa>
+   <ccc>
+    <bbb>GHI</bbb>
+    <ddd>JKL</ddd>
+   </ccc>
+  </compute>
+  <expect>2</expect>
+ </it>
+
+
+ <it title="should count elements at the specified path with '/*/'">
+  <compute name="do:count_nodes_by_path">
+   <param name="path">aaa/*/fff</param>
+   <aaa>
+    <bbb>
+     <eee>ABC</eee>
+     <fff>abc</fff>
+    </bbb>
+    <ddd>
+     <eee>DEF</eee>
+     <fff>def</fff>
+    </ddd>
+   </aaa>
+   <ccc>
+    <bbb>
+     <eee>JKL</eee>
+     <fff>jkl</fff>
+    </bbb>
+    <ddd>
+     <eee>GHI</eee>
+     <fff>ghi</fff>
+    </ddd>
+   </ccc>
+  </compute>
+  <expect>2</expect>
+ </it>
+
+
+ <it title="should count elements at the specified path with '/*/' and index condition">
+  <compute name="do:count_nodes_by_path">
+   <param name="path">aaa[2]/*[1]/fff[1]</param>
+   <aaa>
+    <bbb>
+     <eee>ABC</eee>
+     <fff>abc</fff>
+    </bbb>
+    <ddd>
+     <eee>DEF</eee>
+     <fff>def</fff>
+    </ddd>
+   </aaa>
+   <aaa>
+    <bbb>
+     <eee>JKL</eee>
+     <fff>jkl</fff>
+    </bbb>
+    <ddd>
+     <eee>GHI</eee>
+     <fff>ghi</fff>
+    </ddd>
+   </aaa>
+  </compute>
+  <expect>1</expect>
+ </it>
+
+
+ <it title="should count elements at the specified path with '/**/'">
+  <compute name="do:count_nodes_by_path">
+   <param name="path">zzz/**/bbb/fff</param>
+   <zzz>
+    <yyy>
+     <aaa>
+      <bbb>
+       <eee>ABC</eee>
+       <fff>abc</fff>
+      </bbb>
+      <ddd>
+       <eee>DEF</eee>
+       <fff>def</fff>
+      </ddd>
+     </aaa>
+     <ccc>
+      <bbb>
+       <eee>JKL</eee>
+       <fff>jkl</fff>
+      </bbb>
+      <ddd>
+       <eee>GHI</eee>
+       <fff>ghi</fff>
+      </ddd>
+     </ccc>
+    </yyy>
+   </zzz>
+  </compute>
+  <expect>2</expect>
+ </it>
+
+
+ <it title="should count elements at the specified path with '//'">
+  <compute name="do:count_nodes_by_path">
+   <param name="path">zzz//bbb/fff</param>
+   <zzz>
+    <yyy>
+     <aaa>
+      <bbb>
+       <eee>ABC</eee>
+       <fff>abc</fff>
+      </bbb>
+      <ddd>
+       <eee>DEF</eee>
+       <fff>def</fff>
+      </ddd>
+     </aaa>
+     <ccc>
+      <bbb>
+       <eee>JKL</eee>
+       <fff>jkl</fff>
+      </bbb>
+      <ddd>
+       <eee>GHI</eee>
+       <fff>ghi</fff>
+      </ddd>
+     </ccc>
+    </yyy>
+   </zzz>
+  </compute>
+  <expect>2</expect>
+ </it>
+
+
+ <it title="should count elements at the specified path with '//' and attribute condition">
+  <compute name="do:count_nodes_by_path">
+   <param name="path">zzz//bbb[@key='B1']/fff</param>
+   <zzz>
+    <yyy>
+     <aaa>
+      <bbb key="B1">
+       <eee>ABC</eee>
+       <fff>abc</fff>
+      </bbb>
+      <ddd>
+       <eee>DEF</eee>
+       <fff>def</fff>
+      </ddd>
+     </aaa>
+     <ccc>
+      <bbb key="B1">
+       <eee>JKL</eee>
+       <fff>jkl</fff>
+      </bbb>
+      <ddd>
+       <eee>GHI</eee>
+       <fff>ghi</fff>
+      </ddd>
+     </ccc>
+    </yyy>
+   </zzz>
+  </compute>
+  <expect>2</expect>
+ </it>
+
+
+ <it title="should count elements at the specified path with attribute condition">
+  <compute name="do:count_nodes_by_path">
+   <param name="path">//bbb[@key='B2']/fff</param>
+   <zzz>
+    <yyy>
+     <aaa>
+      <bbb key="B2">
+       <eee>ABC</eee>
+       <fff>abc</fff>
+      </bbb>
+      <ddd>
+       <eee>DEF</eee>
+       <fff>def</fff>
+      </ddd>
+     </aaa>
+     <ccc>
+      <bbb key="B2">
+       <eee>JKL</eee>
+       <fff>jkl</fff>
+      </bbb>
+      <ddd>
+       <eee>GHI</eee>
+       <fff>ghi</fff>
+      </ddd>
+     </ccc>
+    </yyy>
+   </zzz>
+  </compute>
+  <expect>2</expect>
+ </it>
+
+
+ <it title="should count elements at the specified path with namespace">
+  <compute name="do:count_nodes_by_path">
+   <param name="path">ns1:aaa[@c0=1]</param>
+   <ns1:aaa c0="0">ABC0</ns1:aaa>
+   <ns1:aaa c0="1">ABC1</ns1:aaa>
+   <ns1:aaa c0="2">ABC2</ns1:aaa>
+  </compute>
+  <expect>1</expect>
+ </it>
+
+
+ <it title="should count elements at the specified path with multiple attributes conditon (or)">
+  <compute name="do:count_nodes_by_path">
+   <param name="path">ns1:aaa[@c0=1 | @c0=2]</param>
+   <ns1:aaa c0="0">ABC0</ns1:aaa>
+   <ns1:aaa c0="1">ABC1</ns1:aaa>
+   <ns1:aaa c0="2">ABC2</ns1:aaa>
+  </compute>
+  <expect>2</expect>
+ </it>
+
+
+ <it title="should count elements at the specified path with multiple attributes condition (and)">
+  <compute name="do:count_nodes_by_path">
+   <param name="path">ns1:aaa[@c0=1 , @c1='B']</param>
+   <ns1:aaa c0="1" c1="A">ABC0</ns1:aaa>
+   <ns1:aaa c0="1" c1="B">ABC1</ns1:aaa>
+   <ns1:aaa c0="2" c1="B">ABC2</ns1:aaa>
+  </compute>
+  <expect>1</expect>
+ </it>
+
+
+ <it title="should count elements at the specified path with multiple attributes condition (and &gt; or)">
+  <compute name="do:count_nodes_by_path">
+   <param name="path">ns1:aaa[@c0=1,@c1='B'|@c0=2,@c1='C']</param>
+   <ns1:aaa c0="1" c1="A">ABC0</ns1:aaa>
+   <ns1:aaa c0="1" c1="B">ABC1</ns1:aaa>
+   <ns1:aaa c0="2" c1="B">ABC2</ns1:aaa>
+   <ns1:aaa c0="2" c1="C">ABC3</ns1:aaa>
+  </compute>
+  <expect>2</expect>
+ </it>
+
+
+ <it title="should count elements at the specified path with '/../'">
+  <compute name="do:count_nodes_by_path">
+   <param name="path">aaa/bbb/eee/../eee</param>
+   <aaa>
+     <bbb>
+      <eee>ABC</eee>
+      <fff>abc</fff>
+     </bbb>
+     <bbb>
+      <eee>DEF</eee>
+      <fff>def</fff>
+     </bbb>
+   </aaa>
+   <aaa>
+     <bbb>
+      <eee>JKL</eee>
+      <fff>jkl</fff>
+     </bbb>
+     <bbb>
+      <eee>GHI</eee>
+      <fff>ghi</fff>
+     </bbb>
+   </aaa>
+  </compute>
+  <expect>4</expect>
+ </it>
+
+
+ <it title="should count elements at the specified path with '/../' in condition">
+  <compute name="do:count_nodes_by_path">
+   <param name="path">aaa/bbb/eee/../eee[../fff='def']</param>
+   <aaa>
+     <bbb>
+      <eee>ABC</eee>
+      <fff>abc</fff>
+     </bbb>
+     <bbb>
+      <eee>DEF</eee>
+      <fff>def</fff>
+     </bbb>
+   </aaa>
+   <aaa>
+     <bbb>
+      <eee>JKL</eee>
+      <fff>jkl</fff>
+     </bbb>
+     <bbb>
+      <eee>GHI</eee>
+      <fff>ghi</fff>
+     </bbb>
+   </aaa>
+  </compute>
+  <expect>1</expect>
+ </it>
+
+
+ <describe title="Get data from external file with data_url parameter">
+   <!-- for Firefox -->
+   <n:use-namespace/>
+
+   <it title="should count the root node">
+    <compute name="do:count_nodes_by_path">
+     <param name="path">/n:data</param>
+     <param name="data_url">data/test-data.xml</param>
+    </compute>
+    <expect>1</expect>
+   </it>
+
+
+   <it title="should count the specified second level nodes">
+    <compute name="do:count_nodes_by_path">
+     <param name="path">/n:data/n:Aaa</param>
+     <param name="data_url">data/test-data.xml</param>
+    </compute>
+    <expect>3</expect>
+   </it>
+
+
+   <it title="should count the specified third level nodes">
+    <compute name="do:count_nodes_by_path">
+     <param name="path">/n:data/n:Aaa/n:Bbb</param>
+     <param name="data_url">data/test-data.xml</param>
+    </compute>
+    <expect>6</expect>
+   </it>
+
+
+   <it title="should count the specified fourth level nodes">
+    <compute name="do:count_nodes_by_path">
+     <param name="path">/n:data/n:Aaa/n:Bbb/n:Ccc</param>
+     <param name="data_url">data/test-data.xml</param>
+    </compute>
+    <expect>11</expect>
+   </it>
+
+
+   <it title="should count nodes with a path condition">
+    <compute name="do:count_nodes_by_path">
+     <param name="path">/n:data/n:Aaa/n:Bbb[@key0='B1']</param>
+     <param name="data_url">data/test-data.xml</param>
+    </compute>
+    <expect>3</expect>
+   </it>
+
+
+   <it title="should count nodes with a path condition">
+    <compute name="do:count_nodes_by_path">
+     <param name="path">/n:data/n:Aaa/n:Bbb/n:Ccc[@key1='C2']</param>
+     <param name="data_url">data/test-data.xml</param>
+    </compute>
+    <expect>4</expect>
+   </it>
+
+
+   <it title="should count nodes with a path condition">
+    <compute name="do:count_nodes_by_path">
+     <param name="path">/n:data/n:Aaa/n:Bbb/n:Ccc/@key1[.='C2']</param>
+     <param name="data_url">data/test-data.xml</param>
+    </compute>
+    <expect>4</expect>
+   </it>
+
+
+   <it title="should count nodes with a path condition">
+    <compute name="do:count_nodes_by_path">
+     <param name="path">/n:data/n:Aaa/n:Bbb[n:Ccc/@key1='C1']</param>
+     <param name="data_url">data/test-data.xml</param>
+    </compute>
+    <expect>4</expect>
+   </it>
+
+
+   <it title="should count nodes with a path condition">
+    <compute name="do:count_nodes_by_path">
+     <param name="path">/n:data/n:Aaa/n:Bbb[n:Ccc/@key1='CX']</param>
+     <param name="data_url">data/test-data.xml</param>
+    </compute>
+    <expect>0</expect>
+   </it>
+ </describe>
+
+
+ <ABC>
+  <DEF>GHI</DEF>
+  <DEF>JKL</DEF>
+  <DEF>MNO</DEF>
+ </ABC>
+
+</describe>

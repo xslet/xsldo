@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="application/xml" href="unit-test.xsl"?>
+
+<describe title="do:expand_path"
+ xmlns:ns1="http://aaa/bbb/ccc"
+ xmlns:ns2="http://rrr/sss/ttt">
+
+ <!-- for Firefox -->
+ <ns1:use-namespace/>
+ <ns2:use-namespace/>
+
+
+ <it title="should get expand path of an empty string">
+  <compute name="do:expand_path">
+   <param name="path"></param>
+   <param name="path_sep">&#x86;/&#x87;</param>
+  </compute>
+  <expect></expect>
+ </it>
+
+
+ <it title="should get expand path of `aaa`">
+  <compute name="do:expand_path">
+   <param name="path">aaa</param>
+   <param name="path_sep">&#x86;/&#x87;</param>
+  </compute>
+  <expect>&#x86;:&#x87;aaa&#x86;?&#x87;&#x86;/&#x87;</expect>
+ </it>
+
+
+ <it title="should get expand path of `/aaa`">
+  <compute name="do:expand_path">
+   <param name="path">/aaa</param>
+   <param name="path_sep">&#x86;/&#x87;</param>
+  </compute>
+  <expect>&#x86;/&#x87;&#x86;:&#x87;aaa&#x86;?&#x87;&#x86;/&#x87;</expect>
+ </it>
+
+
+ <it title="should get expand path of `ns1:aaa[2]`">
+  <compute name="do:expand_path">
+   <param name="path">ns1:aaa[2]</param>
+   <param name="path_sep">&#x86;/&#x87;</param>
+  </compute>
+  <expect>http://aaa/bbb/ccc&#x86;:&#x87;aaa&#x86;?&#x87;2&#x86;/&#x87;</expect>
+ </it>
+
+
+ <it title="should get expand path of `/ns2:aaa`">
+  <compute name="do:expand_path">
+   <param name="path">/ns2:aaa</param>
+   <param name="path_sep">&#x86;/&#x87;</param>
+  </compute>
+  <expect>&#x86;/&#x87;http://rrr/sss/ttt&#x86;:&#x87;aaa&#x86;?&#x87;&#x86;/&#x87;</expect>
+ </it>
+
+
+ <it title="should get expand path of `ns1:aaa[key=123]`">
+  <compute name="do:expand_path">
+   <param name="path">ns1:aaa[key=123]</param>
+   <param name="path_sep">&#x86;/&#x87;</param>
+  </compute>
+  <expect>http://aaa/bbb/ccc&#x86;:&#x87;aaa&#x86;?&#x87;&#x86;:&#x87;key&#x86;?&#x87;&#x96;/&#x97;&#x96;=&#x97;eq&#x96;=&#x97;123&#x96;,&#x97;&#x96;|&#x97;&#x86;/&#x87;</expect>
+ </it>
+
+
+ <it title="should get expand path of `ns1:aaa[ns1:key=123]`">
+  <compute name="do:expand_path">
+   <param name="path">ns1:aaa[ns1:key=123]</param>
+   <param name="path_sep">&#x86;/&#x87;</param>
+  </compute>
+  <expect>http://aaa/bbb/ccc&#x86;:&#x87;aaa&#x86;?&#x87;http://aaa/bbb/ccc&#x86;:&#x87;key&#x86;?&#x87;&#x96;/&#x97;&#x96;=&#x97;eq&#x96;=&#x97;123&#x96;,&#x97;&#x96;|&#x97;&#x86;/&#x87;</expect>
+ </it>
+
+
+ <it title="should get expand path of `ns1:aaa[key=123 | key=456,id=ID112233]`">
+  <compute name="do:expand_path">
+   <param name="path">ns1:aaa[key=123 | key=456,id=ID112233]</param>
+   <param name="path_sep">&#x86;/&#x87;</param>
+  </compute>
+  <expect>http://aaa/bbb/ccc&#x86;:&#x87;aaa&#x86;?&#x87;&#x86;:&#x87;key&#x86;?&#x87;&#x96;/&#x97;&#x96;=&#x97;eq&#x96;=&#x97;123&#x96;,&#x97;&#x96;|&#x97;&#x86;:&#x87;key&#x86;?&#x87;&#x96;/&#x97;&#x96;=&#x97;eq&#x96;=&#x97;456&#x96;,&#x97;&#x86;:&#x87;id&#x86;?&#x87;&#x96;/&#x97;&#x96;=&#x97;eq&#x96;=&#x97;ID112233&#x96;,&#x97;&#x96;|&#x97;&#x86;/&#x87;</expect>
+ </it>
+
+
+ <it title="should get expand path of `ns1:aaa[ns1:key=123 | ns1:key=456,ns2:id=ID112233]`">
+  <compute name="do:expand_path">
+   <param name="path">ns1:aaa[ns1:key=123 | ns1:key=456,ns2:id=ID112233]</param>
+   <param name="path_sep">&#x86;/&#x87;</param>
+  </compute>
+  <expect>http://aaa/bbb/ccc&#x86;:&#x87;aaa&#x86;?&#x87;http://aaa/bbb/ccc&#x86;:&#x87;key&#x86;?&#x87;&#x96;/&#x97;&#x96;=&#x97;eq&#x96;=&#x97;123&#x96;,&#x97;&#x96;|&#x97;http://aaa/bbb/ccc&#x86;:&#x87;key&#x86;?&#x87;&#x96;/&#x97;&#x96;=&#x97;eq&#x96;=&#x97;456&#x96;,&#x97;http://rrr/sss/ttt&#x86;:&#x87;id&#x86;?&#x87;&#x96;/&#x97;&#x96;=&#x97;eq&#x96;=&#x97;ID112233&#x96;,&#x97;&#x96;|&#x97;&#x86;/&#x87;</expect>
+ </it>
+
+
+ <it title="should get expand path of `aaa/bbb/ccc`">
+  <compute name="do:expand_path">
+   <param name="path">aaa/bbb/ccc</param>
+   <param name="path_sep">&#x86;/&#x87;</param>
+  </compute>
+  <expect>&#x86;:&#x87;aaa&#x86;?&#x87;&#x86;/&#x87;&#x86;:&#x87;bbb&#x86;?&#x87;&#x86;/&#x87;&#x86;:&#x87;ccc&#x86;?&#x87;&#x86;/&#x87;</expect>
+ </it>
+
+
+ <it title="should get expand path of `ns1:aaa[A=1]/ns1:bbb[B=[2]]/ns1:ccc[C=/3/]`">
+  <compute name="do:expand_path">
+   <param name="path">ns1:aaa[A=1]/ns2:bbb[B=[2]]/ns1:ccc[C=/3/]</param>
+   <param name="path_sep">&#x86;/&#x87;</param>
+  </compute>
+  <expect>http://aaa/bbb/ccc&#x86;:&#x87;aaa&#x86;?&#x87;&#x86;:&#x87;A&#x86;?&#x87;&#x96;/&#x97;&#x96;=&#x97;eq&#x96;=&#x97;1&#x96;,&#x97;&#x96;|&#x97;&#x86;/&#x87;http://rrr/sss/ttt&#x86;:&#x87;bbb&#x86;?&#x87;&#x86;:&#x87;B&#x86;?&#x87;&#x96;/&#x97;&#x96;=&#x97;eq&#x96;=&#x97;[2]&#x96;,&#x97;&#x96;|&#x97;&#x86;/&#x87;http://aaa/bbb/ccc&#x86;:&#x87;ccc&#x86;?&#x87;&#x86;:&#x87;C&#x86;?&#x87;&#x96;/&#x97;&#x96;=&#x97;eq&#x96;=&#x97;/3/&#x96;,&#x97;&#x96;|&#x97;&#x86;/&#x87;</expect>
+ </it>
+
+
+ <it title="should get expand path of `ns1:aaa[ns1:A=1]/ns2:bbb[ns2:B=[2]]/ns1:ccc[ns1:C=/3/]`">
+  <compute name="do:expand_path">
+   <param name="path">ns1:aaa[ns1:A=1]/ns2:bbb[ns2:B=[2]]/ns1:ccc[ns1:C=/3/]</param>
+   <param name="path_sep">&#x86;/&#x87;</param>
+  </compute>
+  <expect>http://aaa/bbb/ccc&#x86;:&#x87;aaa&#x86;?&#x87;http://aaa/bbb/ccc&#x86;:&#x87;A&#x86;?&#x87;&#x96;/&#x97;&#x96;=&#x97;eq&#x96;=&#x97;1&#x96;,&#x97;&#x96;|&#x97;&#x86;/&#x87;http://rrr/sss/ttt&#x86;:&#x87;bbb&#x86;?&#x87;http://rrr/sss/ttt&#x86;:&#x87;B&#x86;?&#x87;&#x96;/&#x97;&#x96;=&#x97;eq&#x96;=&#x97;[2]&#x96;,&#x97;&#x96;|&#x97;&#x86;/&#x87;http://aaa/bbb/ccc&#x86;:&#x87;ccc&#x86;?&#x87;http://aaa/bbb/ccc&#x86;:&#x87;C&#x86;?&#x87;&#x96;/&#x97;&#x96;=&#x97;eq&#x96;=&#x97;/3/&#x96;,&#x97;&#x96;|&#x97;&#x86;/&#x87;</expect>
+ </it>
+
+
+ <it title="should get expand path of `aaa/bbb/@ccc`">
+  <compute name="do:expand_path">
+   <param name="path">aaa/bbb/@ccc</param>
+   <param name="path_sep">&#x86;/&#x87;</param>
+  </compute>
+  <expect>&#x86;:&#x87;aaa&#x86;?&#x87;&#x86;/&#x87;&#x86;:&#x87;bbb&#x86;?&#x87;&#x86;/&#x87;@&#x86;:&#x87;ccc&#x86;?&#x87;&#x86;/&#x87;</expect>
+ </it>
+
+
+ <it title="should get expand path of `ns1:aaa/ns1:bbb/@ns1:ccc`">
+  <compute name="do:expand_path">
+   <param name="path">ns1:aaa/ns1:bbb/@ns1:ccc</param>
+   <param name="path_sep">&#x86;/&#x87;</param>
+  </compute>
+  <expect>http://aaa/bbb/ccc&#x86;:&#x87;aaa&#x86;?&#x87;&#x86;/&#x87;http://aaa/bbb/ccc&#x86;:&#x87;bbb&#x86;?&#x87;&#x86;/&#x87;@http://aaa/bbb/ccc&#x86;:&#x87;ccc&#x86;?&#x87;&#x86;/&#x87;</expect>
+ </it>
+
+
+ <it title="should get expand path of `ns1:aaa[ns1:key=123]`">
+  <compute name="do:expand_path">
+   <param name="path">ns1:aaa[ns1:key=123]</param>
+   <param name="path_sep">&#x86;/&#x87;</param>
+  </compute>
+  <expect>http://aaa/bbb/ccc&#x86;:&#x87;aaa&#x86;?&#x87;http://aaa/bbb/ccc&#x86;:&#x87;key&#x86;?&#x87;&#x96;/&#x97;&#x96;=&#x97;eq&#x96;=&#x97;123&#x96;,&#x97;&#x96;|&#x97;&#x86;/&#x87;</expect>
+ </it>
+
+
+ <it title="should get expand path of `ns1:aaa[ns1:key=123, ns2:key2=456]`">
+  <compute name="do:expand_path">
+   <param name="path">ns1:aaa[ns1:key=123, ns2:key2=456]</param>
+   <param name="path_sep">&#x86;/&#x87;</param>
+  </compute>
+  <expect>http://aaa/bbb/ccc&#x86;:&#x87;aaa&#x86;?&#x87;http://aaa/bbb/ccc&#x86;:&#x87;key&#x86;?&#x87;&#x96;/&#x97;&#x96;=&#x97;eq&#x96;=&#x97;123&#x96;,&#x97;http://rrr/sss/ttt&#x86;:&#x87;key2&#x86;?&#x87;&#x96;/&#x97;&#x96;=&#x97;eq&#x96;=&#x97;456&#x96;,&#x97;&#x96;|&#x97;&#x86;/&#x87;</expect>
+ </it>
+
+
+ <it title="should get expand path of `ns1:aaa[ns1:key=123, ns2:key2 eq 456 | ns1:key3 le 789, ns2:key4 gt ABC ]/ns1:bbb[2]`">
+  <compute name="do:expand_path">
+   <param name="path">ns1:aaa[ns1:key=123, ns2:key2 eq 456 | ns1:key3 le 789, ns2:key4 gt ABC ]/ns1:bbb[2]</param>
+   <param name="path_sep">&#x86;/&#x87;</param>
+  </compute>
+  <expect>http://aaa/bbb/ccc&#x86;:&#x87;aaa&#x86;?&#x87;http://aaa/bbb/ccc&#x86;:&#x87;key&#x86;?&#x87;&#x96;/&#x97;&#x96;=&#x97;eq&#x96;=&#x97;123&#x96;,&#x97;http://rrr/sss/ttt&#x86;:&#x87;key2&#x86;?&#x87;&#x96;/&#x97;&#x96;=&#x97;eq&#x96;=&#x97;456&#x96;,&#x97;&#x96;|&#x97;http://aaa/bbb/ccc&#x86;:&#x87;key3&#x86;?&#x87;&#x96;/&#x97;&#x96;=&#x97;le&#x96;=&#x97;789&#x96;,&#x97;http://rrr/sss/ttt&#x86;:&#x87;key4&#x86;?&#x87;&#x96;/&#x97;&#x96;=&#x97;gt&#x96;=&#x97;ABC&#x96;,&#x97;&#x96;|&#x97;&#x86;/&#x87;http://aaa/bbb/ccc&#x86;:&#x87;bbb&#x86;?&#x87;2&#x86;/&#x87;</expect>
+ </it>
+
+
+ <it title="should get expand path of `//aaa/bbb`">
+  <compute name="do:expand_path">
+   <param name="path">//aaa/bbb</param>
+   <param name="path_sep">&#x86;/&#x87;</param>
+  </compute>
+  <expect>&#x86;/&#x87;&#x86;:&#x87;**&#x86;?&#x87;&#x86;/&#x87;&#x86;:&#x87;aaa&#x86;?&#x87;&#x86;/&#x87;&#x86;:&#x87;bbb&#x86;?&#x87;&#x86;/&#x87;</expect>
+ </it>
+
+
+ <it title="should get expand path of `aaa/*/bbb`">
+  <compute name="do:expand_path">
+   <param name="path">aaa/*/bbb</param>
+   <param name="path_sep">&#x86;/&#x87;</param>
+  </compute>
+  <expect>&#x86;:&#x87;aaa&#x86;?&#x87;&#x86;/&#x87;&#x86;:&#x87;*&#x86;?&#x87;&#x86;/&#x87;&#x86;:&#x87;bbb&#x86;?&#x87;&#x86;/&#x87;</expect>
+ </it>
+
+
+ <it title="should get expand path of `aaa/**/bbb/@ccc`">
+  <compute name="do:expand_path">
+   <param name="path">aaa/**/bbb/@ccc</param>
+   <param name="path_sep">&#x86;/&#x87;</param>
+  </compute>
+  <expect>&#x86;:&#x87;aaa&#x86;?&#x87;&#x86;/&#x87;&#x86;:&#x87;**&#x86;?&#x87;&#x86;/&#x87;&#x86;:&#x87;bbb&#x86;?&#x87;&#x86;/&#x87;@&#x86;:&#x87;ccc&#x86;?&#x87;&#x86;/&#x87;</expect>
+ </it>
+
+
+ <it title="should get expand path of `aaa[@ns1:key=1]/**/bbb/@ns2:ccc`">
+  <compute name="do:expand_path">
+   <param name="path">aaa[@ns1:key=1]/**/bbb/@ns2:ccc</param>
+   <param name="path_sep">&#x86;/&#x87;</param>
+  </compute>
+  <expect>&#x86;:&#x87;aaa&#x86;?&#x87;@http://aaa/bbb/ccc&#x86;:&#x87;key&#x86;?&#x87;&#x96;/&#x97;&#x96;=&#x97;eq&#x96;=&#x97;1&#x96;,&#x97;&#x96;|&#x97;&#x86;/&#x87;&#x86;:&#x87;**&#x86;?&#x87;&#x86;/&#x87;&#x86;:&#x87;bbb&#x86;?&#x87;&#x86;/&#x87;@http://rrr/sss/ttt&#x86;:&#x87;ccc&#x86;?&#x87;&#x86;/&#x87;</expect>
+ </it>
+
+
+ <it title="should get expand path of `aaa[ns1:key1/ns2:key2=ABC]`">
+  <compute name="do:expand_path">
+   <param name="path">aaa[ns1:key1/ns2:key2=ABC]</param>
+   <param name="path_sep">&#x86;/&#x87;</param>
+  </compute>
+  <expect>&#x86;:&#x87;aaa&#x86;?&#x87;http://aaa/bbb/ccc&#x86;:&#x87;key1&#x86;?&#x87;&#x96;/&#x97;http://rrr/sss/ttt&#x86;:&#x87;key2&#x86;?&#x87;&#x96;/&#x97;&#x96;=&#x97;eq&#x96;=&#x97;ABC&#x96;,&#x97;&#x96;|&#x97;&#x86;/&#x87;</expect>
+ </it>
+
+</describe>

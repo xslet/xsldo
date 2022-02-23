@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="application/xml" href="unit-test.xsl"?>
+
+<describe title="do:operate_expression">
+
+ <it title="should return true if op='eq' and left equals right">
+  <compute name="do:operate_expression">
+   <param name="op">eq</param>
+   <param name="left">ABC</param>
+   <param name="right">ABC</param>
+  </compute>
+  <expect>true</expect>
+ </it>
+
+
+ <it title="should return empty if op='eq' and left does not equal right">
+  <compute name="do:operate_expression">
+   <param name="op">eq</param>
+   <param name="left">ABC</param>
+   <param name="right">ABD</param>
+  </compute>
+  <expect></expect>
+ </it>
+
+
+ <it title="should return empty if op='ne' and left equals right">
+  <compute name="do:operate_expression">
+   <param name="op">ne</param>
+   <param name="left">ABC</param>
+   <param name="right">ABC</param>
+  </compute>
+  <expect></expect>
+ </it>
+
+
+ <it title="should return true if op='ne' and left does not equal right">
+  <compute name="do:operate_expression">
+   <param name="op">ne</param>
+   <param name="left">ABC</param>
+   <param name="right">ABD</param>
+  </compute>
+  <expect>true</expect>
+ </it>
+
+
+ <it title="should return true if op='lt' and left is less than right">
+  <compute name="do:operate_expression">
+   <param name="op">lt</param>
+   <param name="left">123</param>
+   <param name="right">124</param>
+  </compute>
+  <expect>true</expect>
+ </it>
+
+
+ <it title="should return empty if op='lt' and left equals right">
+  <compute name="do:operate_expression">
+   <param name="op">lt</param>
+   <param name="left">123</param>
+   <param name="right">123</param>
+  </compute>
+  <expect></expect>
+ </it>
+
+
+ <it title="should return empty if op='lt' and left greater than right">
+  <compute name="do:operate_expression">
+   <param name="op">lt</param>
+   <param name="left">123</param>
+   <param name="right">122</param>
+  </compute>
+  <expect></expect>
+ </it>
+
+
+ <it title="should return true if op='le' and left is less than right">
+  <compute name="do:operate_expression">
+   <param name="op">le</param>
+   <param name="left">123</param>
+   <param name="right">124</param>
+  </compute>
+  <expect>true</expect>
+ </it>
+
+
+ <it title="should return true if op='le' and left equals right">
+  <compute name="do:operate_expression">
+   <param name="op">le</param>
+   <param name="left">123</param>
+   <param name="right">123</param>
+  </compute>
+  <expect>true</expect>
+ </it>
+
+
+ <it title="should return empty if op='le' and left greater than right">
+  <compute name="do:operate_expression">
+   <param name="op">le</param>
+   <param name="left">123</param>
+   <param name="right">122</param>
+  </compute>
+  <expect></expect>
+ </it>
+
+
+ <it title="should return empty if op='gt' and left less than right">
+  <compute name="do:operate_expression">
+   <param name="op">gt</param>
+   <param name="left">123</param>
+   <param name="right">124</param>
+  </compute>
+  <expect></expect>
+ </it>
+
+
+ <it title="should return empty if op='gt' and left equals right">
+  <compute name="do:operate_expression">
+   <param name="op">gt</param>
+   <param name="left">123</param>
+   <param name="right">123</param>
+  </compute>
+  <expect></expect>
+ </it>
+
+
+ <it title="should return true if op='gt' and left greater than right">
+  <compute name="do:operate_expression">
+   <param name="op">gt</param>
+   <param name="left">123</param>
+   <param name="right">122</param>
+  </compute>
+  <expect>true</expect>
+ </it>
+
+
+ <it title="should return empty if op='ge' and left less than right">
+  <compute name="do:operate_expression">
+   <param name="op">ge</param>
+   <param name="left">123</param>
+   <param name="right">124</param>
+  </compute>
+  <expect></expect>
+ </it>
+
+
+ <it title="should return empty if op='ge' and left equals right">
+  <compute name="do:operate_expression">
+   <param name="op">ge</param>
+   <param name="left">123</param>
+   <param name="right">123</param>
+  </compute>
+  <expect>true</expect>
+ </it>
+
+
+ <it title="should return empty if op='ge' and left greater than right">
+  <compute name="do:operate_expression">
+   <param name="op">ge</param>
+   <param name="left">123</param>
+   <param name="right">122</param>
+  </compute>
+  <expect>true</expect>
+ </it>
+
+
+ <it title="should not ignore spaces on both sides">
+  <compute name="do:operate_expression">
+   <param name="op">eq</param>
+   <param name="left">  123 </param>
+   <param name="right">123</param>
+  </compute>
+  <expect></expect>
+ </it>
+
+</describe>
