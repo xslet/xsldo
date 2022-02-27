@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!--**
- xsldo is a XSLT liblet to operate XML data on Web browsers.
+ xsldo is a XSLT library to operate XML data on Web browsers.
 
- This liblet provides functions (named-templates) to get values or to loop of nodes at the specified XML path. A XML path is a concatenation of node names with slash(/). Further more, this liblet can operate XML data in external files.
+ This library provides functions (named-templates) to get values or to loop of nodes at the specified XML path. A XML path is a concatenation of node names with slash(/). Further more, this library can operate XML data in external files.
 
  Following notations for XML paths have special meanings:
 

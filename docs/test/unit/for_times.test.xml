@@ -35,66 +35,67 @@
  </it>
 
 
- <it title="should repeat child nodes 3 times and output those indexes">
-  <compute name="do:for_times">
-   <param name="times">3</param>
-   <param name="allow">|index_of_current_node|text|</param>
-   <index_of_current_node/>
-   <text>A</text>
-  </compute>
-  <expect>[1]A[2]A[3]A</expect>
- </it>
+ <describe title="Get indexes">
+  <it title="should repeat child nodes 3 times and output those indexes">
+   <compute name="do:for_times">
+    <param name="times">3</param>
+    <param name="allow">|index_of_current_node|text|</param>
+    <index_of_current_node/>
+    <text>A</text>
+   </compute>
+   <expect>[1]A[2]A[3]A</expect>
+  </it>
 
 
- <it title="should repeat child nodes 0 times and output those indexes">
-  <compute name="do:for_times">
-   <param name="times">0</param>
-   <param name="allow">|index_of_current_node|text|</param>
-   <index_of_current_node/>
-   <text>A</text>
-  </compute>
-  <expect></expect>
- </it>
+  <it title="should repeat child nodes 0 times and output those indexes">
+   <compute name="do:for_times">
+    <param name="times">0</param>
+    <param name="allow">|index_of_current_node|text|</param>
+    <index_of_current_node/>
+    <text>A</text>
+   </compute>
+   <expect></expect>
+  </it>
 
 
- <it title="should repeat child nodes 2 times and output those indexes of the specified ID">
-  <compute name="do:for_times">
-   <param name="times">2</param>
-   <param name="index_id">J</param>
-   <param name="index_set"></param>
-   <param name="allow">|index_of|text|</param>
-   <index_of index_id="J"/>
-   <text>A</text>
-  </compute>
-  <expect>{1}A{2}A</expect>
- </it>
+  <it title="should repeat child nodes 2 times and output those indexes of the specified ID">
+   <compute name="do:for_times">
+    <param name="times">2</param>
+    <param name="index_id">J</param>
+    <param name="index_set"></param>
+    <param name="allow">|index_of|text|</param>
+    <index_of index_id="J"/>
+    <text>A</text>
+   </compute>
+   <expect>{1}A{2}A</expect>
+  </it>
 
 
- <it title="should repeat child nodes 2 times and output those indexes of the specified ID">
-  <compute name="do:for_times">
-   <param name="times">2</param>
-   <param name="index_id">J</param>
-   <param name="index_set">&#x86;;&#x87;I&#x96;=&#x97;12&#x86;;&#x87;</param>
-   <param name="allow">|index_of|text|</param>
-   <index_of index_id="J"/>
-   <index_of index_id="I"/>
-   <text>A</text>
-  </compute>
-  <expect>{1}{12}A{2}{12}A</expect>
- </it>
+  <it title="should repeat child nodes 2 times and output those indexes of the specified ID">
+   <compute name="do:for_times">
+    <param name="times">2</param>
+    <param name="index_id">J</param>
+    <param name="index_set">&#x86;;&#x87;I&#x96;=&#x97;12&#x86;;&#x87;</param>
+    <param name="allow">|index_of|text|</param>
+    <index_of index_id="J"/>
+    <index_of index_id="I"/>
+    <text>A</text>
+   </compute>
+   <expect>{1}{12}A{2}{12}A</expect>
+  </it>
 
 
- <it title="should repeat child nodes 2 times and output those indexes of the specified ID">
-  <compute name="do:for_times">
-   <param name="times">2</param>
-   <param name="index_set">&#x86;;&#x87;I&#x96;=&#x97;12&#x86;;&#x87;</param>
-   <param name="allow">|index_of|text|</param>
-   <index_of index_id="J"/>
-   <index_of index_id="I"/>
-   <text>A</text>
-  </compute>
-  <expect>{}{12}A{}{12}A</expect>
- </it>
-
+  <it title="should repeat child nodes 2 times and output those indexes of the specified ID">
+   <compute name="do:for_times">
+    <param name="times">2</param>
+    <param name="index_set">&#x86;;&#x87;I&#x96;=&#x97;12&#x86;;&#x87;</param>
+    <param name="allow">|index_of|text|</param>
+    <index_of index_id="J"/>
+    <index_of index_id="I"/>
+    <text>A</text>
+   </compute>
+   <expect>{}{12}A{}{12}A</expect>
+  </it>
+ </describe>
 
 </describe>

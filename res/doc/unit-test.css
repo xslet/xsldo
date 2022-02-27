@@ -97,12 +97,10 @@ div.hide {
 
 section.describe {
   margin-top: 0.3rem;
-  margin-left: 1rem;
-}
-body > section.describe {
-  margin-left: 0.5rem;
+  margin-left: 1.5rem;
 }
 section.describe > div.title {
+  margin-left: -1rem;
   font-weight: bold;
-  font-size: 1.4rem;
 }
+

@@ -16,17 +16,6 @@
  </it>
 
 
- <it title="should output a prefix and a suffix">
-  <compute name="do:count_nodes_by_path">
-   <param name="path">aaa</param>
-   <param name="prefix">(</param>
-   <param name="suffix">)</param>
-   <aaa>ABC</aaa>
-  </compute>
-  <expect>(1)</expect>
- </it>
-
-
  <it title="should count descendant elements at the specified path">
   <compute name="do:count_nodes_by_path">
    <param name="path">aaa/bbb</param>
@@ -381,6 +370,19 @@
   </compute>
   <expect>1</expect>
  </it>
+
+
+ <describe title="Prefix and suffix">
+  <it title="should output a prefix and a suffix">
+   <compute name="do:count_nodes_by_path">
+    <param name="path">aaa</param>
+    <param name="prefix">(</param>
+    <param name="suffix">)</param>
+    <aaa>ABC</aaa>
+   </compute>
+   <expect>(1)</expect>
+  </it>
+ </describe>
 
 
  <describe title="Get data from external file with data_url parameter">

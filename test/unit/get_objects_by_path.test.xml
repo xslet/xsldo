@@ -19,19 +19,6 @@
  </it>
 
 
- <it title="should get contents of nodes with prefix and suffix">
-  <compute name="do:get_objects_by_path">
-   <param name="what">content</param>
-   <param name="path">aaa</param>
-   <param name="prefix">(</param>
-   <param name="suffix">)</param>
-   <aaa>A<bbb>B</bbb>C</aaa>
-   <aaa>D<bbb>E</bbb>F</aaa>
-  </compute>
-  <expect>(ABC)(DEF)</expect>
- </it>
-
-
  <it title="should get contents of nodes at the path 'aaa/bbb'">
   <compute name="do:get_objects_by_path">
    <param name="what">content</param>
@@ -443,156 +430,175 @@
  </it>
 
 
- <it title="should get texts of nodes at the path '//ABC/DEF'">
-  <compute name="do:get_objects_by_path">
-   <param name="what">text</param>
-   <param name="path">//ABC/DEF</param>
-   <param name="prefix">(</param>
-   <param name="suffix">)</param>
-  </compute>
-  <expect>(GHI)(JKL)(MNO)</expect>
- </it>
+ <describe title="Prefix and suffix">
+  <it title="should get contents of nodes with prefix and suffix">
+   <compute name="do:get_objects_by_path">
+    <param name="what">content</param>
+    <param name="path">aaa</param>
+    <param name="prefix">(</param>
+    <param name="suffix">)</param>
+    <aaa>A<bbb>B</bbb>C</aaa>
+    <aaa>D<bbb>E</bbb>F</aaa>
+   </compute>
+   <expect>(ABC)(DEF)</expect>
+  </it>
+ </describe>
 
 
- <it title="should get numbers of nodes at the path '//ABC/DEF/@d'">
-  <compute name="do:get_objects_by_path">
-   <param name="what">number</param>
-   <param name="path">//ABC/DEF/@d</param>
-   <param name="prefix">(</param>
-   <param name="suffix">)</param>
-  </compute>
-  <expect>(1)(2)(3)</expect>
- </it>
+ <describe title="Outputs by what parameter.">
+  <it title="should get texts of nodes at the path '//ABC/DEF'">
+   <compute name="do:get_objects_by_path">
+    <param name="what">text</param>
+    <param name="path">//ABC/DEF</param>
+    <param name="prefix">(</param>
+    <param name="suffix">)</param>
+   </compute>
+   <expect>(GHI)(JKL)(MNO)</expect>
+  </it>
 
 
- <it title="should get preceding-comments of nodes at the path '//ABC/DEF'">
-  <compute name="do:get_objects_by_path">
-   <param name="what">preceding-comment</param>
-   <param name="path">//ABC/DEF</param>
-   <param name="prefix">(</param>
-   <param name="suffix">)</param>
-  </compute>
-  <expect>( comment1 )( comment2 )( comment3 )</expect>
- </it>
+  <it title="should get numbers of nodes at the path '//ABC/DEF/@d'">
+   <compute name="do:get_objects_by_path">
+    <param name="what">number</param>
+    <param name="path">//ABC/DEF/@d</param>
+    <param name="prefix">(</param>
+    <param name="suffix">)</param>
+   </compute>
+   <expect>(1)(2)(3)</expect>
+  </it>
 
 
- <it title="should get following-comments of nodes at the path '//ABC/DEF'">
-  <compute name="do:get_objects_by_path">
-   <param name="what">following-comment</param>
-   <param name="path">//ABC/DEF</param>
-   <param name="prefix">(</param>
-   <param name="suffix">)</param>
-  </compute>
-  <expect>( comment2 )( comment3 )( comment4 )</expect>
- </it>
+  <it title="should get preceding-comments of nodes at the path '//ABC/DEF'">
+   <compute name="do:get_objects_by_path">
+    <param name="what">preceding-comment</param>
+    <param name="path">//ABC/DEF</param>
+    <param name="prefix">(</param>
+    <param name="suffix">)</param>
+   </compute>
+   <expect>( comment1 )( comment2 )( comment3 )</expect>
+  </it>
 
 
- <it title="should get contents of nodes at the path '/n:data' in the external file">
-  <compute name="do:get_objects_by_path">
-   <param name="what">content</param>
-   <param name="path">/n:data</param>
-   <param name="data_url">data/test-data.xml</param>
-   <param name="prefix">(</param>
-   <param name="suffix">)</param>
-  </compute>
-  <expect>(ABC1 ABC2 ABC3 ABC4 ABC5 ABC6 ABC7 ABC8 ABC9 ABC10 ABC11)</expect>
- </it>
+  <it title="should get following-comments of nodes at the path '//ABC/DEF'">
+   <compute name="do:get_objects_by_path">
+    <param name="what">following-comment</param>
+    <param name="path">//ABC/DEF</param>
+    <param name="prefix">(</param>
+    <param name="suffix">)</param>
+   </compute>
+   <expect>( comment2 )( comment3 )( comment4 )</expect>
+  </it>
+ </describe>
 
 
- <it title="should get contents of nodes at the path '/n:data/n:Aaa' in the external file">
-  <compute name="do:get_objects_by_path">
-   <param name="what">content</param>
-   <param name="path">/n:data/n:Aaa</param>
-   <param name="data_url">data/test-data.xml</param>
-   <param name="prefix">(</param>
-   <param name="suffix">)</param>
-  </compute>
-  <expect>(ABC1 ABC2 ABC3 ABC4 ABC5)(ABC6)(ABC7 ABC8 ABC9 ABC10 ABC11)</expect>
- </it>
+ <describe title="Get data from external file">
+  <it title="should get contents of nodes at the path '/n:data' in the external file">
+   <compute name="do:get_objects_by_path">
+    <param name="what">content</param>
+    <param name="path">/n:data</param>
+    <param name="data_url">data/test-data.xml</param>
+    <param name="prefix">(</param>
+    <param name="suffix">)</param>
+   </compute>
+   <expect>(ABC1 ABC2 ABC3 ABC4 ABC5 ABC6 ABC7 ABC8 ABC9 ABC10 ABC11)</expect>
+  </it>
 
 
- <it title="should get contents of nodes at the path '/n:data/n:Aaa/n:Bbb' in the external file">
-  <compute name="do:get_objects_by_path">
-   <param name="what">content</param>
-   <param name="path">/n:data/n:Aaa/n:Bbb</param>
-   <param name="data_url">data/test-data.xml</param>
-   <param name="prefix">(</param>
-   <param name="suffix">)</param>
-  </compute>
-  <expect>(ABC1 ABC2)(ABC3)(ABC4 ABC5)(ABC6)(ABC7 ABC8)(ABC9 ABC10 ABC11)</expect>
- </it>
+  <it title="should get contents of nodes at the path '/n:data/n:Aaa' in the external file">
+   <compute name="do:get_objects_by_path">
+    <param name="what">content</param>
+    <param name="path">/n:data/n:Aaa</param>
+    <param name="data_url">data/test-data.xml</param>
+    <param name="prefix">(</param>
+    <param name="suffix">)</param>
+   </compute>
+   <expect>(ABC1 ABC2 ABC3 ABC4 ABC5)(ABC6)(ABC7 ABC8 ABC9 ABC10 ABC11)</expect>
+  </it>
 
 
- <it title="should get contents of nodes at the path '/n:data/n:Aaa/n:Bbb/n:Ccc' in the external file">
-  <compute name="do:get_objects_by_path">
-   <param name="what">content</param>
-   <param name="path">/n:data/n:Aaa/n:Bbb/n:Ccc</param>
-   <param name="data_url">data/test-data.xml</param>
-   <param name="prefix">(</param>
-   <param name="suffix">)</param>
-  </compute>
-  <expect>(ABC1)(ABC2)(ABC3)(ABC4)(ABC5)(ABC6)(ABC7)(ABC8)(ABC9)(ABC10)(ABC11)</expect>
- </it>
+  <it title="should get contents of nodes at the path '/n:data/n:Aaa/n:Bbb' in the external file">
+   <compute name="do:get_objects_by_path">
+    <param name="what">content</param>
+    <param name="path">/n:data/n:Aaa/n:Bbb</param>
+    <param name="data_url">data/test-data.xml</param>
+    <param name="prefix">(</param>
+    <param name="suffix">)</param>
+   </compute>
+   <expect>(ABC1 ABC2)(ABC3)(ABC4 ABC5)(ABC6)(ABC7 ABC8)(ABC9 ABC10 ABC11)</expect>
+  </it>
 
 
- <it title="should get contents of nodes at the path '/n:data/n:Aaa/n:Bbb[@key0='B1']' in the external file">
-  <compute name="do:get_objects_by_path">
-   <param name="what">content</param>
-   <param name="path">/n:data/n:Aaa/n:Bbb[@key0='B1']</param>
-   <param name="data_url">data/test-data.xml</param>
-   <param name="prefix">(</param>
-   <param name="suffix">)</param>
-  </compute>
-  <expect>(ABC1 ABC2)(ABC4 ABC5)(ABC7 ABC8)</expect>
- </it>
+  <it title="should get contents of nodes at the path '/n:data/n:Aaa/n:Bbb/n:Ccc' in the external file">
+   <compute name="do:get_objects_by_path">
+    <param name="what">content</param>
+    <param name="path">/n:data/n:Aaa/n:Bbb/n:Ccc</param>
+    <param name="data_url">data/test-data.xml</param>
+    <param name="prefix">(</param>
+    <param name="suffix">)</param>
+   </compute>
+   <expect>(ABC1)(ABC2)(ABC3)(ABC4)(ABC5)(ABC6)(ABC7)(ABC8)(ABC9)(ABC10)(ABC11)</expect>
+  </it>
 
 
- <it title="should get contents of nodes at the path '/n:data/n:Aaa/n:Bbb/n:Ccc[@key1='C2']' in the external file">
-  <compute name="do:get_objects_by_path">
-   <param name="what">content</param>
-   <param name="path">/n:data/n:Aaa/n:Bbb/n:Ccc[@key1='C2']</param>
-   <param name="data_url">data/test-data.xml</param>
-   <param name="prefix">(</param>
-   <param name="suffix">)</param>
-  </compute>
-  <expect>(ABC2)(ABC4)(ABC8)(ABC10)</expect>
- </it>
+  <it title="should get contents of nodes at the path '/n:data/n:Aaa/n:Bbb[@key0='B1']' in the external file">
+   <compute name="do:get_objects_by_path">
+    <param name="what">content</param>
+    <param name="path">/n:data/n:Aaa/n:Bbb[@key0='B1']</param>
+    <param name="data_url">data/test-data.xml</param>
+    <param name="prefix">(</param>
+    <param name="suffix">)</param>
+   </compute>
+   <expect>(ABC1 ABC2)(ABC4 ABC5)(ABC7 ABC8)</expect>
+  </it>
 
 
- <it title="should get contents of nodes at the path '/n:data/n:Aaa/n:Bbb/n:Ccc/@key1[.='C2']' in the external file">
-  <compute name="do:get_objects_by_path">
-   <param name="what">content</param>
-   <param name="path">/n:data/n:Aaa/n:Bbb/n:Ccc/@key1[.='C2']</param>
-   <param name="data_url">data/test-data.xml</param>
-   <param name="prefix">(</param>
-   <param name="suffix">)</param>
-  </compute>
-  <expect>(C2)(C2)(C2)(C2)</expect>
- </it>
+  <it title="should get contents of nodes at the path '/n:data/n:Aaa/n:Bbb/n:Ccc[@key1='C2']' in the external file">
+   <compute name="do:get_objects_by_path">
+    <param name="what">content</param>
+    <param name="path">/n:data/n:Aaa/n:Bbb/n:Ccc[@key1='C2']</param>
+    <param name="data_url">data/test-data.xml</param>
+    <param name="prefix">(</param>
+    <param name="suffix">)</param>
+   </compute>
+   <expect>(ABC2)(ABC4)(ABC8)(ABC10)</expect>
+  </it>
 
 
- <it title="should get contents of nodes at the path '/n:data/n:Aaa/n:Bbb[n:Ccc/@key1='C2']' in the external file">
-  <compute name="do:get_objects_by_path">
-   <param name="what">content</param>
-   <param name="path">/n:data/n:Aaa/n:Bbb[n:Ccc/@key1='C2']</param>
-   <param name="data_url">data/test-data.xml</param>
-   <param name="prefix">(</param>
-   <param name="suffix">)</param>
-  </compute>
-  <expect>(ABC4 ABC5)</expect>
- </it>
+  <it title="should get contents of nodes at the path '/n:data/n:Aaa/n:Bbb/n:Ccc/@key1[.='C2']' in the external file">
+   <compute name="do:get_objects_by_path">
+    <param name="what">content</param>
+    <param name="path">/n:data/n:Aaa/n:Bbb/n:Ccc/@key1[.='C2']</param>
+    <param name="data_url">data/test-data.xml</param>
+    <param name="prefix">(</param>
+    <param name="suffix">)</param>
+   </compute>
+   <expect>(C2)(C2)(C2)(C2)</expect>
+  </it>
 
 
- <it title="should get contents of nodes at the path '/n:data/n:Aaa/n:Bbb[n:Ccc/@key1='C1']/@key0' in the external file">
-  <compute name="do:get_objects_by_path">
-   <param name="what">content</param>
-   <param name="path">/n:data/n:Aaa/n:Bbb[n:Ccc/@key1='C1']/@key0</param>
-   <param name="data_url">data/test-data.xml</param>
-   <param name="prefix">(</param>
-   <param name="suffix">)</param>
-  </compute>
-  <expect>(B1)(B2)(B1)(B2)</expect>
- </it>
+  <it title="should get contents of nodes at the path '/n:data/n:Aaa/n:Bbb[n:Ccc/@key1='C2']' in the external file">
+   <compute name="do:get_objects_by_path">
+    <param name="what">content</param>
+    <param name="path">/n:data/n:Aaa/n:Bbb[n:Ccc/@key1='C2']</param>
+    <param name="data_url">data/test-data.xml</param>
+    <param name="prefix">(</param>
+    <param name="suffix">)</param>
+   </compute>
+   <expect>(ABC4 ABC5)</expect>
+  </it>
+
+
+  <it title="should get contents of nodes at the path '/n:data/n:Aaa/n:Bbb[n:Ccc/@key1='C1']/@key0' in the external file">
+   <compute name="do:get_objects_by_path">
+    <param name="what">content</param>
+    <param name="path">/n:data/n:Aaa/n:Bbb[n:Ccc/@key1='C1']/@key0</param>
+    <param name="data_url">data/test-data.xml</param>
+    <param name="prefix">(</param>
+    <param name="suffix">)</param>
+   </compute>
+   <expect>(B1)(B2)(B1)(B2)</expect>
+  </it>
+ </describe>
 
 
  <ABC>

@@ -54,46 +54,300 @@ In addition, this library provides '<i>xxx</i>:use-namespace' element ('<i>xxx</
   <section>
    <h2>Usage</h2>
    <p>
-To import xsldo.xsl into your XSL application or library, the following handworks are needed.
+This section explains how to import xsldo and call its templates in your XSL application or library.
    </p>
-   <ol>
-    <li>
-     <p>
-Add the namespace declaration of xsldo in a XSL file.
+
+   <section>
+    <h3>Import xsldo</h2>
+    <p>
+To import xsldo.xsl into another XSL file, the following handworks are needed.
+Since xsldo depends on xslutil, xslutil.xsl is needed to import, too.
+    </p>
+    <ol>
+     <li>
+      <p>
+Add the namespace declaration of xsldo and xslutil in a XSL file.
 The namespace of xsldo is "https://github.com/xslet/2020/xsldo".
-     </p>
-     <div class="code">
+      </p>
+      <div class="code">
 <div>&lt;xsl:stylesheet version="1.0"</div>
 <div> &nbsp; xmlns:xsl="http://www.w3.org/1999/XSL/Transform"</div>
 <div> &nbsp; xmlns:ut="https://github.com/xslet/2020/xslutil"</div>
 <div> &nbsp; xmlns:do="https://github.com/xslet/2020/xsldo"&gt; &lt;!-- This! --&gt;</div>
 <div> &nbsp; ...</div>
-     </div>
-    </li>
-    <li>
-     <p>
+      </div>
+     </li>
+     <li>
+      <p>
 Add a import element of xsldo in the XSL file.
-     </p>
-     <div class="code">
+      </p>
+      <div class="code">
 <div> &nbsp; ...</div>
-<div> &nbsp; &lt;xsl:import href="./xsldo.xsl"/&gt;
+<div> &nbsp; &lt;xsl:import href="./xsldo.xsl"/&gt;  <!-- xslutil.xsl is already imported in xsldo.xsl -->
 <div> &nbsp; ...</div>
-     </div>
-    </li>
-    <li>
-     <p>
-Then, you can use named-templates of xsldo in the XSL file with xsl:call-template.
-     </p>
-     <div class="code">
-<div> &nbsp; ...</div>
-<div> &nbsp; &lt;xsl:call-template name="do:get_objects_by_path"&gt;
-<div> &nbsp; &nbsp; &lt;xsl:with-param name="path" select="..."/&gt;
-<div> &nbsp; &nbsp; &lt;xsl:with-param name="what" select="..."/&gt;
-<div> &nbsp; &lt;/xsl:call-template&gt;
-<div> &nbsp; ...</div>
-     </div>
+      </div>
     </li>
    </ol>
+  </section>
+
+  <section>
+   <h3>Call templates</h3>
+   <p>
+xsldo provides the following named-templates:
+   </p>
+   <ul>
+   <li><a href="#usage_for_by_path">do:for_by_path</a></li>
+   <li><a href="#usage_for_times">do:for_times</a></li>
+   <li><a href="#usage_get_objects_by_path">do:get_objects_by_path</a></li>
+   <li><a href="#usage_first_object_by_path">do:first_object_by_path</a></li>
+   <li><a href="#usage_count_nodes_by_path">do:count_nodes_by_path</a></li>
+   </ul>
+
+   <section class="call">
+    <a name="usage_for_by_path"></a>
+    <h4>do:for_by_path</h4>
+    <p>
+Loops for each nodes at specified expanded paths.
+    </p>
+    <div class="code">
+<div> &lt;?xml version="1.0" encoding="utf-8"?&gt;</div>
+<div> &lt;!-- for.xsl --&gt;</div>
+<div> &lt;xsl:stylesheet version="1.0"</div>
+<div> &nbsp; xmlns:do="https://github.com/xslet/2020/xsldo"</div>
+<div> &nbsp; xmlns:xsl="http://www.w3.org/1999/XSL/Transform"&gt;</div>
+<div> &nbsp; &lt;xsl:import href="xsldo.xsl"&gt;</div>
+<div> &nbsp; &lt;xsl:template match="/top"&gt;</div>
+<div> &nbsp; &nbsp; &lt;html&gt;</div>
+<div> &nbsp; &nbsp; &nbsp; &lt;body&gt;</div>
+<div> &nbsp; &nbsp; &nbsp; &nbsp; &lt;xsl:apply-templates select="for"/&gt;</div>
+<div> &nbsp; &nbsp; &nbsp; &lt;/body&gt;</div>
+<div> &nbsp; &nbsp; &lt;/html&gt;</div>
+<div> &nbsp; &lt;/xsl:template&gt;</div>
+<div> &nbsp; &lt;xsl:template match="for[boolean(@path)]"&gt;</div>
+<div> &nbsp; &nbsp; &lt;xsl:call-template name="do:get_objects_by_path"&gt;</div>
+<div> &nbsp; &nbsp; &nbsp; &lt;xsl:with-param name="path" select="@path"/&gt;</div>
+<div> &nbsp; &nbsp; &nbsp; &lt;xsl:with-param name="allow"&gt;|all|&lt;/with-param&gt;</div>
+<div> &nbsp; &nbsp; &lt;/xsl:call-template&gt;</div>
+<div> &nbsp; &lt;/xsl:template&gt;</div>
+<div> &nbsp; &lt;xsl:template match="all"&gt;</div>
+<div> &nbsp; &nbsp; &lt;xsl:call-template name="do:get_objects_by_path"&gt;</div>
+<div> &nbsp; &nbsp; &nbsp; &lt;xsl:with-param name="path" select="@path"/&gt;</div>
+<div> &nbsp; &nbsp; &nbsp; &lt;xsl:with-param name="what"&gt;text&lt;/with-param&gt;</div>
+<div> &nbsp; &nbsp; &nbsp; &lt;xsl:with-param name="suffix"&gt;,&lt;/with-param&gt;</div>
+<div> &nbsp; &nbsp; &lt;/xsl:call-template&gt;</div>
+<div> &nbsp; &lt;/xsl:template&gt;</div>
+<div> &lt;/xsl:stylesheet&gt;</div>
+    </div>
+    <p>
+By using the above XSL file, the following XML file prints <code>ABC1</code> on your Web browser.
+    </p>
+    <div class="code">
+<div> &lt;?xml version="1.0" encoding="utf-8"?&gt;</div>
+<div> &lt;?xml-stylesheet type="application/xml" href="for.xsl"?&gt;</div>
+<div> &lt;top&gt;</div>
+<div> &nbsp; &lt;for path="//aaa"&gt;&lt;all path="bbb"/&gt;&lt;/for&gt; &lt;!-- Outputs 'ABC1,ABC2,ABC3,' --&gt;</div>
+<div> &nbsp;</div>
+<div> &nbsp; &lt;aaa&gt;</div>
+<div> &nbsp; &nbsp; &lt;bbb&gt;ABC1&lt;/bbb&gt;</div>
+<div> &nbsp; &nbsp; &lt;bbb&gt;ABC2&lt;/bbb&gt;</div>
+<div> &nbsp; &lt;/aaa&gt;</div>
+<div> &nbsp; &lt;aaa&gt;</div>
+<div> &nbsp; &nbsp; &lt;bbb&gt;ABC3&lt;/bbb&gt;</div>
+<div> &nbsp; &lt;/aaa&gt;</div>
+<div> &lt;/top&gt;</div>
+    </div>
+
+    <a name="usage_for_times"></a>
+    <h4>do:for_times</h4>
+    <p>
+Loops specified times.
+    </p>
+    <div class="code">
+<div> &lt;?xml version="1.0" encoding="utf-8"?&gt;</div>
+<div> &lt;!-- for_times.xsl --&gt;</div>
+<div> &lt;xsl:stylesheet version="1.0"</div>
+<div> &nbsp; xmlns:do="https://github.com/xslet/2020/xsldo"</div>
+<div> &nbsp; xmlns:xsl="http://www.w3.org/1999/XSL/Transform"&gt;</div>
+<div> &nbsp; &lt;xsl:import href="xsldo.xsl"&gt;</div>
+<div> &nbsp; &lt;xsl:template match="/top"&gt;</div>
+<div> &nbsp; &nbsp; &lt;html&gt;</div>
+<div> &nbsp; &nbsp; &nbsp; &lt;body&gt;</div>
+<div> &nbsp; &nbsp; &nbsp; &nbsp; &lt;xsl:apply-templates select="for"/&gt;</div>
+<div> &nbsp; &nbsp; &nbsp; &lt;/body&gt;</div>
+<div> &nbsp; &nbsp; &lt;/html&gt;</div>
+<div> &nbsp; &lt;/xsl:template&gt;</div>
+<div> &nbsp; &lt;xsl:template match="for[boolean(@times)]"&gt;</div>
+<div> &nbsp; &nbsp; &lt;xsl:call-template name="do:get_objects_by_path"&gt;</div>
+<div> &nbsp; &nbsp; &nbsp; &lt;xsl:with-param name="path" select="@path"/&gt;</div>
+<div> &nbsp; &nbsp; &nbsp; &lt;xsl:with-param name="allow"&gt;|first|&lt;/with-param&gt;</div>
+<div> &nbsp; &nbsp; &lt;/xsl:call-template&gt;</div>
+<div> &nbsp; &lt;/xsl:template&gt;</div>
+<div> &nbsp; &lt;xsl:template match="first"&gt;</div>
+<div> &nbsp; &nbsp; &lt;xsl:call-template name="do:get_objects_by_path"&gt;</div>
+<div> &nbsp; &nbsp; &nbsp; &lt;xsl:with-param name="path" select="@path"/&gt;</div>
+<div> &nbsp; &nbsp; &nbsp; &lt;xsl:with-param name="what"&gt;text&lt;/with-param&gt;</div>
+<div> &nbsp; &nbsp; &nbsp; &lt;xsl:with-param name="suffix"&gt;,&lt;/with-param&gt;</div>
+<div> &nbsp; &nbsp; &lt;/xsl:call-template&gt;</div>
+<div> &nbsp; &lt;/xsl:template&gt;</div>
+<div> &lt;/xsl:stylesheet&gt;</div>
+    </div>
+    <p>
+By using the above XSL file, the following XML file prints <code>ABC1</code> on your Web browser.
+    </p>
+    <div class="code">
+<div> &lt;?xml version="1.0" encoding="utf-8"?&gt;</div>
+<div> &lt;?xml-stylesheet type="application/xml" href="for_times.xsl"?&gt;</div>
+<div> &lt;top&gt;</div>
+<div> &nbsp; &lt;for path="//aaa"&gt;&lt;first path="bbb"/&gt;&lt;/for&gt; &lt;!-- Outputs 'ABC1,ABC2,ABC3,' --&gt;</div>
+<div> &nbsp;</div>
+<div> &nbsp; &lt;aaa&gt;</div>
+<div> &nbsp; &nbsp; &lt;bbb&gt;ABC1&lt;/bbb&gt;</div>
+<div> &nbsp; &nbsp; &lt;bbb&gt;ABC2&lt;/bbb&gt;</div>
+<div> &nbsp; &lt;/aaa&gt;</div>
+<div> &nbsp; &lt;aaa&gt;</div>
+<div> &nbsp; &nbsp; &lt;bbb&gt;ABC3&lt;/bbb&gt;</div>
+<div> &nbsp; &lt;/aaa&gt;</div>
+<div> &lt;/top&gt;</div>
+    </div>
+
+    <a name="usage_get_objects_by_path"></a>
+    <h4>do:get_objects_by_path</h4>
+    <p>
+Gets either values, names or generated-ids of nodes at a specified path.
+    </p>
+    <div class="code">
+<div> &lt;?xml version="1.0" encoding="utf-8"?&gt;</div>
+<div> &lt;!-- all.xsl --&gt;</div>
+<div> &lt;xsl:stylesheet version="1.0"</div>
+<div> &nbsp; xmlns:do="https://github.com/xslet/2020/xsldo"</div>
+<div> &nbsp; xmlns:xsl="http://www.w3.org/1999/XSL/Transform"&gt;</div>
+<div> &nbsp; &lt;xsl:import href="xsldo.xsl"&gt;</div>
+<div> &nbsp; &lt;xsl:template match="/top"&gt;</div>
+<div> &nbsp; &nbsp; &lt;html&gt;</div>
+<div> &nbsp; &nbsp; &nbsp; &lt;body&gt;</div>
+<div> &nbsp; &nbsp; &nbsp; &nbsp; &lt;xsl:apply-templates select="all"/&gt;</div>
+<div> &nbsp; &nbsp; &nbsp; &lt;/body&gt;</div>
+<div> &nbsp; &nbsp; &lt;/html&gt;</div>
+<div> &nbsp; &lt;/xsl:template&gt;</div>
+<div> &nbsp; &lt;xsl:template match="all"&gt;</div>
+<div> &nbsp; &nbsp; &lt;xsl:call-template name="do:get_objects_by_path"&gt;</div>
+<div> &nbsp; &nbsp; &nbsp; &lt;xsl:with-param name="path" select="@path"/&gt;</div>
+<div> &nbsp; &nbsp; &nbsp; &lt;xsl:with-param name="what"&gt;text&lt;/with-param&gt;</div>
+<div> &nbsp; &nbsp; &nbsp; &lt;xsl:with-param name="suffix"&gt;,&lt;/with-param&gt;</div>
+<div> &nbsp; &nbsp; &lt;/xsl:call-template&gt;</div>
+<div> &nbsp; &lt;/xsl:template&gt;</div>
+<div> &lt;/xsl:stylesheet&gt;</div>
+    </div>
+    <p>
+By using the above XSL file, the following XML file prints <code>ABC1,ABC2,ABC3,</code> on your Web browser.
+    </p>
+    <div class="code">
+<div> &lt;?xml version="1.0" encoding="utf-8"?&gt;</div>
+<div> &lt;?xml-stylesheet type="application/xml" href="all.xsl"?&gt;</div>
+<div> &lt;top&gt;</div>
+<div> &nbsp; &lt;all path="//aaa/bbb"/&gt; &lt;!-- Outputs 'ABC1,ABC2,ABC3,' --&gt;</div>
+<div> &nbsp;</div>
+<div> &nbsp; &lt;aaa&gt;</div>
+<div> &nbsp; &nbsp; &lt;bbb&gt;ABC1&lt;/bbb&gt;</div>
+<div> &nbsp; &nbsp; &lt;bbb&gt;ABC2&lt;/bbb&gt;</div>
+<div> &nbsp; &lt;/aaa&gt;</div>
+<div> &nbsp; &lt;aaa&gt;</div>
+<div> &nbsp; &nbsp; &lt;bbb&gt;ABC3&lt;/bbb&gt;</div>
+<div> &nbsp; &lt;/aaa&gt;</div>
+<div> &lt;/top&gt;</div>
+    </div>
+
+    <a name="usage_first_object_by_path"></a>
+    <h4>do:first_object_by_path</h4>
+    <p>
+Gets either a value, a name or a generated-id of first node at a specified path.
+    </p>
+    <div class="code">
+<div> &lt;?xml version="1.0" encoding="utf-8"?&gt;</div>
+<div> &lt;!-- first.xsl --&gt;</div>
+<div> &lt;xsl:stylesheet version="1.0"</div>
+<div> &nbsp; xmlns:do="https://github.com/xslet/2020/xsldo"</div>
+<div> &nbsp; xmlns:xsl="http://www.w3.org/1999/XSL/Transform"&gt;</div>
+<div> &nbsp; &lt;xsl:import href="xsldo.xsl"&gt;</div>
+<div> &nbsp; &lt;xsl:template match="/top"&gt;</div>
+<div> &nbsp; &nbsp; &lt;html&gt;</div>
+<div> &nbsp; &nbsp; &nbsp; &lt;body&gt;</div>
+<div> &nbsp; &nbsp; &nbsp; &nbsp; &lt;xsl:apply-templates select="first"/&gt;</div>
+<div> &nbsp; &nbsp; &nbsp; &lt;/body&gt;</div>
+<div> &nbsp; &nbsp; &lt;/html&gt;</div>
+<div> &nbsp; &lt;/xsl:template&gt;</div>
+<div> &nbsp; &lt;xsl:template match="first"&gt;</div>
+<div> &nbsp; &nbsp; &lt;xsl:call-template name="do:first_object_by_path"&gt;</div>
+<div> &nbsp; &nbsp; &nbsp; &lt;xsl:with-param name="path" select="@path"/&gt;</div>
+<div> &nbsp; &nbsp; &nbsp; &lt;xsl:with-param name="what"&gt;text&lt;/with-param&gt;</div>
+<div> &nbsp; &nbsp; &lt;/xsl:call-template&gt;</div>
+<div> &nbsp; &lt;/xsl:template&gt;</div>
+<div> &lt;/xsl:stylesheet&gt;</div>
+    </div>
+    <p>
+By using the above XSL file, the following XML file prints <code>ABC1</code> on your Web browser.
+    </p>
+    <div class="code">
+<div> &lt;?xml version="1.0" encoding="utf-8"?&gt;</div>
+<div> &lt;?xml-stylesheet type="application/xml" href="first.xsl"?&gt;</div>
+<div> &lt;top&gt;</div>
+<div> &nbsp; &lt;first path="//aaa/bbb"/&gt; &lt;!-- Outputs 'ABC1' --&gt;</div>
+<div> &nbsp;</div>
+<div> &nbsp; &lt;aaa&gt;</div>
+<div> &nbsp; &nbsp; &lt;bbb&gt;ABC1&lt;/bbb&gt;</div>
+<div> &nbsp; &nbsp; &lt;bbb&gt;ABC2&lt;/bbb&gt;</div>
+<div> &nbsp; &lt;/aaa&gt;</div>
+<div> &nbsp; &lt;aaa&gt;</div>
+<div> &nbsp; &nbsp; &lt;bbb&gt;ABC3&lt;/bbb&gt;</div>
+<div> &nbsp; &lt;/aaa&gt;</div>
+<div> &lt;/top&gt;</div>
+    </div>
+
+    <a name="usage_count_nodes_by_path"></a>
+    <h4>do:count_nodes_by_path</h4>
+    <p>
+Counts elements/attributes at a specified path.
+    </p>
+    <div class="code">
+<div> &lt;?xml version="1.0" encoding="utf-8"?&gt;</div>
+<div> &lt;!-- count.xsl --&gt;</div>
+<div> &lt;xsl:stylesheet version="1.0"</div>
+<div> &nbsp; xmlns:do="https://github.com/xslet/2020/xsldo"</div>
+<div> &nbsp; xmlns:xsl="http://www.w3.org/1999/XSL/Transform"&gt;</div>
+<div> &nbsp; &lt;xsl:import href="xsldo.xsl"&gt;</div>
+<div> &nbsp; &lt;xsl:template match="/top"&gt;</div>
+<div> &nbsp; &nbsp; &lt;html&gt;</div>
+<div> &nbsp; &nbsp; &nbsp; &lt;body&gt;</div>
+<div> &nbsp; &nbsp; &nbsp; &nbsp; &lt;xsl:apply-templates select="count"/&gt;</div>
+<div> &nbsp; &nbsp; &nbsp; &lt;/body&gt;</div>
+<div> &nbsp; &nbsp; &lt;/html&gt;</div>
+<div> &nbsp; &lt;/xsl:template&gt;</div>
+<div> &nbsp; &lt;xsl:template match="count"&gt;</div>
+<div> &nbsp; &nbsp; &lt;xsl:call-template name="do:count_nodes_by_path"&gt;</div>
+<div> &nbsp; &nbsp; &nbsp; &lt;xsl:with-param name="path" select="@path"/&gt;</div>
+<div> &nbsp; &nbsp; &lt;/xsl:call-template&gt;</div>
+<div> &nbsp; &lt;/xsl:template&gt;</div>
+<div> &lt;/xsl:stylesheet&gt;</div>
+    </div>
+    <p>
+By using the above XSL file, the following XML file prints <code>3</code> on your Web browser.
+    </p>
+    <div class="code">
+<div> &lt;?xml version="1.0" encoding="utf-8"?&gt;</div>
+<div> &lt;?xml-stylesheet type="application/xml" href="count.xsl"?&gt;</div>
+<div> &lt;top&gt;</div>
+<div> &nbsp; &lt;count path="//aaa/bbb"/&gt; &lt;!-- Outputs '3' --&gt;</div>
+<div> &nbsp;</div>
+<div> &nbsp; &lt;aaa&gt;</div>
+<div> &nbsp; &nbsp; &lt;bbb&gt;ABC1&lt;/bbb&gt;</div>
+<div> &nbsp; &nbsp; &lt;bbb&gt;ABC2&lt;/bbb&gt;</div>
+<div> &nbsp; &lt;/aaa&gt;</div>
+<div> &nbsp; &lt;aaa&gt;</div>
+<div> &nbsp; &nbsp; &lt;bbb&gt;ABC3&lt;/bbb&gt;</div>
+<div> &nbsp; &lt;/aaa&gt;</div>
+<div> &lt;/top&gt;</div>
+    </div>
+   </section>
   </section>
 
   <a name="apis"></a>

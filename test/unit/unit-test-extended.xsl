@@ -20,18 +20,18 @@
 
  <xsl:template match="index_of_current_node">
   <xsl:param name="data_index"/>
-  <text>[</text>
+  <xsl:text>[</xsl:text>
   <xsl:value-of select="$data_index"/>
-  <text>]</text>
+  <xsl:text>]</xsl:text>
  </xsl:template>
 
  <xsl:template match="index_of">
   <xsl:param name="data_indexes"/>
   <xsl:variable name="_id" select="@index_id"/>
   <xsl:variable name="_s" select="substring-after($data_indexes, concat($do:_object_sep, $_id, $do:_cond_op_sep))"/>
-  <text>{</text>
+  <xsl:text>{</xsl:text>
   <xsl:value-of select="substring-before($_s, $do:_object_sep)"/>
-  <text>}</text>
+  <xsl:text>}</xsl:text>
  </xsl:template>
 
 </xsl:stylesheet>
