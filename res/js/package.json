@@ -1,26 +1,27 @@
 {
-  "name": "xslutil",
+  "name": "%PROJECT%",
   "version": "1.0.0",
-  "description": "xslutil.js build environment with Node.js",
+  "description": "%PROJECT%.js build environment with Node.js",
   "main": "index.js",
   "scripts": {
     "lint": "eslint .",
-    "sass:build": "sass ../../src/scss/xslutil.scss ../../dist/xslutil.css",
-    "sass:watch": "sass --watch ../../src/scss/xslutil.scss ../../dist/xslutil.css",
-    "js:build": "browserify index.js --standalone xslutil -o ../../dist/xslutil.js && cd ../../dist && uglifyjs xslutil.js --compress --mangle -o xslutil.min.js --source-map url=xslutil.min.js.map"
+    "sass:build": "sass ../../src/scss/%PROJECT%.scss ../../dist/%PROJECT%.css",
+    "sass:watch": "sass --watch ../../src/scss/%PROJECT%.scss ../../dist/%PROJECT%.css",
+    "js:build": "browserify index.js --standalone %PROJECT% -o ../../dist/%PROJECT%.js && cd ../../dist && uglifyjs %PROJECT%.js --compress --mangle -o %PROJECT%.min.js --source-map url=%PROJECT%.min.js.map"
   },
   "engines": {
     "node": ">=16"
   },
   "keywords": [
-    "xslutil",
-    "doc",
+    "%PROJECT%",
     "xsl",
+    "xslt",
+    "xpath",
     "xslet"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/xslet/xslutil.git"
+    "url": "git+https://github.com/xslet/%PROJECT%.git"
   },
   "author": "Takayuki Sato",
   "license": "MIT",

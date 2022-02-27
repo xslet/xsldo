@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <xsl:stylesheet version="3.0"
- xmlns:do="https://github.com/xslet/2020/xsldo"
  xmlns:ut="https://github.com/xslet/2020/xslutil"
+ xmlns:do="https://github.com/xslet/2020/xsldo"
  xmlns:xsx="dummy-ns" exclude-result-prefixes="xsx"
  xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
  <xsl:namespace-alias result-prefix="xsl" stylesheet-prefix="xsx" />
  <xsl:strip-space elements="*" />
+
+
+ <xsl:param name="prodtype">
+  <xsl:for-each select="document('../../build.xml', /)/project">
+   <xsl:value-of select="property[@name='prodtype']/@value" />
+  </xsl:for-each>
+ </xsl:param>
 
 
  <xsl:template match="/">
@@ -28,23 +35,25 @@
 
   <xsl:result-document href="{$destfile}">
    <xsx:stylesheet version="1.0">
-    <xsl:merge>
-     <xsl:merge-source for-each-source="uri-collection($srcdir)"
-       select="xsl:stylesheet/xsl:import">
-      <xsl:merge-key select="href" />
-     </xsl:merge-source>
-     <xsl:merge-source for-each-source="uri-collection($libdir)"
-       select="xsl:stylesheet/xsl:import">
-      <xsl:merge-key select="href" />
-     </xsl:merge-source>
-     <xsl:merge-source for-each-source="uri-collection($extdir)"
-       select="xsl:stylesheet/xsl:import">
-      <xsl:merge-key select="href" />
-     </xsl:merge-source>
-     <xsl:merge-action>
-      <xsl:copy-of select="current-merge-group()" />
-     </xsl:merge-action>
-    </xsl:merge>
+    <xsl:if test="$prodtype != 'application'">
+     <xsl:merge>
+      <xsl:merge-source for-each-source="uri-collection($srcdir)"
+        select="xsl:stylesheet/xsl:import">
+       <xsl:merge-key select="href" />
+      </xsl:merge-source>
+      <xsl:merge-source for-each-source="uri-collection($libdir)"
+        select="xsl:stylesheet/xsl:import">
+       <xsl:merge-key select="href" />
+      </xsl:merge-source>
+      <xsl:merge-source for-each-source="uri-collection($extdir)"
+        select="xsl:stylesheet/xsl:import">
+       <xsl:merge-key select="href" />
+      </xsl:merge-source>
+      <xsl:merge-action>
+       <xsl:copy-of select="current-merge-group()" />
+      </xsl:merge-action>
+     </xsl:merge>
+    </xsl:if>
 
     <xsl:merge>
      <xsl:merge-source for-each-source="uri-collection($srcdir)"
