@@ -89,20 +89,20 @@ section > h2 {
 section > h3 {
   font-size: 1.2rem;
   padding: 0.5rem 0rem 0.5rem 1rem;
-  margin: 2rem 0rem 0rem;
+  margin: 0rem;
 }
 section > p {
   margin-left: 1.3rem;
 }
 
-section > ul {
-  margin-left: 2.3rem;
+section > ol, section > ul {
+  margin-left: 2.5rem;
   padding: 0rem;
 }
 
 div.code {
   font-family: monospace;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   padding: 0.5rem 1rem;
   background-color: #eee;
   display: inline-block;
@@ -185,4 +185,17 @@ a#sass::after {
   background: url('./images/logo-b6e1ef6e.svg');
   background-size: auto 0.9rem;
   background-repeat: no-repeat;
+}
+
+
+section.call > h4 {
+  font-size: 1rem;
+  padding: 1rem 0rem 0rem 1rem;
+  margin: 0rem;
+}
+section.call > p {
+  margin-left: 1.8rem;
+}
+section.call > div.code {
+  margin-left: 1.8rem;
 }
