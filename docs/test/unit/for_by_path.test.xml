@@ -460,383 +460,461 @@
  </it>
 
 
-
- <it title="should get content of each node at the path 'aaa' in reverse">
-  <compute name="do:for_by_path">
-   <param name="path">aaa</param>
-   <param name="reverse">true</param>
-   <param name="allow">|value_of_current_node|</param>
-   <value_of_current_node/>
-   <aaa>A1</aaa>
-   <aaa>A2</aaa>
-  </compute>
-  <expect>A2A1</expect>
- </it>
-
-
- <it title="should get content of each node at the path '*/bbb' in reverse">
-  <compute name="do:for_by_path">
-   <param name="path">*/bbb</param>
-   <param name="reverse">true</param>
-   <param name="allow">|value_of_current_node|</param>
-   <value_of_current_node/>
-   <aaa>
-    <bbb>ABC</bbb>
-    <bbb>DEF</bbb>
-   </aaa>
-   <ccc>
-    <bbb>GHI</bbb>
-    <ddd>JKL</ddd>
-   </ccc>
-  </compute>
-  <expect>GHIDEFABC</expect>
- </it>
+ <describe title="Sort in reverse">
+  <it title="should get content of each node at the path 'aaa' in reverse">
+   <compute name="do:for_by_path">
+    <param name="path">aaa</param>
+    <param name="reverse">true</param>
+    <param name="allow">|value_of_current_node|</param>
+    <value_of_current_node/>
+    <aaa>A1</aaa>
+    <aaa>A2</aaa>
+   </compute>
+   <expect>A2A1</expect>
+  </it>
 
 
- <it title="should get content of each node at the path 'ns1:aaa[@c0=1 | @c0=2]' in reverse">
-  <compute name="do:for_by_path">
-   <param name="path">ns1:aaa[@c0=1 | @c0=2]</param>
-   <param name="reverse">true</param>
-   <param name="allow">|value_of_current_node|</param>
-   <value_of_current_node/>
-  </compute>
-  <expect></expect>
- </it>
+  <it title="should get content of each node at the path '*/bbb' in reverse">
+   <compute name="do:for_by_path">
+    <param name="path">*/bbb</param>
+    <param name="reverse">true</param>
+    <param name="allow">|value_of_current_node|</param>
+    <value_of_current_node/>
+    <aaa>
+     <bbb>ABC</bbb>
+     <bbb>DEF</bbb>
+    </aaa>
+    <ccc>
+     <bbb>GHI</bbb>
+     <ddd>JKL</ddd>
+    </ccc>
+   </compute>
+   <expect>GHIDEFABC</expect>
+  </it>
 
 
- <it title="should get content of each node at the path '/n:data' in reverse">
-  <compute name="do:for_by_path">
-   <param name="path">/n:data</param>
-   <param name="reverse">true</param>
-   <param name="data_url">data/test-data.xml</param>
-   <param name="allow">|value_of_current_node|</param>
-   <value_of_current_node/>
-  </compute>
-  <expect>ABC1 ABC2 ABC3 ABC4 ABC5 ABC6 ABC7 ABC8 ABC9 ABC10 ABC11</expect>
- </it>
+  <it title="should get content of each node at the path 'ns1:aaa[@c0=1 | @c0=2]' in reverse">
+   <compute name="do:for_by_path">
+    <param name="path">ns1:aaa[@c0=1 | @c0=2]</param>
+    <param name="reverse">true</param>
+    <param name="allow">|value_of_current_node|</param>
+    <value_of_current_node/>
+   </compute>
+   <expect></expect>
+  </it>
 
 
- <it title="should get content of each node at the path '/n:data/n:Aaa' in external file">
-  <compute name="do:for_by_path">
-   <param name="path">/n:data/n:Aaa</param>
-   <param name="data_url">data/test-data.xml</param>
-   <param name="allow">|value_of_current_node|</param>
-   <value_of_current_node/>
-  </compute>
-  <expect>ABC1 ABC2 ABC3 ABC4 ABC5ABC6ABC7 ABC8 ABC9 ABC10 ABC11</expect>
- </it>
+  <it title="should get content of each node at the path '/n:data' in reverse">
+   <compute name="do:for_by_path">
+    <param name="path">/n:data</param>
+    <param name="reverse">true</param>
+    <param name="data_url">data/test-data.xml</param>
+    <param name="allow">|value_of_current_node|</param>
+    <value_of_current_node/>
+   </compute>
+   <expect>ABC1 ABC2 ABC3 ABC4 ABC5 ABC6 ABC7 ABC8 ABC9 ABC10 ABC11</expect>
+  </it>
+ </describe>
 
 
- <it title="should get content of each node at the path '/n:data/n:Aaa/n:Bbb' in external file">
-  <compute name="do:for_by_path">
-   <param name="path">/n:data/n:Aaa/n:Bbb</param>
-   <param name="data_url">data/test-data.xml</param>
-   <param name="allow">|value_of_current_node|</param>
-   <value_of_current_node/>
-  </compute>
-  <expect>ABC1 ABC2ABC3ABC4 ABC5ABC6ABC7 ABC8ABC9 ABC10 ABC11</expect>
- </it>
+ <describe title="Use nodes in external file">
+  <it title="should get content of each node at the path '/n:data/n:Aaa' in external file">
+   <compute name="do:for_by_path">
+    <param name="path">/n:data/n:Aaa</param>
+    <param name="data_url">data/test-data.xml</param>
+    <param name="allow">|value_of_current_node|</param>
+    <value_of_current_node/>
+   </compute>
+   <expect>ABC1 ABC2 ABC3 ABC4 ABC5ABC6ABC7 ABC8 ABC9 ABC10 ABC11</expect>
+  </it>
 
 
- <it title="should get content of each node at the path '/n:data/n:Aaa/n:Bbb/n:Ccc' in external file">
-  <compute name="do:for_by_path">
-   <param name="path">/n:data/n:Aaa/n:Bbb/n:Ccc</param>
-   <param name="data_url">data/test-data.xml</param>
-   <param name="allow">|value_of_current_node|</param>
-   <value_of_current_node/>
-  </compute>
-  <expect>ABC1ABC2ABC3ABC4ABC5ABC6ABC7ABC8ABC9ABC10ABC11</expect>
- </it>
+  <it title="should get content of each node at the path '/n:data/n:Aaa/n:Bbb' in external file">
+   <compute name="do:for_by_path">
+    <param name="path">/n:data/n:Aaa/n:Bbb</param>
+    <param name="data_url">data/test-data.xml</param>
+    <param name="allow">|value_of_current_node|</param>
+    <value_of_current_node/>
+   </compute>
+   <expect>ABC1 ABC2ABC3ABC4 ABC5ABC6ABC7 ABC8ABC9 ABC10 ABC11</expect>
+  </it>
 
 
- <it title="should get content of each node at the path '/n:data/n:Aaa/n:Bbb[@key0='B1']' in external file">
-  <compute name="do:for_by_path">
-   <param name="path">/n:data/n:Aaa/n:Bbb[@key0='B1']</param>
-   <param name="data_url">data/test-data.xml</param>
-   <param name="allow">|value_of_current_node|</param>
-   <value_of_current_node/>
-  </compute>
-  <expect>ABC1 ABC2ABC4 ABC5ABC7 ABC8</expect>
- </it>
+  <it title="should get content of each node at the path '/n:data/n:Aaa/n:Bbb/n:Ccc' in external file">
+   <compute name="do:for_by_path">
+    <param name="path">/n:data/n:Aaa/n:Bbb/n:Ccc</param>
+    <param name="data_url">data/test-data.xml</param>
+    <param name="allow">|value_of_current_node|</param>
+    <value_of_current_node/>
+   </compute>
+   <expect>ABC1ABC2ABC3ABC4ABC5ABC6ABC7ABC8ABC9ABC10ABC11</expect>
+  </it>
 
 
- <it title="should get content of each node at the path '/n:data/n:Aaa/n:Bbb/n:Ccc[@key1='C2']' in external file">
-  <compute name="do:for_by_path">
-   <param name="path">/n:data/n:Aaa/n:Bbb/n:Ccc[@key1='C2']</param>
-   <param name="data_url">data/test-data.xml</param>
-   <param name="allow">|value_of_current_node|</param>
-   <value_of_current_node/>
-  </compute>
-  <expect>ABC2ABC4ABC8ABC10</expect>
- </it>
+  <it title="should get content of each node at the path '/n:data/n:Aaa/n:Bbb[@key0='B1']' in external file">
+   <compute name="do:for_by_path">
+    <param name="path">/n:data/n:Aaa/n:Bbb[@key0='B1']</param>
+    <param name="data_url">data/test-data.xml</param>
+    <param name="allow">|value_of_current_node|</param>
+    <value_of_current_node/>
+   </compute>
+   <expect>ABC1 ABC2ABC4 ABC5ABC7 ABC8</expect>
+  </it>
 
 
- <it title="should get content of each node at the path '/n:data/n:Aaa/n:Bbb/n:Ccc/@key1[.='C2']' in external file">
-  <compute name="do:for_by_path">
-   <param name="path">/n:data/n:Aaa/n:Bbb/n:Ccc/@key1[.='C2']</param>
-   <param name="data_url">data/test-data.xml</param>
-   <param name="allow">|value_of_current_node|</param>
-   <value_of_current_node/>
-  </compute>
-  <expect>C2C2C2C2</expect>
- </it>
+  <it title="should get content of each node at the path '/n:data/n:Aaa/n:Bbb/n:Ccc[@key1='C2']' in external file">
+   <compute name="do:for_by_path">
+    <param name="path">/n:data/n:Aaa/n:Bbb/n:Ccc[@key1='C2']</param>
+    <param name="data_url">data/test-data.xml</param>
+    <param name="allow">|value_of_current_node|</param>
+    <value_of_current_node/>
+   </compute>
+   <expect>ABC2ABC4ABC8ABC10</expect>
+  </it>
 
 
- <it title="should get content of each node at the path '/n:data/n:Aaa/n:Bbb[n:Ccc/@key1='C2']' in external file">
-  <compute name="do:for_by_path">
-   <param name="path">/n:data/n:Aaa/n:Bbb[n:Ccc/@key1='C2']</param>
-   <param name="data_url">data/test-data.xml</param>
-   <param name="allow">|value_of_current_node|</param>
-   <value_of_current_node/>
-  </compute>
-  <expect>ABC4 ABC5</expect>
- </it>
+  <it title="should get content of each node at the path '/n:data/n:Aaa/n:Bbb/n:Ccc/@key1[.='C2']' in external file">
+   <compute name="do:for_by_path">
+    <param name="path">/n:data/n:Aaa/n:Bbb/n:Ccc/@key1[.='C2']</param>
+    <param name="data_url">data/test-data.xml</param>
+    <param name="allow">|value_of_current_node|</param>
+    <value_of_current_node/>
+   </compute>
+   <expect>C2C2C2C2</expect>
+  </it>
 
 
- <it title="should get content of each node at the path '/n:data/n:Aaa/n:Bbb[n:Ccc/@key1='C1']/@key0' in external file">
-  <compute name="do:for_by_path">
-   <param name="path">/n:data/n:Aaa/n:Bbb[n:Ccc/@key1='C1']/@key0</param>
-   <param name="data_url">data/test-data.xml</param>
-   <param name="allow">|value_of_current_node|</param>
-   <value_of_current_node/>
-  </compute>
-  <expect>B1B2B1B2</expect>
- </it>
+  <it title="should get content of each node at the path '/n:data/n:Aaa/n:Bbb[n:Ccc/@key1='C2']' in external file">
+   <compute name="do:for_by_path">
+    <param name="path">/n:data/n:Aaa/n:Bbb[n:Ccc/@key1='C2']</param>
+    <param name="data_url">data/test-data.xml</param>
+    <param name="allow">|value_of_current_node|</param>
+    <value_of_current_node/>
+   </compute>
+   <expect>ABC4 ABC5</expect>
+  </it>
 
 
- <it title="should get content of each node at the path '/n:data/n:Aaa/n:Bbb/n:Ccc' in external file in reverse">
-  <compute name="do:for_by_path">
-   <param name="path">/n:data/n:Aaa/n:Bbb/n:Ccc</param>
-   <param name="data_url">data/test-data.xml</param>
-   <param name="reverse">true</param>
-   <param name="allow">|value_of_current_node|</param>
-   <value_of_current_node/>
-  </compute>
-  <expect>ABC11ABC10ABC9ABC8ABC7ABC6ABC5ABC4ABC3ABC2ABC1</expect>
- </it>
+  <it title="should get content of each node at the path '/n:data/n:Aaa/n:Bbb[n:Ccc/@key1='C1']/@key0' in external file">
+   <compute name="do:for_by_path">
+    <param name="path">/n:data/n:Aaa/n:Bbb[n:Ccc/@key1='C1']/@key0</param>
+    <param name="data_url">data/test-data.xml</param>
+    <param name="allow">|value_of_current_node|</param>
+    <value_of_current_node/>
+   </compute>
+   <expect>B1B2B1B2</expect>
+  </it>
+
+  <describe title="And sort in reverse">
+   <it title="should get content of each node at the path '/n:data/n:Aaa/n:Bbb/n:Ccc' in external file in reverse">
+    <compute name="do:for_by_path">
+     <param name="path">/n:data/n:Aaa/n:Bbb/n:Ccc</param>
+     <param name="data_url">data/test-data.xml</param>
+     <param name="reverse">true</param>
+     <param name="allow">|value_of_current_node|</param>
+     <value_of_current_node/>
+    </compute>
+    <expect>ABC11ABC10ABC9ABC8ABC7ABC6ABC5ABC4ABC3ABC2ABC1</expect>
+   </it>
 
 
- <it title="should get content of each node at the path '/n:data/n:Aaa/n:Bbb[n:Ccc/@key1='C1']/@key0' in external file in reverse">
-  <compute name="do:for_by_path">
-   <param name="path">/n:data/n:Aaa/n:Bbb[n:Ccc/@key1='C1']/@key0</param>
-   <param name="data_url">data/test-data.xml</param>
-   <param name="reverse">true</param>
-   <param name="allow">|value_of_current_node|</param>
-   <value_of_current_node/>
-  </compute>
-  <expect>B2B1B2B1</expect>
- </it>
+   <it title="should get content of each node at the path '/n:data/n:Aaa/n:Bbb[n:Ccc/@key1='C1']/@key0' in external file in reverse">
+    <compute name="do:for_by_path">
+     <param name="path">/n:data/n:Aaa/n:Bbb[n:Ccc/@key1='C1']/@key0</param>
+     <param name="data_url">data/test-data.xml</param>
+     <param name="reverse">true</param>
+     <param name="allow">|value_of_current_node|</param>
+     <value_of_current_node/>
+    </compute>
+    <expect>B2B1B2B1</expect>
+   </it>
+  </describe>
+ </describe>
 
 
- <it title="should sort by target nodes as texts in ascending">
-  <compute name="do:for_by_path">
-   <param name="path">//n:A/n:B</param>
-   <param name="sort_type">text</param>
-   <param name="sort_dir">asc</param>
-   <param name="allow">|value_of_current_node|</param>
-   <value_of_current_node/>
-  </compute>
-  <expect>#apple#banana#grape#kiwi#melon#orange#pineapple#strawberry</expect>
- </it>
+ <describe title="Sorting by a node">
+  <it title="should sort by target nodes as texts in ascending">
+   <compute name="do:for_by_path">
+    <param name="path">//n:A/n:B</param>
+    <param name="sort_type">text</param>
+    <param name="sort_dir">asc</param>
+    <param name="allow">|value_of_current_node|</param>
+    <value_of_current_node/>
+   </compute>
+   <expect>#apple#banana#grape#kiwi#melon#orange#pineapple#strawberry</expect>
+  </it>
 
 
- <it title="should sort by attributes as numbers in ascending">
-  <compute name="do:for_by_path">
-   <param name="path">//n:A/n:B</param>
-   <param name="sort_name">@b</param>
-   <param name="sort_type">number</param>
-   <param name="sort_dir">asc</param>
-   <param name="allow">|value_of_current_node|</param>
-   <value_of_current_node/>
-  </compute>
-  <expect>#apple#grape#pineapple#kiwi#banana#strawberry#orange#melon</expect>
- </it>
+  <it title="should sort by attributes as numbers in ascending">
+   <compute name="do:for_by_path">
+    <param name="path">//n:A/n:B</param>
+    <param name="sort_name">@b</param>
+    <param name="sort_type">number</param>
+    <param name="sort_dir">asc</param>
+    <param name="allow">|value_of_current_node|</param>
+    <value_of_current_node/>
+   </compute>
+   <expect>#apple#grape#pineapple#kiwi#banana#strawberry#orange#melon</expect>
+  </it>
 
 
- <it title="should sort by attribute as texts in ascending">
-  <compute name="do:for_by_path">
-   <param name="path">//n:A/n:B</param>
-   <param name="sort_name">@b</param>
-   <param name="sort_type">text</param>
-   <param name="sort_dir">asc</param>
-   <param name="allow">|value_of_current_node|</param>
-   <value_of_current_node/>
-  </compute>
-  <expect>#grape#pineapple#kiwi#banana#strawberry#orange#melon#apple</expect>
- </it>
+  <it title="should sort by attribute as texts in ascending">
+   <compute name="do:for_by_path">
+    <param name="path">//n:A/n:B</param>
+    <param name="sort_name">@b</param>
+    <param name="sort_type">text</param>
+    <param name="sort_dir">asc</param>
+    <param name="allow">|value_of_current_node|</param>
+    <value_of_current_node/>
+   </compute>
+   <expect>#grape#pineapple#kiwi#banana#strawberry#orange#melon#apple</expect>
+  </it>
 
 
- <it title="should sort by child nodes as texts in descending">
-  <compute name="do:for_by_path">
-   <param name="path">//n:A</param>
-   <param name="sort_name">n:B</param>
-   <param name="sort_type">text</param>
-   <param name="sort_dir">desc</param>
-   <param name="allow">|value_of_current_node|</param>
-   <value_of_current_node/>
-  </compute>
-  <expect>(#strawberry#kiwi#grape)(#orange#banana#pineapple)(#melon#apple)</expect>
- </it>
+  <it title="should sort by child nodes as texts in descending">
+   <compute name="do:for_by_path">
+    <param name="path">//n:A</param>
+    <param name="sort_name">n:B</param>
+    <param name="sort_type">text</param>
+    <param name="sort_dir">desc</param>
+    <param name="allow">|value_of_current_node|</param>
+    <value_of_current_node/>
+   </compute>
+   <expect>(#strawberry#kiwi#grape)(#orange#banana#pineapple)(#melon#apple)</expect>
+  </it>
 
 
- <it title="should sort by attributes of child nodes as texts in ascending">
-  <compute name="do:for_by_path">
-   <param name="path">//n:A</param>
-   <param name="sort_name">n:B/@b</param>
-   <param name="sort_type">text</param>
-   <param name="sort_dir">desc</param>
-   <param name="allow">|value_of_current_node|</param>
-   <value_of_current_node/>
-  </compute>
-  <expect>(#melon#apple)(#orange#banana#pineapple)(#strawberry#kiwi#grape)</expect>
- </it>
+  <it title="should sort by attributes of child nodes as texts in ascending">
+   <compute name="do:for_by_path">
+    <param name="path">//n:A</param>
+    <param name="sort_name">n:B/@b</param>
+    <param name="sort_type">text</param>
+    <param name="sort_dir">desc</param>
+    <param name="allow">|value_of_current_node|</param>
+    <value_of_current_node/>
+   </compute>
+   <expect>(#melon#apple)(#orange#banana#pineapple)(#strawberry#kiwi#grape)</expect>
+  </it>
+
+  <describe title="And in reverse">
+   <it title="should sort by target nodes as texts in ascending">
+    <compute name="do:for_by_path">
+     <param name="path">//n:A/n:B</param>
+     <param name="sort_type">text</param>
+     <param name="sort_dir">asc</param>
+     <param name="reverse">true</param>
+     <param name="allow">|value_of_current_node|</param>
+     <value_of_current_node/>
+    </compute>
+    <expect>#strawberry#pineapple#orange#melon#kiwi#grape#banana#apple</expect>
+   </it>
 
 
- <it title="should get indexes of each nodes">
-  <compute name="do:for_by_path">
-   <param name="path">aaa</param>
-   <param name="allow">|value_of_current_node|index_of_current_node|</param>
-   <index_of_current_node/>
-   <value_of_current_node/>
-   <aaa>A</aaa>
-   <aaa>B</aaa>
-  </compute>
-  <expect>[1]A[2]B</expect>
- </it>
+   <it title="should sort by attributes as numbers in ascending">
+    <compute name="do:for_by_path">
+     <param name="path">//n:A/n:B</param>
+     <param name="sort_name">@b</param>
+     <param name="sort_type">number</param>
+     <param name="sort_dir">asc</param>
+     <param name="reverse">true</param>
+     <param name="allow">|value_of_current_node|</param>
+     <value_of_current_node/>
+    </compute>
+    <expect>#melon#orange#strawberry#banana#kiwi#pineapple#grape#apple</expect>
+   </it>
 
 
- <it title="should get no indexes when there is no target node">
-  <compute name="do:for_by_path">
-   <param name="path">aaa</param>
-   <param name="allow">|value_of_current_node|index_of_current_node|</param>
-   <index_of_current_node/>
-   <value_of_current_node/>
-  </compute>
-  <expect></expect>
- </it>
+   <it title="should sort by attribute as texts in ascending">
+    <compute name="do:for_by_path">
+     <param name="path">//n:A/n:B</param>
+     <param name="sort_name">@b</param>
+     <param name="sort_type">text</param>
+     <param name="sort_dir">asc</param>
+     <param name="reverse">true</param>
+     <param name="allow">|value_of_current_node|</param>
+     <value_of_current_node/>
+    </compute>
+    <expect>#apple#melon#orange#strawberry#banana#kiwi#pineapple#grape</expect>
+   </it>
 
 
- <it title="should get indexes of the specified index ID">
-  <compute name="do:for_by_path">
-   <param name="path">aaa</param>
-   <param name="index_id">J</param>
-   <param name="index_set"></param>
-   <param name="allow">|value_of_current_node|index_of_current_node|index_of|</param>
-   <index_of index_id="J"/>
-   <value_of_current_node/>
-   <aaa>A</aaa>
-   <aaa>B</aaa>
-  </compute>
-  <expect>{1}A{2}B</expect>
- </it>
+   <it title="should sort by child nodes as texts in descending">
+    <compute name="do:for_by_path">
+     <param name="path">//n:A</param>
+     <param name="sort_name">n:B</param>
+     <param name="sort_type">text</param>
+     <param name="sort_dir">desc</param>
+     <param name="reverse">true</param>
+     <param name="allow">|value_of_current_node|</param>
+     <value_of_current_node/>
+    </compute>
+    <expect>(#melon#apple)(#orange#banana#pineapple)(#strawberry#kiwi#grape)</expect>
+   </it>
 
 
- <it title="should get indexes of the specified index ID">
-  <compute name="do:for_by_path">
-   <param name="path">aaa</param>
-   <param name="index_id">J</param>
-   <param name="index_set">&#x86;;&#x87;I&#x96;=&#x97;55&#x86;;&#x87;</param>
-   <param name="allow">|value_of_current_node|index_of_current_node|index_of|</param>
-   <index_of index_id="J"/>
-   <index_of index_id="I"/>
-   <value_of_current_node/>
-   <aaa>A</aaa>
-   <aaa>B</aaa>
-  </compute>
-  <expect>{1}{55}A{2}{55}B</expect>
- </it>
+   <it title="should sort by attributes of child nodes as texts in ascending">
+    <compute name="do:for_by_path">
+     <param name="path">//n:A</param>
+     <param name="sort_name">n:B/@b</param>
+     <param name="sort_type">text</param>
+     <param name="sort_dir">desc</param>
+     <param name="reverse">true</param>
+     <param name="allow">|value_of_current_node|</param>
+     <value_of_current_node/>
+    </compute>
+    <expect>(#strawberry#kiwi#grape)(#orange#banana#pineapple)(#melon#apple)</expect>
+   </it>
+  </describe>
+ </describe>
 
 
- <it title="should get indexes of the specified index ID">
-  <compute name="do:for_by_path">
-   <param name="path">aaa</param>
-   <param name="index_set">&#x86;;&#x87;I&#x96;=&#x97;55&#x86;;&#x87;</param>
-   <param name="allow">|value_of_current_node|index_of_current_node|index_of|</param>
-   <index_of_current_node/>
-   <index_of index_id="J"/>
-   <index_of index_id="I"/>
-   <value_of_current_node/>
-   <aaa>A</aaa>
-   <aaa>B</aaa>
-  </compute>
-  <expect>[1]{}{55}A[2]{}{55}B</expect>
- </it>
+ <describe title="Get indexes">
+  <it title="should get indexes of each nodes">
+   <compute name="do:for_by_path">
+    <param name="path">aaa</param>
+    <param name="allow">|value_of_current_node|index_of_current_node|</param>
+    <index_of_current_node/>
+    <value_of_current_node/>
+    <aaa>A</aaa>
+    <aaa>B</aaa>
+   </compute>
+   <expect>[1]A[2]B</expect>
+  </it>
 
 
- <it title="should get indexes of each nodes when in reverse">
-  <compute name="do:for_by_path">
-   <param name="path">aaa</param>
-   <param name="reverse">true</param>
-   <param name="allow">|value_of_current_node|index_of_current_node|</param>
-   <index_of_current_node/>
-   <value_of_current_node/>
-   <aaa>A</aaa>
-   <aaa>B</aaa>
-  </compute>
-  <expect>[1]B[2]A</expect>
- </it>
+  <it title="should get no indexes when there is no target node">
+   <compute name="do:for_by_path">
+    <param name="path">aaa</param>
+    <param name="allow">|value_of_current_node|index_of_current_node|</param>
+    <index_of_current_node/>
+    <value_of_current_node/>
+   </compute>
+   <expect></expect>
+  </it>
 
 
- <it title="should get no indexes when there is no target node when in reverse">
-  <compute name="do:for_by_path">
-   <param name="path">aaa</param>
-   <param name="reverse">true</param>
-   <param name="allow">|value_of_current_node|index_of_current_node|</param>
-   <index_of_current_node/>
-   <value_of_current_node/>
-  </compute>
-  <expect></expect>
- </it>
+  <it title="should get indexes of the specified index ID">
+   <compute name="do:for_by_path">
+    <param name="path">aaa</param>
+    <param name="index_id">J</param>
+    <param name="index_set"></param>
+    <param name="allow">|value_of_current_node|index_of_current_node|index_of|</param>
+    <index_of index_id="J"/>
+    <value_of_current_node/>
+    <aaa>A</aaa>
+    <aaa>B</aaa>
+   </compute>
+   <expect>{1}A{2}B</expect>
+  </it>
 
 
- <it title="should get indexes of the specified index ID when in reverse">
-  <compute name="do:for_by_path">
-   <param name="path">aaa</param>
-   <param name="reverse">true</param>
-   <param name="index_id">J</param>
-   <param name="index_set"></param>
-   <param name="allow">|value_of_current_node|index_of_current_node|index_of|</param>
-   <index_of index_id="J"/>
-   <value_of_current_node/>
-   <aaa>A</aaa>
-   <aaa>B</aaa>
-  </compute>
-  <expect>{1}B{2}A</expect>
- </it>
+  <it title="should get indexes of the specified index ID">
+   <compute name="do:for_by_path">
+    <param name="path">aaa</param>
+    <param name="index_id">J</param>
+    <param name="index_set">&#x86;;&#x87;I&#x96;=&#x97;55&#x86;;&#x87;</param>
+    <param name="allow">|value_of_current_node|index_of_current_node|index_of|</param>
+    <index_of index_id="J"/>
+    <index_of index_id="I"/>
+    <value_of_current_node/>
+    <aaa>A</aaa>
+    <aaa>B</aaa>
+   </compute>
+   <expect>{1}{55}A{2}{55}B</expect>
+  </it>
 
 
- <it title="should get indexes of the specified index ID when in reverse">
-  <compute name="do:for_by_path">
-   <param name="path">aaa</param>
-   <param name="reverse">true</param>
-   <param name="index_id">J</param>
-   <param name="index_set">&#x86;;&#x87;I&#x96;=&#x97;55&#x86;;&#x87;</param>
-   <param name="allow">|value_of_current_node|index_of_current_node|index_of|</param>
-   <index_of index_id="J"/>
-   <index_of index_id="I"/>
-   <value_of_current_node/>
-   <aaa>A</aaa>
-   <aaa>B</aaa>
-  </compute>
-  <expect>{1}{55}B{2}{55}A</expect>
- </it>
+  <it title="should get indexes of the specified index ID">
+   <compute name="do:for_by_path">
+    <param name="path">aaa</param>
+    <param name="index_set">&#x86;;&#x87;I&#x96;=&#x97;55&#x86;;&#x87;</param>
+    <param name="allow">|value_of_current_node|index_of_current_node|index_of|</param>
+    <index_of_current_node/>
+    <index_of index_id="J"/>
+    <index_of index_id="I"/>
+    <value_of_current_node/>
+    <aaa>A</aaa>
+    <aaa>B</aaa>
+   </compute>
+   <expect>[1]{}{55}A[2]{}{55}B</expect>
+  </it>
 
 
- <it title="should get indexes of the specified index ID when in reverse">
-  <compute name="do:for_by_path">
-   <param name="path">aaa</param>
-   <param name="reverse">true</param>
-   <param name="index_set">&#x86;;&#x87;I&#x96;=&#x97;55&#x86;;&#x87;</param>
-   <param name="allow">|value_of_current_node|index_of_current_node|index_of|</param>
-   <index_of_current_node/>
-   <index_of index_id="J"/>
-   <index_of index_id="I"/>
-   <value_of_current_node/>
-   <aaa>A</aaa>
-   <aaa>B</aaa>
-  </compute>
-  <expect>[1]{}{55}B[2]{}{55}A</expect>
- </it>
+  <it title="should get indexes of each nodes when in reverse">
+   <compute name="do:for_by_path">
+    <param name="path">aaa</param>
+    <param name="reverse">true</param>
+    <param name="allow">|value_of_current_node|index_of_current_node|</param>
+    <index_of_current_node/>
+    <value_of_current_node/>
+    <aaa>A</aaa>
+    <aaa>B</aaa>
+   </compute>
+   <expect>[1]B[2]A</expect>
+  </it>
+
+
+  <it title="should get no indexes when there is no target node when in reverse">
+   <compute name="do:for_by_path">
+    <param name="path">aaa</param>
+    <param name="reverse">true</param>
+    <param name="allow">|value_of_current_node|index_of_current_node|</param>
+    <index_of_current_node/>
+    <value_of_current_node/>
+   </compute>
+   <expect></expect>
+  </it>
+
+
+  <it title="should get indexes of the specified index ID when in reverse">
+   <compute name="do:for_by_path">
+    <param name="path">aaa</param>
+    <param name="reverse">true</param>
+    <param name="index_id">J</param>
+    <param name="index_set"></param>
+    <param name="allow">|value_of_current_node|index_of_current_node|index_of|</param>
+    <index_of index_id="J"/>
+    <value_of_current_node/>
+    <aaa>A</aaa>
+    <aaa>B</aaa>
+   </compute>
+   <expect>{1}B{2}A</expect>
+  </it>
+
+
+  <it title="should get indexes of the specified index ID when in reverse">
+   <compute name="do:for_by_path">
+    <param name="path">aaa</param>
+    <param name="reverse">true</param>
+    <param name="index_id">J</param>
+    <param name="index_set">&#x86;;&#x87;I&#x96;=&#x97;55&#x86;;&#x87;</param>
+    <param name="allow">|value_of_current_node|index_of_current_node|index_of|</param>
+    <index_of index_id="J"/>
+    <index_of index_id="I"/>
+    <value_of_current_node/>
+    <aaa>A</aaa>
+    <aaa>B</aaa>
+   </compute>
+   <expect>{1}{55}B{2}{55}A</expect>
+  </it>
+
+
+  <it title="should get indexes of the specified index ID when in reverse">
+   <compute name="do:for_by_path">
+    <param name="path">aaa</param>
+    <param name="reverse">true</param>
+    <param name="index_set">&#x86;;&#x87;I&#x96;=&#x97;55&#x86;;&#x87;</param>
+    <param name="allow">|value_of_current_node|index_of_current_node|index_of|</param>
+    <index_of_current_node/>
+    <index_of index_id="J"/>
+    <index_of index_id="I"/>
+    <value_of_current_node/>
+    <aaa>A</aaa>
+    <aaa>B</aaa>
+   </compute>
+   <expect>[1]{}{55}B[2]{}{55}A</expect>
+  </it>
+ </describe>
 
 
 
