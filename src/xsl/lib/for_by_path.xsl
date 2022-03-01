@@ -111,8 +111,8 @@
        </xsl:call-template>
       </xsl:when>
       <xsl:otherwise>
-       <xsl:call-template name="do:_collect_gids_without_data_gid">
-        <xsl:with-param name="expath" select="$data_gid"/>
+       <xsl:call-template name="do:_collect_gids_with_data_gid">
+        <xsl:with-param name="data_gid" select="$data_gid"/>
         <xsl:with-param name="expath" select="$expath"/>
         <xsl:with-param name="sort_name" select="$sort_name"/> 
         <xsl:with-param name="sort_dir" select="$sort_dir"/> 
@@ -133,8 +133,8 @@
         </xsl:call-template>
        </xsl:when>
        <xsl:otherwise>
-        <xsl:call-template name="do:_collect_gids_without_data_gid">
-         <xsl:with-param name="expath" select="$data_gid"/>
+        <xsl:call-template name="do:_collect_gids_with_data_gid">
+         <xsl:with-param name="data_gid" select="$data_gid"/>
          <xsl:with-param name="expath" select="$expath"/>
          <xsl:with-param name="sort_name" select="$sort_name"/> 
          <xsl:with-param name="sort_dir" select="$sort_dir"/> 
