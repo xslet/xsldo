@@ -23,6 +23,7 @@
  - 'le' means that left side is less than or equal to right side.
 
  do:get_current_value, do:get_current_attribute and some functions which use these two functions inside have a parameter `what` which means kind of object. This parameter can have one of following values:
+
   - content : Result applying a template to each element.
   - text : Child text node of each element or value of each attribute.
   - number : Numeric value by converting child text node of each element or value of each attribute.
