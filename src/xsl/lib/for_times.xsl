@@ -6,7 +6,18 @@
  xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
  <!--**
-   Loops specified times.
+   Loops child nodes specified times.
+   This template passes following parameters to child elements:
+    - data_url : An URL of external data file.
+    - data_gid : A generate-id of a base node.
+    - data_index : An index of parent &lt;for&gt; element.
+    - data_indexes : Indexes of ancestor's &lt;for&gt; element.
+    - allow : Elements which are allowed to be applied.
+    - allow_text_node : A flag if text node is allowed.
+    - deny : Elements which are denied to be applied.
+    - arg0 : Any argument 0.
+    - arg1 : Any argument 1.
+    - arg2 : Any argument 2.
  -->
  <xsl:template name="do:for_times">
   <!--** An URL of external data file. -->
