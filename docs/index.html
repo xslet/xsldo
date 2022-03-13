@@ -58,7 +58,7 @@ This section explains how to import xsldo and call its templates in your XSL app
    </p>
 
    <section>
-    <h3>Import xsldo</h2>
+    <h3>Import xsldo</h3>
     <p>
 To import xsldo.xsl into another XSL file, the following handworks are needed.
 Since xsldo depends on xslutil, xslutil.xsl is needed to import, too.
@@ -83,7 +83,8 @@ Add a import element of xsldo in the XSL file.
       </p>
       <div class="code">
 <div> &nbsp; ...</div>
-<div> &nbsp; &lt;xsl:import href="./xsldo.xsl"/&gt;  <!-- xslutil.xsl is already imported in xsldo.xsl -->
+<div> &npsp; &lt;!-- xslutil.xsl is already imported in xsldo.xsl --&gt;</div>
+<div> &nbsp; &lt;xsl:import href="./xsldo.xsl"/&gt;</div>
 <div> &nbsp; ...</div>
       </div>
     </li>
