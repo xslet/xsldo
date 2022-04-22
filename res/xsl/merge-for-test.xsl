@@ -55,6 +55,8 @@
      </xsl:merge>
     </xsl:if>
 
+    <xsx:strip-space elements="*" />
+
     <xsl:merge>
      <xsl:merge-source for-each-source="uri-collection($srcdir)"
        select="xsl:stylesheet/xsl:param">
@@ -138,6 +140,7 @@
       <script src="./unit-test.js"></script>
      </head>
      <body>
+      <div id="passFailBar"/>
       <h1><xsx:value-of select="@title" /></h1>
       <xsx:apply-templates select="describe|it">
        <xsx:with-param name="data_url" select="$_data_url" />

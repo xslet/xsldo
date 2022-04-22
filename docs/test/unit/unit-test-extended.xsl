@@ -34,4 +34,16 @@
   <xsl:text>}</xsl:text>
  </xsl:template>
 
+ <xsl:template match="compute[@name='do:get_current_attribute']">
+  <xsl:variable name="_what" select="@what"/>
+  <xsl:variable name="_prefix" select="@prefix"/>
+  <xsl:variable name="_suffix" select="@suffix"/>
+  <xsl:for-each select="@attr">
+   <xsl:call-template name="do:get_current_attribute">
+    <xsl:with-param name="what" select="$_what"/>
+    <xsl:with-param name="prefix" select="$_prefix"/>
+    <xsl:with-param name="suffix" select="$_suffix"/>
+   </xsl:call-template>
+  </xsl:for-each>
+ </xsl:template>
 </xsl:stylesheet>

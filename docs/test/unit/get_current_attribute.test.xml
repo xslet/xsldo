@@ -1,41 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="application/xml" href="unit-test.xsl"?>
+<?xml-stylesheet type="application/xml" href="unit-test-extended.xsl"?>
 
 <describe title="do:get_current_attribute">
 
  <it title="should get content of current node">
-  <compute name="do:get_current_attribute"><param name="what">content</param><param name="prefix">(</param><param name="suffix">)</param>123<aaa>ABC</aaa>456</compute><expect>(content()123ABC456)</expect>
+  <compute name="do:get_current_attribute" attr="123"
+   what="content" prefix="(" suffix=")"/>
+  <expect>(123)</expect>
  </it>
 
 
  <it title="should get content of current node without normalizing spaces">
-  <compute name="do:get_current_attribute"><param name="what">content</param><param name="prefix">(</param><param name="suffix">)</param>  123 <aaa>  ABC </aaa>  456  </compute><expect>(content()  123   ABC   456  )</expect>
+  <compute name="do:get_current_attribute" attr="  a b  c  12 "
+   what="content" prefix="(" suffix=")"/>
+  <expect>(  a b  c  12 )</expect>
  </it>
 
 
  <it title="should get text of current node">
-  <compute name="do:get_current_attribute"><param name="what">text</param><param name="prefix">(</param><param name="suffix">)</param>123<aaa>ABC</aaa>456</compute><expect>(text()123ABC456)</expect>
+  <compute name="do:get_current_attribute" attr="123"
+   what="text" prefix="(" suffix=")"/>
+  <expect>(123)</expect>
  </it>
 
 
  <it title="should get text of current node without normalizing spaces">
-  <compute name="do:get_current_attribute"><param name="what">text</param><param name="prefix">(</param><param name="suffix">)</param>  123 <aaa>   ABC </aaa>  456  </compute><expect>(text()  123    ABC   456  )</expect>
+  <compute name="do:get_current_attribute" attr="  a b  c  12 "
+   what="text" prefix="(" suffix=")"/>
+  <expect>(  a b  c  12 )</expect>
  </it>
 
 
- <it skip="true" title="should get number of current node">
-  <!-- Skip because number() is applied to content of current node -->
-  <compute name="do:get_current_attribute"><param name="what">number</param><param name="prefix">(</param><param name="suffix">)</param>123</compute><expect>(NaN)</expect>
+ <it title="should get number of current node">
+  <compute name="do:get_current_attribute" attr="123"
+   what="number" prefix="(" suffix=")"/>
+  <expect>(123)</expect>
  </it>
 
 
  <it title="should get NaN of current node if param:what is `number` and node text is not a number">
-  <compute name="do:get_current_attribute"><param name="what">number</param><param name="prefix">(</param><param name="suffix">)</param>abc</compute><expect>(NaN)</expect>
+  <compute name="do:get_current_attribute" attr=" 12 3"
+   what="number" prefix="(" suffix=")"/>
+  <expect>(NaN)</expect>
  </it>
 
 
  <it title="should get name of current node">
-  <compute name="do:get_current_attribute"><param name="what">name</param><param name="prefix">(</param><param name="suffix">)</param>123<aaa>ABC</aaa>456</compute><expect>(compute)</expect>
+  <compute name="do:get_current_attribute" attr=" 12 3"
+   what="name" prefix="(" suffix=")"/>
+  <expect>(attr)</expect>
  </it>
 
 

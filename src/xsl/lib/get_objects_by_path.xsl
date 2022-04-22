@@ -159,11 +159,22 @@
   <xsl:param name="path_sep"/>
   <xsl:choose>
    <xsl:when test="$expath = ''">
-    <xsl:call-template name="do:get_current_value">
-     <xsl:with-param name="what" select="$what"/>
-     <xsl:with-param name="prefix" select="$prefix"/>
-     <xsl:with-param name="suffix" select="$suffix"/>
-    </xsl:call-template>
+    <xsl:choose>
+     <xsl:when test="boolean(../attribute::node() = current())">
+      <xsl:call-template name="do:get_current_attribute">
+       <xsl:with-param name="what" select="$what"/>
+       <xsl:with-param name="prefix" select="$prefix"/>
+       <xsl:with-param name="suffix" select="$suffix"/>
+      </xsl:call-template>
+     </xsl:when>
+     <xsl:otherwise>
+      <xsl:call-template name="do:get_current_value">
+       <xsl:with-param name="what" select="$what"/>
+       <xsl:with-param name="prefix" select="$prefix"/>
+       <xsl:with-param name="suffix" select="$suffix"/>
+      </xsl:call-template>
+     </xsl:otherwise>
+    </xsl:choose>
    </xsl:when>
    <xsl:otherwise>
     <xsl:variable name="_nd0" select="substring-before($expath, $path_sep)"/>
@@ -348,7 +359,10 @@
   <xsl:value-of select="$prefix"/>
   <xsl:choose>
    <xsl:when test="$what = 'content'">
-    <xsl:value-of select="normalize-space(.)"/>
+    <xsl:variable name="_content">
+     <xsl:apply-templates/>
+    </xsl:variable>
+    <xsl:value-of select="normalize-space($_content)"/>
    </xsl:when>
    <xsl:when test="$what = 'text'">
     <xsl:value-of select="normalize-space(text())"/>
