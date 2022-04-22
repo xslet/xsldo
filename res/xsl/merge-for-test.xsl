@@ -55,6 +55,8 @@
      </xsl:merge>
     </xsl:if>
 
+    <xsx:strip-space elements="*" />
+
     <xsl:merge>
      <xsl:merge-source for-each-source="uri-collection($srcdir)"
        select="xsl:stylesheet/xsl:param">

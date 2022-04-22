@@ -393,7 +393,7 @@
     <param name="prefix">(</param>
     <param name="suffix">)</param>
    </compute>
-   <expect>(ABC1 ABC2 ABC3 ABC4 ABC5 ABC6 ABC7 ABC8 ABC9 ABC10 ABC11)</expect>
+   <expect>(ABC1ABC2ABC3ABC4ABC5ABC6ABC7ABC8ABC9ABC10ABC11)</expect>
   </it>
 
 
@@ -405,7 +405,7 @@
     <param name="prefix">(</param>
     <param name="suffix">)</param>
    </compute>
-   <expect>(ABC1 ABC2 ABC3 ABC4 ABC5)</expect>
+   <expect>(ABC1ABC2ABC3ABC4ABC5)</expect>
   </it>
 
 
@@ -417,7 +417,7 @@
     <param name="prefix">(</param>
     <param name="suffix">)</param>
    </compute>
-   <expect>(ABC1 ABC2)</expect>
+   <expect>(ABC1ABC2)</expect>
   </it>
 
 
@@ -441,7 +441,7 @@
     <param name="prefix">(</param>
     <param name="suffix">)</param>
    </compute>
-   <expect>(ABC1 ABC2)</expect>
+   <expect>(ABC1ABC2)</expect>
   </it>
 
 
@@ -477,7 +477,7 @@
     <param name="prefix">(</param>
     <param name="suffix">)</param>
    </compute>
-   <expect>(ABC4 ABC5)</expect>
+   <expect>(ABC4ABC5)</expect>
   </it>
  </describe>
 

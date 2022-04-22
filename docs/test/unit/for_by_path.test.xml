@@ -21,7 +21,12 @@
  </it>
 
  <it title="should loop text nodes for each node at the path 'aaa'">
-  <compute name="do:for_by_path"><param name="path">aaa</param><param name="allow">|bbb|ccc|</param><param name="allow_text_node">true</param><aaa>A1</aaa>:TEXT:<aaa>A2</aaa><bbb>B1</bbb><ccc>C1</ccc></compute>
+  <compute name="do:for_by_path">
+   <param name="path">aaa</param>
+   <param name="allow">|bbb|ccc|</param>
+   <param name="allow_text_node">true</param>
+   <aaa>A1</aaa>:TEXT:<aaa>A2</aaa><bbb>B1</bbb><ccc>C1</ccc>
+  </compute>
   <expect>:TEXT:B1C1:TEXT:B1C1</expect>
  </it>
 
@@ -204,7 +209,7 @@
         <fff>jkl</fff>
        </bbb>
        <ddd>
-        <eee>GHI</eee>                                                           
+        <eee>GHI</eee>
         <fff>ghi</fff>
        </ddd>
      </ccc>
@@ -411,7 +416,7 @@
      <fff>abc</fff>
     </bbb>
     <bbb>
-     <eee>DEF</eee>                                                             
+     <eee>DEF</eee>
      <fff>def</fff>
     </bbb>
    </aaa>
@@ -512,7 +517,7 @@
     <param name="allow">|value_of_current_node|</param>
     <value_of_current_node/>
    </compute>
-   <expect>ABC1 ABC2 ABC3 ABC4 ABC5 ABC6 ABC7 ABC8 ABC9 ABC10 ABC11</expect>
+   <expect>ABC1ABC2ABC3ABC4ABC5ABC6ABC7ABC8ABC9ABC10ABC11</expect>
   </it>
  </describe>
 
@@ -525,7 +530,7 @@
     <param name="allow">|value_of_current_node|</param>
     <value_of_current_node/>
    </compute>
-   <expect>ABC1 ABC2 ABC3 ABC4 ABC5ABC6ABC7 ABC8 ABC9 ABC10 ABC11</expect>
+   <expect>ABC1ABC2ABC3ABC4ABC5ABC6ABC7ABC8ABC9ABC10ABC11</expect>
   </it>
 
 
@@ -536,7 +541,7 @@
     <param name="allow">|value_of_current_node|</param>
     <value_of_current_node/>
    </compute>
-   <expect>ABC1 ABC2ABC3ABC4 ABC5ABC6ABC7 ABC8ABC9 ABC10 ABC11</expect>
+   <expect>ABC1ABC2ABC3ABC4ABC5ABC6ABC7ABC8ABC9ABC10ABC11</expect>
   </it>
 
 
@@ -558,7 +563,7 @@
     <param name="allow">|value_of_current_node|</param>
     <value_of_current_node/>
    </compute>
-   <expect>ABC1 ABC2ABC4 ABC5ABC7 ABC8</expect>
+   <expect>ABC1ABC2ABC4ABC5ABC7ABC8</expect>
   </it>
 
 
@@ -591,7 +596,7 @@
     <param name="allow">|value_of_current_node|</param>
     <value_of_current_node/>
    </compute>
-   <expect>ABC4 ABC5</expect>
+   <expect>ABC4ABC5</expect>
   </it>
 
 
